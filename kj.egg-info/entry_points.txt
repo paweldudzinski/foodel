@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = kj:main
+      [console_scripts]
+      initialize_kj_db = kj.scripts.initializedb:main
+      

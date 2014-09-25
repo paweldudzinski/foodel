@@ -1,0 +1,49 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="../modules/shared.mako" />
+
+%if chosen_lead:
+    <h2>Edycja leada</h2>
+    <form action="${request.route_path('save_edited_lead', id=chosen_lead.id)}" method="POST">
+%else:
+    <h2>Baza potencjalnych użytkowników</h2>
+    <form action="${request.route_path('save_lead')}" method="POST">
+%endif
+    ${shared.register_simple_input('name', 'text', u'Nazwa leada', value=chosen_lead and chosen_lead.name or '')}
+    ${shared.register_simple_input('email', 'text', u'E-mail', value=chosen_lead and chosen_lead.email or '')}
+    ${shared.register_simple_input('phone', 'text', u'Telefon', value=chosen_lead and chosen_lead.phone or '')}
+    ${shared.register_simple_input('category', 'select', u'Kategoria', select_values=categories, selected_value=chosen_lead and chosen_lead.category)}
+    ${shared.register_simple_input('description', 'textarea', u'Dodatkowe info', value=chosen_lead and chosen_lead.description or '')}
+    <div style="clear:both; padding-top:20px;"></div>
+
+    <input id="save-lead" type="submit" class="lobster btn btn-primary btn-large" value="Zapisz">
+    %if chosen_lead:
+        <a href="${request.route_path('leads')}" class="lobster btn btn-primary btn-large">Anuluj</a>
+    %endif
+    </form>
+</form>
+
+<hr />
+%if not chosen_lead:
+<h3>Zapisane leady</h3>
+<table class="list-products tdpadding10" style="width:100%;">
+%for i, lead in enumerate(leads, 1):
+    <tr>
+    <td style="width:2%;">${i}</td>
+    <td style="width:20%;">${lead.name}</td>
+    <td style="width:20%;">${lead.email}</td>
+    <td style="width:10%;">${lead.phone}</td>
+    <td style="width:10%;">${lead.get_category_as_text()}</td>
+    <td style="width:40%;">${lead.description}</td>
+    <td style="width:4%;">
+        <a href="${request.route_path('edit_lead', id=lead.id)}"
+                   class="icon s08-pa-edit"></a>
+    </td>
+    <td style="width:4%;">
+        <a href="${request.route_path('delete_lead', id=lead.id)}"
+                   class="icon s08-pa-delete ondelete"></a>
+    </td>
+    </tr>
+%endfor
+</table>
+%endif

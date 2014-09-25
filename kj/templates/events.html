@@ -1,0 +1,51 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="modules/shared.mako" />
+
+<section class="newest">
+    <div class="newest-products">
+    %for e in events:
+        <div class="tile">
+            <div class="pale-box" style="width:240px; margin:0px auto;">
+                <div class="in-tile">
+                    <div style="width:100%; text-align:left;">
+                        <div style="padding:9px; text-align:center;">
+                            <a title="Pokaż w pełnej krasie" href="${e.get_sef_url()}">
+                                <span class="lobster" style="font-size:18px;">
+                                    ${h.smart_truncate(e.title, 40)}<br />
+                                    <hr />
+                                    %if h.is_sunday(e.event_starts):
+                                        <span style="font-size:50px; font-weight:bold; color:#cc0000;">${e.event_starts.day}</span>
+                                    %else:
+                                        <span style="font-size:50px; font-weight:bold;">${e.event_starts.day}</span>
+                                    %endif
+                                </span>
+                                <br />
+                                <strong>${h.get_pl_month(e.event_starts)}</strong>
+                                <br />
+                                ${h.get_pl_weekday(e.event_starts)}, ${h.get_hour_from_string(e.event_time)}
+                            </a>
+                        </div>
+                        <a class="product-photo" title="${e.title}" href="${e.get_sef_url()}" style="position:relative; display:block;">
+                            <div class="mosaic-arrow arrow arrow-down"></div>
+                            <img src="${e.get_main_photo_url('big_')}" 
+                                 title="${e.title}" 
+                                 alt="${e.title}"
+                                 style="max-width:240px; margin:0px auto;">
+                        </a>
+                    </div>
+                    <div class="in-tile-desc">
+                        ${h.smart_truncate(e.description, 200)}<br />
+                        %if e.localisation:
+                            <br /><strong>${e.localisation}</strong>
+                            %if e.street:
+                                <br /><strong>${e.street}</strong>
+                            %endif
+                        %endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    %endfor
+    </div>
+</section>

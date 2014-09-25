@@ -1,0 +1,104 @@
+# -*- coding: utf-8 -*-
+<%namespace name="shared" file="../modules/shared.mako" />
+<%inherit file="../base.mako" />
+<div class="newest">
+<h2>Wiadomość: <span class="lobster bluish">${h.smart_truncate(thread.product.name, 65)}</span></h2>
+<section class="thread-messages">
+<% anchor_set = False %>
+%for i, message in enumerate(thread.messages):
+    <div class="message message-${'fromme' if message.is_mine(req.user) else 'tomme'}">
+        <span class="message-sender-info">
+        %if message.is_mine(req.user):
+            <div style="float:left; width:60px; position:absolute; right:-80px;">
+                ${shared.avatar(req.user)}
+            </div>
+            <div class="arrow arrow-right" style="position:absolute; right:-11px; top:10px; border-color:#E5E9EC;"></div>
+            <div style="float:left; line-height:17px; min-height:55px; *height:55px; zoom:1">
+                <strong>Ja:</strong><br />
+                ${message.body()}
+            </div>
+            <div style="clear:both;"></div>
+        %else:
+            <div style="float:left; width:60px; position:absolute; left:-70px;">
+                ${shared.avatar(message.sender)}
+            </div>
+            <div class="arrow arrow-left" style="position:absolute; left:-11px; top:10px; border-color:#E7E4E1;"></div>
+            <div style="float:left; line-height:17px; min-height:55px; *height:55px; zoom:1">
+                <strong>${message.sender.user_name()}:</strong><br />
+                ${message.body()}
+            </div>
+            <div style="clear:both;"></div>
+        %endif
+        </span>
+        %if not message.is_mine(req.user) and message.is_unread():
+            <div class="new-message icon sprite-08-new"></div>
+            %if not anchor_set:
+                <a name="last_or_new"></a>
+            %endif
+            <% 
+                message.mark_read() 
+                anchor_set = True
+            %>
+        %endif
+    </div>
+    <div style="clear:both;"></div>
+%endfor
+<section class="message-reply">
+<hr />
+<form action="${request.route_path('reply', id=thread.id)}" method="POST">
+    <strong>Odpowedź:</strong><br />
+    <textarea name="reply"></textarea>
+    <div style="margin-top:10px; float:right; text-align:right;">
+    <input style="margin-bottom:10px;" type="submit" class="btn btn-large btn-primary lobster" value="Wyślij" />
+    %if not thread.is_archived(req.user):
+        <br /><a href="${request.route_path('archive_message', id=thread.id)}" >Przenieś do archiwum</a>
+    %endif
+    </div>
+    <div style="clear:left;"></div>
+</form>
+</section>
+</section>
+
+<section class="thread-participator">
+    <div style="float:left;">
+        ${shared.avatar(participant, prefix='small_')}
+    </div>
+    <div style="float:left; margin-left:10px;">
+        <strong>Rozmawiasz z <span class="bluish">
+        <a href="${participant.profile_link(req)}">${participant.user_name()}</a>
+        </span></strong><br />
+        ${participant.email}
+        <p style="margin-top:10px;">
+            Sprzedaje: ${participant.get_product_for_sales_count()}<br />
+            Wymienia: ${participant.get_product_for_exchange_count()}
+        </p>
+        <% grade = participant.get_grade() %>
+        <p style="margin-top:0px;">
+            %if grade:
+                ${shared.grade_hats(grade)}
+            %else:
+                <i>Użytkownik jeszcze nie ma ocen.</i>
+            %endif
+        </p>
+    </div>
+    <div style="clear:both;"></div>
+    %if products:
+        <hr />
+        <strong>Produkty Twojego rozmówcy:</strong>
+        <div style="margin-top:10px;">
+            %for i, p in enumerate(products):
+                <a href="${p.get_sef_url()}" class="participant-photo" style="background-image:url(${p.get_main_photo_url('tiny_')})"></a>
+                %if i % (4+1) == 3:
+                    <br />
+                %endif
+            %endfor
+        </div>
+    %endif
+</section>
+
+<div style="clear:both;"></div>
+%if not anchor_set:
+    <a name="last_or_new"></a>
+%endif
+</div>
+<br /><br />

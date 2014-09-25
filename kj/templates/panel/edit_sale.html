@@ -1,0 +1,95 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="../modules/shared.mako" />
+
+%if product.kind == 'S':
+    <h2>Sprzedam</h2>
+%else:
+    <h2>Wymienię</h2>
+%endif
+<hr />
+<b>Dodaj produkt który chcesz sprzedać, zamienić albo oddać w dobre ręce.</b>
+<form id="product-form" action="${request.route_path('save_edited_product_for_sale', id=product.id)}" method="POST" enctype='multipart/form-data'>
+    <br />
+    ${shared.register_simple_input('title', 'text', u'Tytuł produktu', value=product.name)}
+    
+    %if product.is_product():
+        ${shared.register_simple_input('category', 'select', u'Kategoria gówna', select_values=categories, 
+                                    selected_value=product.category and product.category.id)}
+        <div id="subcategory-container">
+        ${shared.register_simple_input('subcategory', 'select', u'Podategoria', select_values=subcategories, 
+                                    selected_value=product.subcat_id)}
+        </div>
+        <div id="subcategory2-container">
+        ${shared.register_simple_input('subcategory2', 'select', u'Podkategoria #2', select_values=subcategories2,
+                                        selected_value=product.subcat2_id)}
+        </div>
+    %endif
+                                    
+    %if product.get_main_photo_object():
+        <div class="register-label fleft">Zdjęcie główne:</div>
+        <div class="register-label fleft">
+        <img style="height:40px; max-width:70px; *width:70px; zoom:1" 
+                     class="photo-green-border"
+                     src="${product.get_main_photo_url('tiny_')}">
+        <a href="${request.route_path('delete_photo', id=product.get_main_photo_object().id)}"
+                   class="icon s08-pa-delete ondelete"></a>
+        </div>
+        <div style="clear:both; padding-bottom:5px;"></div> 
+    %else:
+        ${shared.register_simple_input('foto_main', 'file', u'Zdjęcie główne')}
+    %endif
+    
+    %if not product.is_lesson():
+    %if product.get_first_aside_photo_object():
+        <div class="register-label fleft">Zdjęcie dodatkowe #1:</div>
+        <div class="register-label fleft">
+        <img style="height:40px; max-width:70px; *width:70px; zoom:1" 
+                     class="photo-green-border"
+                     src="${product.get_first_aside_photo_object().get_url('tiny_')}">
+        <a href="${request.route_path('delete_photo', id=product.get_first_aside_photo_object().id)}"
+                   class="icon s08-pa-delete ondelete"></a>
+        </div>
+        <div style="clear:both; padding-bottom:5px;"></div> 
+    %else:
+        ${shared.register_simple_input('foto_1', 'file', u'Zdjęcie dodatkowe #1')}
+    %endif
+    
+    %if product.get_second_aside_photo_object():
+        <div class="register-label fleft">Zdjęcie dodatkowe #2:</div>
+        <div class="register-label fleft">
+        <img style="height:40px; max-width:70px; *width:70px; zoom:1" 
+                     class="photo-green-border"
+                     src="${product.get_second_aside_photo_object().get_url('tiny_')}">
+        <a href="${request.route_path('delete_photo', id=product.get_second_aside_photo_object().id)}"
+                   class="icon s08-pa-delete ondelete"></a>
+        </div>
+        <div style="clear:both; padding-bottom:5px;"></div> 
+    %else:
+        ${shared.register_simple_input('foto_2', 'file', u'Zdjęcie dodatkowe #2')}
+    %endif
+    
+    <input id="bargain_type" type="hidden" name="bargain_type" value="S" />
+    <div id="selling-price" style="${'display:none' if not product.bargain_type == product.BARGAIN_SELL else ''}">
+    ${shared.register_simple_input('price', 'text', u'Cena (w PLN)', value=product.price)}
+    </div>
+    ${shared.register_simple_input('availability_type', 'select', u'Dostępność', select_values=availabilility_values,
+                                    selected_value=product.availability)}
+    ${shared.register_simple_input('shipping_type', 'select', u'Sposób dostawy', select_values=shipping_values,
+                                    selected_value=product.shipping_method)}
+    ${shared.register_simple_input('quantity', 'text', u'Ilość sztuk', value=product.quantity or 1)}
+    <span style="font-size:0.8em;">&nbsp;&nbsp;*(do końca ${product.until_when_available()})</span>
+    ${shared.register_simple_input('end_date', 'select', u'Zmień czas trwania oferty',
+                                    select_values=end_date_values)}
+    %endif
+    
+    ${shared.register_simple_input('wojewodztwo', 'select', u'Województwo', select_values=wojewodztwa, 
+                                    selected_value=product.location and product.location.wojewodztwo.id)}
+    <div id="cities-container">
+    ${shared.register_simple_input('city', 'select', u'Miasto', select_values=cities,
+                                    selected_value=product.location and product.location.id)}
+    </div>
+    
+    ${shared.register_simple_input('description', 'textarea', u'Krótki opis', value=product.description)}
+    <input id="save-${'lesson' if product.is_lesson() else 'product'}" type="submit" class="btn btn-primary btn-medium" value="ZAPISZ">
+</form>

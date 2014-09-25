@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<h2>Sprzęgamy jak możemy</h2>
+
+
+<form action="${request.route_path('save_couple')}" method="POST">
+<h4>Kategorie niesprzężone z niczym (${len(cat_not_coupled)})</h4>
+    
+${cat(cat_not_coupled, 'base_cat')}<br /><strong>sparuj z:</strong><br />
+${cat(cat_for_coupling, 'cat1')}<br />
+${cat(cat_for_coupling, 'cat2')}<br />
+${cat(cat_for_coupling, 'cat3')}<br />
+<input type="submit" value="Zapisz" class="btn btn-primary btn-medium" style="margin-top:10px;" />
+</form>
+
+<h4>Kategorie sprzężone (${len(cat_coupled)})</h4>
+${cat(cat_coupled, 'base_coupled_cat')}<br />
+<div class="coupled-categories"></div>
+
+<%def name="cat(collection, name, selected=None)" filter="trim">
+    <select name="${name}" id="${name}" style="width:370px; margin-bottom:2px;" autocomplete="off">
+        <option value="">-- wybierz kategorię --</option>
+        %for cat in collection:
+            <option ${'selected="selected"' if str(cat.id) == str(selected) else ''} value="${cat.id}">${cat.parent.name} &rarr; ${cat.name}</option>
+        %endfor
+    </select>
+</%def>

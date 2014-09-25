@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="../modules/shared.mako" />
+<%namespace name="modals" file="../modules/modals.mako" />
+
+<h2>Moje zakupy: <span class="bluish lobster">Oceń swoje zakupy</span></h2>
+${shared.orders_buttons(bought_counts, 'my_orders_bought', show_grading=True)}
+
+<hr style="margin:5px 0px;" />
+
+<table class="list-products" style="width:100%;">
+%for o in orders:
+    <tr>
+        <td style="width:42px; text-align:center;">
+            ${shared.photo_in_product_list(o.product)}
+        </td>
+        <td class="title" style="width:840px;">
+            ${o.product.name}<br />
+            <span>${o.product.category.name}</span>
+        </td>
+        <td>
+            <a href="#" rel="${o.id}" data-reveal-id="grade-modal" data-animation="fade"  class="grade btn btn-primary btn-small">Oceń</a>
+        </td>
+    </tr>
+%endfor
+</table>
+
+${modals.grade_product()}

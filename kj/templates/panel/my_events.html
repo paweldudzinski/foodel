@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="../modules/shared.mako" />
+
+<div class="fleft">
+    <h2>Stworzone przeze mnie wydarzenia</h2>
+</div>
+<div class="fright" style="margin:18px 4px 0px 0px;">
+        <a href="${request.route_path('add_event')}" class="btn btn-small btn-primary">+ Dodaj nowe wydarzenie</a>
+</div>
+<div style="clear:both;"></div>
+
+<table class="list-products" style="width:500px;">
+    %for e in events:
+        <tr>
+            <td class="title">
+                <span>${e.title}</span>
+            </td>
+            <td style="width:30px;">
+                <a href="${request.route_path('delete_event', id=e.id)}"
+                   class="icon s08-pa-delete ondelete"></a>
+            </td>
+            <td style="width:30px;">
+                <a href="${request.route_path('edit_event', id=e.id)}"
+                   class="icon s08-pa-edit"></a>
+            </td>
+        </tr>
+    %endfor
+</table>
+
+%if past_events:
+    <br /><br />
+    <h3>Wydarzenia które się odbyły</h3>
+%endif
+
+<table class="list-products" style="width:500px;">
+    %for e in past_events:
+        <tr>
+            <td class="title">
+                <span>${e.title}</span>
+            </td>
+    %endfor
+</table>
+
+
+
+%if len(events) == 0:
+    Nie masz jeszcze żadnego wydarzenia.
+%endif
+
+<br />
+<br />

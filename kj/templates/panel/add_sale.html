@@ -1,0 +1,56 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="../modules/shared.mako" />
+
+%if type == 'SALE':
+    <h2>Sprzedam</h2>
+%else:
+    <h2>Wymienię</h2>
+%endif
+<hr />
+<strong>Dodaj produkt który chcesz ${u'sprzedać' if type == 'SALE' else u'wymienić'}.</strong>
+<form id="product-form" action="${request.route_path('save_product_for_sale', id=req.user.id)}" method="POST" enctype='multipart/form-data'>
+    <br />
+    ${shared.register_simple_input('title', 'text', u'Nazwa produktu')}
+    ${shared.register_simple_input('category', 'select', u'Kategoria główna', select_values=categories)}
+    <div id="subcategory-container">
+    ${shared.register_simple_input('subcategory', 'select', u'Podkategoria #1', select_values=[])}
+    </div>
+    <div id="subcategory2-container">
+    ${shared.register_simple_input('subcategory2', 'select', u'Podkategoria #2', select_values=[])}
+    </div>
+    <span style="font-size:0.9em;"><i>* Podkategoria #2 nie jest obowiązkowa, ale zalecana ;)</i></span>
+    <hr />
+    <strong>Cechy Twojego produktu/dania gotowego:</strong><br />
+    <table class="specifics">
+        <tr>
+            %for i, specific in enumerate(specifics):
+                <td>
+                    <input type="checkbox" autocomplete="off" name="specifics" value="${specific.id}" />
+                    ${specific.name}
+                </td>
+                %if i%2:
+                    <tr/></tr>
+                %endif
+            %endfor
+        </tr>
+    </table>
+    <hr />
+    ${shared.register_simple_input('foto_main', 'file', u'Zdjęcie główne')}
+    ${shared.register_simple_input('foto_1', 'file', u'Zdjęcie dodatkowe #1')}
+    ${shared.register_simple_input('foto_2', 'file', u'Zdjęcie dodatkowe #2')}
+    <input id="bargain_type" type="hidden" name="bargain_type" value="${'S' if type == 'SALE' else 'X'}" />
+    %if type == 'SALE':
+        ${shared.register_simple_input('price', 'text', u'Cena (w PLN)', quantity_measures=quantity_measures, selected_value='P')}
+    %endif
+    ${shared.register_simple_input('quantity', 'text', u'Ilość', value=1)}
+    ${shared.register_simple_input('availability_type', 'select', u'Dostępność', select_values=availabilility_values)}
+    ${shared.register_simple_input('shipping_type', 'select', u'Sposób dostawy', select_values=shipping_values)}
+    ${shared.register_simple_input('end_date', 'select', u'Czas trwania oferty', selected_value='W', with_null_option=False, select_values=end_date_values)}
+    ${shared.register_simple_input('wojewodztwo', 'select', u'Województwo', select_values=wojewodztwa)}
+    <div id="cities-container">
+    ${shared.register_simple_input('city', 'select', u'Miasto', select_values=[])}
+    </div>
+    ${shared.register_simple_input('description', 'textarea', u'Krótki opis')}
+    <input id="save-product" type="submit" class="btn btn-primary btn-medium" value="ZAPISZ">
+</form>

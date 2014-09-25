@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<h2>Sprzęgamy jak możemy</h2>
+
+
+<form action="${request.route_path('save_edited_couple', id=category.id)}" method="POST">
+    
+Kategorię <strong>"${category.name}"</strong> sparuj z:<br /><br />
+%for i, c in enumerate(category.coupled, 1):
+    ${cat(cat_for_coupling, 'cat%s'%(i), selected=c)}<br />
+%endfor
+
+%if i<3:
+    %for k in xrange(i+1,4):
+        ${cat(cat_for_coupling, 'cat%s'%(k),)}<br />
+    %endfor
+%endif
+
+<input type="submit" value="Zapisz" class="btn btn-primary btn-medium" style="margin-top:10px;" />
+</form>
+
+<%def name="cat(collection, name, selected=None)" filter="trim">
+    <select name="${name}" id="${name}" style="width:370px; margin-bottom:2px;" autocomplete="off">
+        <option value="">-- wybierz kategorię --</option>
+        %for cat in collection:
+            <option ${'selected="selected"' if str(cat.id) == str(selected) else ''} value="${cat.id}">${cat.parent.name} &rarr; ${cat.name}</option>
+        %endfor
+    </select>
+</%def>

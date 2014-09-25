@@ -1,0 +1,61 @@
+# -*- coding: utf-8 -*-
+<%inherit file="../base.mako" />
+<div class="newest">
+<h2>
+    Moje wiadomości
+    %if type == 'INBOX':
+        przychodzące
+    %elif type == 'OUTBOX':
+        wychodzące
+    %else:
+        archiwalne
+    %endif
+</h2>
+
+<div class="message-buttons">
+<a class="btn btn-primary" href="${request.route_path('inbox')}">
+    Wiadomości przychodzące ${'(nowych: %s)'%(get_unread) if get_unread else ''}
+</a>
+<a class="btn btn-primary" href="${request.route_path('outbox')}">
+    Wiadomości wysłane ${'(nowych: %s)'%(send_unread) if send_unread else ''}
+</a>
+<a class="btn btn-inverted" href="${request.route_path('archive')}">
+    Wiadomości archiwalne
+</a>
+</div>
+
+%if not all_threads:
+    brak wiadomości
+%endif
+
+%for i, thread in enumerate(all_threads, 1):
+    <% unread_messages = thread.get_unread_messages(req.user) %>
+    <div class="thread ${'sent' if thread in threads_i_sent else 'received'} ${'thread-last' if i == len(all_threads) else ''} ">
+        <div style="float:left; width:1000px;">
+        <span class="name">
+        %if thread in threads_i_sent:
+            Do <a href="${request.route_path('profile', id=thread.recipient.id, sef=h.make_sef_url(thread.recipient.user_name()))}">
+            ${thread.recipient.user_name()}</a>
+        %else:
+            Od <a href="${request.route_path('profile', id=thread.sender.id, sef=h.make_sef_url(thread.sender.user_name()))}">
+            ${thread.sender.user_name()}</a>
+        %endif
+        </span>
+        %if unread_messages:
+            <a style="color:#333;" href="${request.route_path('show_thread_messages', id=thread.id, _anchor='last_or_new')}">
+            <strong>${h.smart_truncate(thread.product.name, 80)}</strong>
+            </a>
+            <span class="date">(nieprzeczytane: ${len(unread_messages)})</span>
+        %else:
+            <a style="color:#333;" href="${request.route_path('show_thread_messages', id=thread.id, _anchor='last_or_new')}">
+                ${h.smart_truncate(thread.product.name, 80)}
+            </a>
+        %endif
+        </div>
+        <div style="float:right;">
+            <span class="date">${thread.when_updated.strftime('%d-%m-%Y %H:%m')}</span>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+%endfor
+</div>

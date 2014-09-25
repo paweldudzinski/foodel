@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="../modules/shared.mako" />
+
+<h2>Moje zakupy: <span class="bluish lobster">${title}</span></h2>
+
+${shared.orders_buttons(bought_counts, 'my_orders_bought', show_grading=True)}
+
+<hr style="margin:5px 0px;" />
+<table class="list-products" style="width:100%;">
+%for o in orders:
+    <tr>
+        <td style="width:42px; text-align:center;">
+            ${shared.photo_in_product_list(o.product)}
+        </td>
+        <td class="title" style="width:759px;">
+            ${o.product.name}<br />
+            <span>${o.product.category.name}</span>
+            %if o.buyer_status != o.seller_status:
+                <span>(sprzedający ma inny status: <strong>${o.ORDER_TO_NAME[o.seller_status]}</strong>)*</span>
+            %endif
+        </td>
+        <td style="text-align:center; width:60px; line-height:14px;">
+            <span style="font-size:0.8em;">${o.when_created.strftime("%d-%m-%Y %H:%M")}</span>
+        </td>
+        <td style="padding:0px 8px;">
+        %if o.buyer_status!='C':
+        <form action="${request.route_path('change_order_state', id=o.id)}" method="POST">
+            <input type="hidden" name="order_new_kind" value="C" />
+            <input rel="Na pewno chcesz anulować zamówienie"
+                   type="submit" value="Anuluj" class="btn btn-primary btn-small onedit" />
+        </form>
+        %endif
+        </td>
+    </tr>
+%endfor
+</table>
+<div style="font-size:0.8em; margin-top:20px; line-height:1.2em;">
+* Jeżeli pojawi się informacja, że kupujący ma inny status zamówienia niż ty - potraktuj to tylko jako informacje.<br />
+Nie każdy pamięta żeby oznaczać prawidłowo swoje zamówienia.
+</div>

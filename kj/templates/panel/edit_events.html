@@ -1,0 +1,59 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="../modules/shared.mako" />
+
+<div class="fleft">
+    %if new:
+        <h2>Nowe wydarzenie</h2>
+    %else:
+        <h2>Edytujesz wydarzenie "${event.title}"</h2>
+    %endif
+</div>
+<div style="clear:both;"></div>
+
+<form id="save-user-form"
+      action="${request.route_path('save_event') if new else request.route_path('save_edited_event', id=event.id)}"
+      method="POST" enctype='multipart/form-data'>
+${shared.register_simple_input('title', 'text', u'Tytuł wydarzenia', value=event and event.title or '')}
+${shared.register_simple_input('description', 'textarea', u'Opis wydarzenia', value=event and event.description or '')}
+${shared.register_simple_input('date_from', 'text', u'Data wydarzenia', value=event and event.event_starts.strftime('%d-%m-%Y') or '')}
+${shared.register_simple_input('facebook_url', 'text', u'URL do wydarzena na Facebooku', value=event and event.facebook_url or '')}
+${shared.register_hours_input(u'Godzina rozpoczęcia', 'start_hour', 'start_minute',
+                              hvalue=h.get_hours_from_string(event.event_time),
+                              mvalue=h.get_minutes_from_string(event.event_time))}
+
+%if new:
+    ${shared.register_simple_input('wojewodztwo', 'select', u'Województwo', select_values=wojewodztwa)}
+    <div id="cities-container">
+    ${shared.register_simple_input('city', 'select', u'Miasto', select_values=[])}
+    </div>
+%else:
+    ${shared.register_simple_input('wojewodztwo', 'select', u'Województwo', select_values=wojewodztwa, 
+                                    selected_value=event.location and event.location.wojewodztwo.id)}
+    <div id="cities-container">
+    ${shared.register_simple_input('city', 'select', u'Miasto', select_values=cities,
+                                    selected_value=event.location and event.location.id)}
+    </div>
+%endif
+
+${shared.register_simple_input('street', 'text', u'Ulica i numer', value=event and event.street or '')}
+
+%if event and event.event_photos:
+    <div class="register-label fleft">Zdjęcie główne:</div>
+    <div class="register-label fleft">
+    <img style="height:40px; max-width:70px; *width:70px; zoom:1" 
+                 class="photo-green-border"
+                 src="${event.get_photo_url('tiny_')}">
+    <a href="${request.route_path('delete_photo', id=event.get_photo_object().id)}"
+               class="icon s08-pa-delete ondelete"></a>
+    </div>
+    <div style="clear:both; padding-bottom:5px;"></div> 
+%else:
+    ${shared.register_simple_input('foto', 'file', u'Zdjęcie wydarzenia')}
+%endif
+<input id="save-event" type="submit" class="btn btn-primary btn-medium" value="ZAPISZ">
+</form>
+
+
+<br />
+<br />

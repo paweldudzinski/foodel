@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="../modules/shared.mako" />
+<%namespace name="ms" file="../modules/main_site.mako" />
+
+<form id="edit-user-form" action="${request.route_path('save_edited_user', id=req.user.id)}" method="POST" enctype='multipart/form-data'>
+    <h2>Edytuj swoje dane</h2>
+    ${shared.register_simple_input('name', 'text', u'Imię i nazwisko lub nick', value=req.user.name)}
+    ${shared.register_simple_input('email', 'email', u'Adres e-mail', value=req.user.email, readonly=True, special_id='remail')}
+    ${shared.register_simple_input('password', 'password', u'Hasło', value=req.user.password, special_id='rpassword')}
+    ${shared.register_simple_input('rpassword', 'password', u'Powtórz hasło', value=req.user.password, special_id='rrpassword')}
+    ${shared.register_simple_input('avatar', 'file', u'Zmień avatar')}
+    <div style="margin:10px 0px 10px 0px; font-size:0.8em;">
+        <i>Dodatkowe dane (firma i NIP do faktury, adres do wysyłek itp.)</i>
+    </div>
+    ${shared.register_simple_input('company', 'text', u'Nazwa firmy', value=req.user.company)}
+    ${shared.register_simple_input('vat_id', 'text', u'NIP', value=req.user.vat_id)}
+    ${shared.register_simple_input('street', 'text', u'Ulica i nr domu', value=req.user.street)}
+    ${shared.register_simple_input('zip', 'text', u'Kod pocztowy', value=req.user.zip)}
+    ${shared.register_simple_input('city', 'text', u'Miasto', value=req.user.city)}
+    <div style="clear:both; padding-top:10px;"></div>
+    <input type="checkbox" checked="checked" name="terms_and_conditions" id="terms_and_conditions" style="display:none;" />
+    <input id="save-user" type="submit" class="lobster btn btn-primary btn-large" value="Zapisz moje dane">
+</form>

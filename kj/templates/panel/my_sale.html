@@ -1,0 +1,69 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="../modules/shared.mako" />
+
+<div class="fleft">
+    <h2>Moje
+    %if type == 'S':
+        produkty do sprzedaży
+    %else:
+        produkty do wymiany
+    %endif
+    (${len(products)})</h2>
+</div>
+<div class="fright" style="margin:18px 4px 0px 0px;">
+    %if type == 'S':
+        <a href="${request.route_path('add_sale')}" class="btn btn-small btn-primary">+ Dodaj nowy produkt do sprzedaży</a>
+    %else:
+        <a href="${request.route_path('add_exchange')}" class="btn btn-small btn-primary">+ Dodaj nowy produkt do wymiany</a>
+    %endif
+</div>
+<div style="clear:both;"></div>
+
+<table class="list-products">
+    %for p in products:
+        <tr>
+            <td style="width:40px; text-align:left;">
+                ${shared.photo_in_product_list(p)}
+            </td>
+            <td class="title">
+                <a target="_blank" title="Pokaż w nowym oknie w pełnej krasie" href="${p.get_sef_url()}">${p.name}</a><br />
+                <span>${p.category.name}</span>
+            </td>
+            <td style="width:60px;">
+                <span style="font-size:0.8em;">
+                    %if not p.quantity:
+                        <span style="color:#cc0000; font-weight:bold;">0 szt.</span>
+                    %else:
+                        ${p.quantity} szt
+                    %endif
+                </span>
+            </td>
+            <td style="width:60px;">
+                <span style="font-size:0.8em;">
+                    ${p.until_when_available()}
+                </span>
+            </td>
+            <td style="text-align:center; line-height:14px; width:100px">
+            %if not p.is_lesson():
+                <span style="font-size:0.8em;">${p.BARGAINS.get(p.bargain_type)}</span>
+                %if p.bargain_type == p.BARGAIN_SELL and p.price:
+                    <span style="font-size:0.7em;">
+                    <br />${'%.f2'%(p.price)} PLN / sztukę
+                    </span>
+                %endif
+            %endif
+            </td>
+            <td style="width:30px;">
+                <a href="${request.route_path('delete_product', user=p.us_id, id=p.id)}"
+                   class="icon s08-pa-delete ondelete"></a>
+            </td>
+            <td style="width:30px;">
+                <a href="${request.route_path('edit_product_for_sale', user=p.us_id, id=p.id)}"
+                   class="icon s08-pa-edit"></a>
+            </td>
+        </tr>
+    %endfor
+</table>
+<br />
+<br />

@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+<%inherit file="base.mako" />
+<%namespace name="shared" file="modules/shared.mako" />
+
+<div class="newest">
+<h3>Szybka rejestracja konta na <span class="bluish lobster">Foodel</span></h3>
+<form id="save-user-form" action="${request.route_path('save_user')}" method="POST">
+${shared.register_simple_input('name', 'text', u'Imię i nazwisko lub nick')}
+${shared.register_simple_input('email', 'email', u'Adres e-mail', special_id='remail')}
+${shared.register_simple_input('password', 'password', u'Hasło', special_id='rpassword')}
+${shared.register_simple_input('rpassword', 'password', u'Powtórz hasło', special_id='rrpassword')}
+<div class="register-label fleft" style="text-align:right; padding-top:0px; width:30px;">
+    <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" style="margin-right:10px;" />
+</div>
+<div class="register-input fleft" style="padding-top:3px;">Akceptuję <a href="#">regulamin</a> serwisu.</div>
+<div style="clear:both; padding-top:20px;"></div>
+<input id="save-user" type="submit" class="lobster btn btn-primary btn-large" value="Zarejestruj mnie">
+</form>
+</div>

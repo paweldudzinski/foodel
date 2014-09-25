@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrDmm7XYXfsI1Cy3xi-fbZz59kBz9yk8E&sensor=true">
+    </script>
+    <script type="text/javascript">
+        function createInfo(title, content) {
+            return '<div class="infowindow"><strong>'+ title +'</strong><br />'+content+'</div>';
+        }
+
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(${lang_avg}, ${long_avg}),
+          zoom: 10
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+        
+        %for i, product in enumerate(products):
+            //Image as marker
+            var image = new google.maps.MarkerImage('${product.get_main_photo_url('maps_')}');
+            var marker${i} = new google.maps.Marker({
+            position: new google.maps.LatLng(${product.mlang},${product.mlong}),
+            map: map,
+            icon: image});
+            
+            // Add listener for a click on the pin
+            google.maps.event.addListener(marker${i}, 'click', function() {infowindow${i}.open(map, marker${i});});
+            var infowindow${i} = new google.maps.InfoWindow({
+                content:  createInfo('${product.name}', '${product.localisation}')
+            });
+        %endfor
+
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"/>
+  </body>
+</html>
