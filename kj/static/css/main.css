@@ -199,7 +199,7 @@ body { background-image:url("../images/bg.png"); }
     -moz-border-radius: 6px;
     border-radius: 6px;
     position:relative;
-    width:443px;
+    width:570px;
     float:left;
     margin-left:30px;
     margin-top:14px;
@@ -208,7 +208,7 @@ body { background-image:url("../images/bg.png"); }
 .search-input-container input {
     font-size:20px;
     padding:10px;
-    width:420px;
+    width:550px;
 }
 
 .social-icons-container {

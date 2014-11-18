@@ -205,10 +205,9 @@
 </%def>
 
 <%def name="header_links()" filter="trim">
-    ${menu_entry(request.route_path('home_buy'), u'kupię', 'buy', add_class='left-dotted')}
-    ${menu_entry(request.route_path('home_change'), u'zamienię', 'change')}
-    ${menu_entry(request.route_path('home_events'), u'wydarzenia', 'events', add_class='right-dotted')}
-    ${menu_entry('#', u'wspólne zakupy', 'group', add_class='right-dotted')}
+    ${menu_entry(request.route_path('home_change'), u'zamienię', 'buy')}
+    ${menu_entry(request.route_path('home_buy'), u'kupię', 'group', add_class='left-dotted')}
+    ${menu_entry(request.route_path('home_events'), u'wydarzenia', 'events', add_class='left-dotted')}
 </%def>
 
 <%def name="top_shelf(user)" filter="trim">
