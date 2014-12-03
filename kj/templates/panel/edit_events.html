@@ -19,8 +19,8 @@ ${shared.register_simple_input('description', 'textarea', u'Opis wydarzenia', va
 ${shared.register_simple_input('date_from', 'text', u'Data wydarzenia', value=event and event.event_starts.strftime('%d-%m-%Y') or '')}
 ${shared.register_simple_input('facebook_url', 'text', u'URL do wydarzena na Facebooku', value=event and event.facebook_url or '')}
 ${shared.register_hours_input(u'Godzina rozpoczęcia', 'start_hour', 'start_minute',
-                              hvalue=h.get_hours_from_string(event.event_time),
-                              mvalue=h.get_minutes_from_string(event.event_time))}
+                              hvalue=event and h.get_hours_from_string(event.event_time),
+                              mvalue=event and h.get_minutes_from_string(event.event_time))}
 
 %if new:
     ${shared.register_simple_input('wojewodztwo', 'select', u'Województwo', select_values=wojewodztwa)}
