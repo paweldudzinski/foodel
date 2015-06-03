@@ -282,7 +282,7 @@
     <meta property="og:title" content="Foodel" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${request.registry.settings.get('domain_url')}" />
-    <meta property="og:image" content="${request.registry.settings.get('domain_url')}/static/images/foodel.jpg" />
+    <meta property="og:image" content="${request.registry.settings.get('domain_url')}/static/images/f-logo.jpg" />
     <meta property="og:description" content="Foodel :: Platforma zakupu i wymiany jedzienia" />
     <meta property="fb:admins" content="686553089" />
 </%def>
