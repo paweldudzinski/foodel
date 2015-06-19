@@ -1,4 +1,6 @@
-from fabric.api import local
+from fabric.api import local, cd, env
+
+env.hosts = ['papaduda@web1.mydevil.net']
 
 class DeployPreparator(object):
 
@@ -14,3 +16,4 @@ class DeployPreparator(object):
 def deploy(commit_message='pushed via fabric'):
     preparator = DeployPreparator(commit_message)
     preparator.push_changes()
+    cd('~/foodel/foodel')
