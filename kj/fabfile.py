@@ -1,7 +1,8 @@
 from fabric.api import local, cd, env, run
 
-env.hosts = ['papaduda@web1.mydevil.net']
-#xWmnCtoV
+env.host = 'web1.mydevil.net'
+env.user = 'papaduda'
+env.password = 'xWmnCtoV'
 
 class DeployPreparator(object):
 
