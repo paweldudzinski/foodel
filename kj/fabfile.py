@@ -1,6 +1,6 @@
 from fabric.api import local, cd, env, run
 
-env.hosts = ['web1.mydevil.net']
+env.hosts = ['web1.mydevil.net'] #x
 env.user = 'papaduda'
 env.password = 'xWmnCtoV'
 
