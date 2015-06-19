@@ -20,6 +20,6 @@ def deploy(commit_message='pushed via fabric'):
     preparator.push_changes()
     with cd("~/foodel/foodel"):
         run("git pull")
-        run("`ps aux | grep -v grep | grep '/home/papaduda/python-env/bin/python' | awk '{print $2}'`")
+        run("kill -9 `ps aux | grep -v grep | grep '/home/papaduda/python-env/bin/python' | awk '{print $2}'`")
         run("/home/papaduda/python-env/bin/python /home/papaduda/python-env/bin/pserve --reload --daemon --pid-file=pserve_5000.pid production.ini http_port=5000")
 
