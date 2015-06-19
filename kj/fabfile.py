@@ -1,4 +1,4 @@
-from fabric.api import local, cd, env
+from fabric.api import local, cd, env, run
 
 env.hosts = ['papaduda@web1.mydevil.net']
 
