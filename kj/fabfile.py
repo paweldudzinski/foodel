@@ -20,6 +20,7 @@ class DeployPreparator(object):
         local("git push origin master")
         
     def update_remote(self):
+        print env.user
         with cd("~/foodel/foodel"):
             run("git pull")
             
@@ -30,6 +31,7 @@ class DeployPreparator(object):
         
 def deploy(commit_message='pushed via fabric'):
     preparator = DeployPreparator(commit_message)
+    print env.user
     preparator.push_changes()
     preparator.update_remote()
     preparator.restart()
