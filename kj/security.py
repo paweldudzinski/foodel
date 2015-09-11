@@ -1,3 +1,4 @@
+#costam
 def groupfinder(userid, request):
     user = request.user
     if user and user.is_admin:
