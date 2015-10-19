@@ -12,6 +12,7 @@
         <title>Foodel! Kocham jedzenie</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" type="image/png" href="static/foodel.ico"/>
         ${shared.css_and_modernizr_files()}
         %if product:
             ${shared.product_ogs(product)}
