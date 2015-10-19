@@ -67,10 +67,10 @@ class KJBase(object):
         return self
         
     def save_geolocalisation(self):
-        if not self.localisation:
+        if not hasattr(self, 'localisation'):
             return
             
-        if not self.street:
+        if not hasattr(self, 'street'):
             results = Geocoder.geocode(self.localisation)
         else:
             results = Geocoder.geocode("%s, %s" % (self.street, self.localisation))
