@@ -21,7 +21,7 @@ from ..db import (
 
 import os
 import copy
-import Image
+from PIL import Image
 
 class Photo(Base):
     __tablename__ = 'photos'

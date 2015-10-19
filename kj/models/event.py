@@ -2,7 +2,7 @@
 import datetime
 import os
 import unicodedata
-import Image
+from PIL import Image
 
 from hashlib import md5
 from kj.lib.helpers import make_sef_url

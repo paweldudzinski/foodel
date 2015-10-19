@@ -3,7 +3,7 @@ import json
 import urllib
 import cStringIO
 import os
-import Image
+from PIL import Image
 import unicodedata
 
 from hashlib import md5
