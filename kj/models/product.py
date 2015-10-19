@@ -350,8 +350,8 @@ class Product(Base, KJBase):
         Photo.save_original(new_filename_with_path, file_content)
         
         img = Image.open(new_filename_with_path)
-        if img.mode != "RBG":
-            img = img.convert("RGB")
+        #if img.mode != "RBG":
+        #    img = img.convert("RGB")
             
         maps_image = Photo.resize(img, Photo.MAPS_THUMBNAIL, new_filename, 'maps_')
         tiny_image = Photo.resize(img, Photo.TINY_THUMBNAIL, new_filename, 'tiny_')
