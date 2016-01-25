@@ -40,6 +40,7 @@ from vote import Vote
 from specifics import Specifics
 from location import Location
 
+
 class Product(Base, KJBase):
     __tablename__ = 'products'
     id = Column(Integer, primary_key=True)
@@ -51,22 +52,22 @@ class Product(Base, KJBase):
     bargain_type_freetext = Column(Text)
     mlang = Column(String(100))
     mlong = Column(String(100))
-    
+
     price = Column(Numeric(asdecimal=True))
     availability = Column(String(1))
     shipping_method = Column(String(1))
     shipping_method_freetext = Column(Text)
     shipping_price = Column(Numeric(asdecimal=True))
-    
+
     quantity = Column(Integer)
     quantity_measure = Column(String(1))
     end_date = Column(DateTime)
-    
-    rating_count = Column(Integer, default = 0)
-    rating_sum = Column(Integer, default = 0)
-    
+
+    rating_count = Column(Integer, default=0)
+    rating_sum = Column(Integer, default=0)
+
     description = Column(Text)
-    
+
     us_id = Column(Integer, ForeignKey('users.id'), index=True)
     cat_id = Column(Integer, ForeignKey('categories.id'), index=True)
     subcat_id = Column(Integer, ForeignKey('categories.id'), index=True)

@@ -29,7 +29,7 @@
                 <section class="main-content">
                     <div class="logo-and-links">
                         ${shared.logo()}
-                        ${shared.header_links()}
+                        ${shared.header_links(req.user)}
                         <div style="clear:both;"></div>
                         <hr />
                     </div>

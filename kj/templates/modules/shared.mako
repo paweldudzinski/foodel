@@ -22,7 +22,7 @@
     %if user.avatars:
         <div class="avatar ${prefix}avatar" style="background:url(${user.avatars[0].get_url(prefix=prefix)}) #7d919a center no-repeat;"></div>
     %else:
-        <div class="icon s07-no-avatar"></div>
+        <div class="avatar icon s07-no-avatar"></div>
     %endif
 </%def>
 
@@ -204,8 +204,17 @@
     <script src="${req.static_url('kj:static/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js')}"></script>
 </%def>
 
-<%def name="header_links()" filter="trim">
-	${menu_entry(request.route_path('home_events'), u'zaloguj', 'events')}
+<%def name="header_links(user)" filter="trim">
+	<div class="main-link-icons ">
+		%if user:
+			${avatar(user)}<br />
+        	<span class="lobster main-link" style="color:#fff;">${user.user_name()}</span> 
+        %else:
+        	<a data-reveal-id="login-modal" data-animation="fade" href="#" class="whitelink whitelink-events" title="zaloguj"></a><br>
+	        <a data-reveal-id="login-modal" data-animation="fade" href="#" class="lobster main-link">zaloguj</a>
+	        ${modals.modal_login()}
+        %endif
+    </div>
 	${menu_entry(request.route_path('home_buy'), u'kupię', 'group')}
 	${menu_entry(request.route_path('home_change'), u'zamienię', 'buy')}
 	${menu_entry(request.route_path('home_add'), u'dodaj produkt', 'add')}

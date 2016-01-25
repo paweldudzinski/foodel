@@ -32,19 +32,25 @@ from ..models.lead import Lead
 from ..models.event import Event
 from ..lib.validators import NewUserValidator
 
-@view_config(route_name='pa_home', permission='user')    
+
+@view_config(route_name='pa_home', permission='user')
 def pa_home(request):
     return HTTPFound(location=request.route_url('my_product_for_sale'))
 
-@view_config(route_name='pa_edit_me', renderer='kj:templates/panel/index.html', permission='user')
+
+@view_config(
+    route_name='pa_edit_me',
+    renderer='kj:templates/panel/index.html',
+    permission='user')
 def pa_edit_me(request):
     return {}
+
 
 @view_config(route_name='save_edited_user', permission='user')
 def save_edited_user(request):
     validated = NewUserValidator.validate(request.params.mixed())
     user = User.get_by_email(request.params.get('email'))
-    
+
     if validated and user:
         user.save_edited(request.params.mixed())
         avatar = request.params.get('avatar')
@@ -52,7 +58,7 @@ def save_edited_user(request):
             if type(avatar) is type(''): 
                 request.session.flash(u'Błąd pliku awatara.')
                 return HTTPFound(location=request.route_url('pa_home'))
-                
+
             file_content = avatar.file.read()
             if len(file_content) == 0: 
                 request.session.flash(u'Błąd pliku awatara.')
