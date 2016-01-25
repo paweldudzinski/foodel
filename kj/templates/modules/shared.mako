@@ -207,8 +207,10 @@
 <%def name="header_links(user)" filter="trim">
 	<div class="main-link-icons ">
 		%if user:
+			<a href="${request.route_path('pa_home')}">
 			${avatar(user)}
-        	<span class="lobster main-link" style="color:#fff;">${user.user_name()}</span> 
+			</a>
+        	<a href="${request.route_path('pa_home')}" class="lobster main-link" style="color:#fff;">${user.user_name()}</a> 
         %else:
         	<a data-reveal-id="login-modal" data-animation="fade" href="#" class="whitelink whitelink-events" title="zaloguj"></a><br>
 	        <a data-reveal-id="login-modal" data-animation="fade" href="#" class="lobster main-link">zaloguj</a>
@@ -217,7 +219,15 @@
     </div>
 	${menu_entry(request.route_path('home_buy'), u'kupię', 'group')}
 	${menu_entry(request.route_path('home_change'), u'zamienię', 'buy')}
-	${menu_entry(request.route_path('home_add'), u'dodaj produkt', 'add')}
+	%if user:
+		${menu_entry(request.route_path('add_sale'), u'dodaj produkt', 'add')}
+	%else:
+		<div class="main-link-icons ">
+		<a data-reveal-id="login-modal" data-animation="fade" href="#" class="whitelink whitelink-add" title="dodaj produkt"></a><br>
+	    <a data-reveal-id="login-modal" data-animation="fade" href="#" class="lobster main-link">dodaj produkt</a>
+	    ${modals.modal_login()}
+	    </div>
+	%endif
 </%def>
 
 <%def name="top_shelf(user)" filter="trim">
