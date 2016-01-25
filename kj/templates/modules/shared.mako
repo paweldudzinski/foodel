@@ -27,9 +27,9 @@
 </%def>
 
 <%def name="menu_entry(href, link_name, class_sufix, add_class='')" filter="trim">
-<div class="fleft menu-relativeposition">
+<div class="menu-relativeposition">
     <div class="main-link-icons ${add_class}">
-        <a href="${href}" class="icon s17-icon-${class_sufix}" title="${link_name}"></a><br />
+        <a href="${href}" class="whitelink whitelink-${class_sufix}" title="${link_name}"></a><br />
         <a class="lobster main-link bluish" href="${href}">${link_name}</a>
     </div>
 </div>
@@ -205,9 +205,10 @@
 </%def>
 
 <%def name="header_links()" filter="trim">
-    ${menu_entry(request.route_path('home_change'), u'zamienię', 'buy')}
-    ${menu_entry(request.route_path('home_buy'), u'kupię', 'group', add_class='left-dotted')}
-    ${menu_entry(request.route_path('home_events'), u'wydarzenia', 'events', add_class='left-dotted')}
+	${menu_entry(request.route_path('home_events'), u'zaloguj', 'events')}
+	${menu_entry(request.route_path('home_buy'), u'kupię', 'group')}
+	${menu_entry(request.route_path('home_change'), u'zamienię', 'buy')}
+	${menu_entry(request.route_path('home_add'), u'dodaj produkt', 'add')}
 </%def>
 
 <%def name="top_shelf(user)" filter="trim">
@@ -258,6 +259,7 @@
 
 <%def name="search()" filter="trim">
 <div class="search-input-container">
+	Wpisz swój kod pocztowy:
     <form id="search-form" action="${request.route_path('search')}">
     <input type="text" name="keyword" class="lobster search-input" value="${keyword or ''}" />
     <a class="icon s16-icon-search search-button" href="#"></a>
@@ -266,7 +268,7 @@
 </%def>
 
 <%def name="logo()" filter="trim">
-    <a href="/" class="logo icon s21-logo"></a>
+    <a href="/" class="logo"></a>
 </%def>
 
 <%def name="product_ogs(product)" filter="trim">

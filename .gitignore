@@ -1,3 +1,7 @@
+*.pyc
 pserve_5000.pid
 pyramid.log
 /kj/static/storage/*
+.project
+.pydevproject
+.settings/

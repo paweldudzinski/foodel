@@ -22,17 +22,22 @@
         ${self.maps_js()}
     </head>
     <body>
-        ${shared.outdated()}
-        <section class="main-content-100">
-            ${shared.top_shelf(req.user)}
+        ${shared.outdated()}        
+        
+        <section class="main-content-100 wide">
             <header class="links-and-search-area">
                 <section class="main-content">
                     <div class="logo-and-links">
                         ${shared.logo()}
                         ${shared.header_links()}
-                        ${shared.search()}
                         <div style="clear:both;"></div>
+                        <hr />
                     </div>
+                    <div class="captions">
+                    	<h1>LOKALNE JEDZENIE DLA CIEBIE</h1>
+                    	<h2>Wymieniaj i kupuj domowe jedzenie od sąsiada.</h2>
+                    </div>
+                    ${shared.search()}
                 </section>
             </header>
             ${shared.title_shelf(title=title or u'Uzupełnij')}

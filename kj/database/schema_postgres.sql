@@ -203,6 +203,13 @@ INSERT INTO categories (id, lg_id, name, parent_id) VALUES (1617, 'pl', 'Desery'
 INSERT INTO categories (id, lg_id, name, parent_id) VALUES (1618, 'pl', 'Zupy', 16);
 INSERT INTO categories (id, lg_id, name, parent_id) VALUES (1619, 'pl', 'Pięć przemian', 16);
 
+CREATE TABLE locations (
+    id bigserial primary key, 
+    name varchar(200) not null,
+    woj_id int null,
+    FOREIGN KEY (woj_id) REFERENCES locations(id)
+);
+
 CREATE TABLE products (
     id bigserial primary key, 
     name varchar(1000) null,
@@ -240,6 +247,24 @@ CREATE TABLE products (
     FOREIGN KEY (subcat2_id) REFERENCES categories(id),
     FOREIGN KEY (loc_id) REFERENCES locations(id)
     
+);
+
+CREATE TABLE events (
+    id bigserial primary key,
+    us_id int not null,
+    when_created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    event_starts timestamp NULL,
+    event_ends timestamp NULL,
+    title varchar(1000) NOT NULL,
+    description varchar(8000) NULL,
+    facebook_url varchar(1000) null,
+    
+    mlang varchar(100) null,
+    mlong varchar(100) null,
+    localisation varchar(1000) null,
+    loc_id int null,
+    FOREIGN KEY (loc_id) REFERENCES locations(id),
+    FOREIGN KEY (us_id) REFERENCES users(id)
 );
 
 CREATE TABLE photos (
@@ -305,7 +330,6 @@ CREATE TABLE votes (
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
-
 CREATE TABLE specifics (
     id bigserial primary key, 
     name varchar(100) not null
@@ -319,13 +343,6 @@ INSERT INTO specifics (id, name) VALUES (5, 'Z lokalnych produktów');
 INSERT INTO specifics (id, name) VALUES (6, 'Na ostro');
 INSERT INTO specifics (id, name) VALUES (7, 'Mięsne');
 INSERT INTO specifics (id, name) VALUES (8, 'Rybne');
-
-CREATE TABLE locations (
-    id bigserial primary key, 
-    name varchar(200) not null,
-    woj_id int null,
-    FOREIGN KEY (woj_id) REFERENCES locations(id)
-);
 
 CREATE TABLE comments (
     id bigserial primary key, 
@@ -351,23 +368,5 @@ CREATE TABLE email_queue (
     email_to varchar(200) not null,
     subject varchar(500) null,
     body varchar(5000) null,
-    FOREIGN KEY (us_id) REFERENCES users(id)
-);
-
-CREATE TABLE events (
-    id bigserial primary key,
-    us_id int not null,
-    when_created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    event_starts timestamp NULL,
-    event_ends timestamp NULL,
-    title varchar(1000) NOT NULL,
-    description varchar(8000) NULL,
-    facebook_url varchar(1000) null,
-    
-    mlang varchar(100) null,
-    mlong varchar(100) null,
-    localisation varchar(1000) null,
-    loc_id int null,
-    FOREIGN KEY (loc_id) REFERENCES locations(id),
     FOREIGN KEY (us_id) REFERENCES users(id)
 );
