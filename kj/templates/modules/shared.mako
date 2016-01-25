@@ -207,7 +207,7 @@
 <%def name="header_links(user)" filter="trim">
 	<div class="main-link-icons ">
 		%if user:
-			${avatar(user)}<br />
+			${avatar(user)}
         	<span class="lobster main-link" style="color:#fff;">${user.user_name()}</span> 
         %else:
         	<a data-reveal-id="login-modal" data-animation="fade" href="#" class="whitelink whitelink-events" title="zaloguj"></a><br>
