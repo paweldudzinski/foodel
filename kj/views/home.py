@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
 import urllib
-import cStringIO
 import os
 from PIL import Image
 import unicodedata
 
 from hashlib import md5
 
-from pyramid.response import Response
 from pyramid.view import (
     view_config,
     forbidden_view_config
@@ -18,11 +16,10 @@ from pyramid.security import (
     remember,
     forget,
     )
-    
+
 from pyramid.httpexceptions import HTTPFound
 from kj.lib.helpers import make_sef_url, chunk
 
-from ..db import DBSession
 from ..models.user import User
 from ..models.product import Product
 from ..models.category import Category
@@ -30,15 +27,17 @@ from ..models.photo import Photo
 from ..models.comment import Comment
 from ..models.event import Event
 from ..lib.validators import NewUserValidator
-    
-def __get_coupled_categories_for_mosaic(category, where_statement='', mosaic_keys=[]):
+
+
+def __get_coupled_categories_for_mosaic(
+        category, where_statement='', mosaic_keys=[]):
     coupled_c = []
     for cat in category.children:
         if cat.coupled:
             for cid in cat.coupled:
                 if cid not in mosaic_keys:
                     coupled_c.append(Category.get(cid))
-    
+
     values = []
     for cat in list(set(coupled_c)):
         data = cat.get_current_with_product_ids(where_statement=where_statement)
@@ -46,31 +45,43 @@ def __get_coupled_categories_for_mosaic(category, where_statement='', mosaic_key
             values.append(data)
 
     return values
-    
+
+
+@view_config(route_name='responsive', renderer='kj:templates/index_responsive.html')
+def home_responsive(request):
+    return {}
+
+
 @view_config(route_name='home', renderer='kj:templates/index.html')
 def home(request):
-    mosaic = Category.get_main_with_product_ids(where_statement='AND cat.id != 16')
-    mains = Category.get_main_with_product_ids(where_statement='AND cat.id = 16')
+    mosaic = Category.get_main_with_product_ids(
+        where_statement='AND cat.id != 16')
+    mains = Category.get_main_with_product_ids(
+        where_statement='AND cat.id = 16')
     return {
         'mosaic': mosaic,
-        'mains' : mains,
+        'mains': mains,
         'title': u'Najnowsze, najświeższe, najfajniejsze',
         'main': True
     }
-    
+
+
 @view_config(route_name='home_buy', renderer='kj:templates/index.html')
 def home_buy(request):
-    mosaic = Category.get_main_with_product_ids(where_statement="AND prod.kind='S'")
+    mosaic = Category.get_main_with_product_ids(
+        where_statement="AND prod.kind='S'")
     return {
         'mosaic': mosaic,
         'title': u'Do sprzedania',
         'main': True,
         'routing': 'home_buy_show_subcategories'
     }
-    
+
+
 @view_config(route_name='home_change', renderer='kj:templates/index.html')
 def home_change(request):
-    mosaic = Category.get_main_with_product_ids(where_statement="AND prod.kind='X'")
+    mosaic = Category.get_main_with_product_ids(
+        where_statement="AND prod.kind='X'")
     return {
         'mosaic': mosaic,
         'title': u'Do wymiany',
@@ -78,7 +89,10 @@ def home_change(request):
         'routing': 'home_exchange_show_subcategories'
     }
 
-@view_config(route_name='home_show_subcategories', renderer='kj:templates/index.html')
+
+@view_config(
+    route_name='home_show_subcategories',
+    renderer='kj:templates/index.html')
 def home_show_subcategories(request):
     category = Category.get(request.matchdict.get('id'))
     mosaic = category.get_subs_product_ids()

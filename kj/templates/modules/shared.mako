@@ -177,10 +177,14 @@
     %endfor
 </%def>
 
-<%def name="js_files()" filter="trim">
+<%def name="js_files(scaffold_bootstrap=False)" filter="trim">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script src="${req.static_url('kj:static/js/vendor/jquery.jgrowl.js')}"></script>
-    <script src="${req.static_url('kj:static/js/vendor/bootstrap.min.js')}"></script>
+    %if not scaffold_bootstrap:
+		<script src="${req.static_url('kj:static/js/vendor/bootstrap.min.js')}"></script>
+	%else:
+		<script src="${req.static_url('kj:static/js/scaffold/bootstrap.min.js')}"></script>
+	%endif
     <script src="${req.static_url('kj:static/js/vendor/jquery.colorbox.js')}"></script>
     <script src="${req.static_url('kj:static/js/vendor/imagesloaded.js')}"></script>
     <script src="${req.static_url('kj:static/js/vendor/jquery.masonry.min.js')}"></script>
@@ -190,18 +194,23 @@
     <script src="${req.static_url('kj:static/js/main.js')}"></script>
 </%def>
 
-<%def name="css_and_modernizr_files()" filter="trim">
-    <link href='http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href='http://fonts.googleapis.com/css?family=Advent+Pro&subset=latin,latin-ext'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/bootstrap.css')}">
-    <link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/bootstrap-responsive.min.css')}">
-    <link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/main.css')}">
-    <link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/colorbox.css')}">
-    <link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/jquery.jgrowl.css')}">
-    <link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/reveal.css')}">
-    <link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/datepicker.css')}">
-    <script src="${req.static_url('kj:static/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js')}"></script>
+<%def name="css_and_modernizr_files(scaffold_bootstrap=False)" filter="trim">
+    <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Advent+Pro&subset=latin,latin-ext" rel="stylesheet" type="text/css" >
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,700,800&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    %if not scaffold_bootstrap:
+		<link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/bootstrap.css')}">
+		<link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/bootstrap-responsive.min.css')}">
+		<link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/main.css')}">
+		<link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/colorbox.css')}">
+		<link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/jquery.jgrowl.css')}">
+		<link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/reveal.css')}">
+		<link rel="stylesheet" type="text/css" href="${req.static_url('kj:static/css/datepicker.css')}">
+	%else:
+		<link href="${req.static_url('kj:static/css/scaffold/bootstrap.css')}" rel="stylesheet" media="screen">
+		<link href="${req.static_url('kj:static/css/scaffold/bootstrap-responsive.css')}" rel="stylesheet" media="screen">
+		<link href="${req.static_url('kj:static/css/main.css')}" rel="stylesheet" type="text/css">
+	%endif
 </%def>
 
 <%def name="header_links(user)" filter="trim">

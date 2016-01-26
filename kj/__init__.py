@@ -43,6 +43,7 @@ def main(global_config, **settings):
     config.add_static_view('static', 'kj:static', cache_max_age=3600)
 
     # ROUTING
+    config.add_route('responsive', '/responsive')
     config.add_route('home', '/')
     config.add_route('home_add', '/dodaj')
     config.add_route('home_buy', '/kupie')
