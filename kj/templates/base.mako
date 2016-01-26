@@ -34,7 +34,7 @@
                         <hr />
                     </div>
                     <div class="captions">
-                    	<h1>LOKALNE JEDZENIE DLA CIEBIE</h1>
+                    	<h1>BLOKALNE JEDZENIE DLA CIEBIE</h1>
                     	<h2>Wymieniaj i kupuj domowe jedzenie od sąsiada.</h2>
                     </div>
                     ${shared.search()}
