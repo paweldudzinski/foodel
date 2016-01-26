@@ -29,10 +29,9 @@ body { background-image:url("../images/bg.png"); }
   background-image:url('../images/bg1.jpg');
   background-size:cover;
   -webkit-background-size:cover;
-  background-attachment: fixed ;
   background-position:10% 0;
   min-width:100%;
-  @media (max-width: @iphone-screen) { background-attachment: fixed; }
+  @media (width: @iphone-screen) { background-attachment: cover; }
 }
 
 .whitelink {
