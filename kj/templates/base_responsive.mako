@@ -12,13 +12,31 @@
 	${shared.css_and_modernizr_files(scaffold_bootstrap=True)}
   </head>
   <body>
-	<h1>Hello, world!</h1>
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	
 	
-	<section class="wide"></section>
+	<section class="wide">
+      <header class="content">
+			<div class="logo-and-links">
+				${shared.logo()}
+				${shared.header_links(req.user)}
+				<div style="clear:both;"></div>
+	  </header>
+	  <hr />
+	  <header class="content">
+			</div>
+			<div class="captions">
+				<h1>LOKALNE JEDZENIE DLA CIEBIE</h1>
+				<h2>Wymieniaj i kupuj domowe jedzenie od sąsiada.</h2>
+			</div>
+			${shared.search()}
+		</header>
+      <hr />
+	</section>
 	
+	
+	<h1>Hello, world!</h1>
 	
 	
 	${shared.js_files(scaffold_bootstrap=True)}

@@ -209,7 +209,7 @@
 	%else:
 		<link href="${req.static_url('kj:static/css/scaffold/bootstrap.css')}" rel="stylesheet" media="screen">
 		<link href="${req.static_url('kj:static/css/scaffold/bootstrap-responsive.css')}" rel="stylesheet" media="screen">
-		<link href="${req.static_url('kj:static/css/main.css')}" rel="stylesheet" type="text/css">
+		<link href="${req.static_url('kj:static/css/scaffold/main.css')}" rel="stylesheet" type="text/css">
 	%endif
 </%def>
 

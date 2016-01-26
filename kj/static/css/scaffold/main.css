@@ -1,8 +1,25 @@
+* {
+	padding:0px;
+	margin:0px;
+}
+
+h1, h2, h3, h4, .lobster { font-family: 'Advent Pro'; font-weight:normal; }
+
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #fff; /* old IE */
+    background-color: #fff; /* Modern Browsers */
+    opacity: 0.3; filter: alpha(opacity=30);
+    margin:0px;
+    margin-top:10px;
+}
 
 .wide {
   width:100%;
-  height: 500px;
-  background-image:url('../images/bg1.jpg');
+  padding-top:10px;
+  background:url('../../images/bg1.jpg') center top no-repeat;
   -webkit-background-size: 100%; 
   -moz-background-size: 100%; 
   -o-background-size: 100%; 
@@ -12,4 +29,56 @@
   -o-background-size: cover; 
   background-size: cover;
   background-size:100% auto;
+  background-position:50% 0;
 }
+
+.content {
+	width:1124px;
+	margin:0px auto;
+}
+
+.main-link-icons {
+    float:right;
+    border-top:0px;
+    border-bottom:0px;
+    width:135px;
+    text-align:center;
+}
+
+.whitelink {
+	width:41px;
+    height:41px;
+	display:inline-block;
+    *display:inline;
+    zoom:1;
+    vertical-align:middle;
+    background-repeat:no-repeat;
+}
+
+.whitelink-add {
+    background-image:url("../../images/link1.png");
+}
+
+.whitelink-buy {
+    background-image:url("../../images/link2.png");
+}
+
+.whitelink-group {
+    background-image:url("../../images/link3.png");
+}
+
+.whitelink-events {
+    background-image:url("../../images/link4.png");
+}
+
+.avatar {
+    width:38px; height:38px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border:2px solid white;
+    background-color:white;
+    margin:0px auto;
+    display:block;
+}
+
