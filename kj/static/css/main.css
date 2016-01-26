@@ -28,16 +28,14 @@ body { background-image:url("../images/bg.png"); }
   height: 500px;
   background-image:url('../images/bg1.jpg');
   -webkit-background-size: 100%; 
-	-moz-background-size: 100%; 
-	-o-background-size: 100%; 
-	background-size: 100%; 
-	-webkit-background-size: cover; 
-	-moz-background-size: cover; 
-	-o-background-size: cover; 
-	background-size: cover;
-  background-position:10% 0;
-  min-width:100%;
-  @media (width: @iphone-screen) { background-attachment: cover; }
+  -moz-background-size: 100%; 
+  -o-background-size: 100%; 
+  background-size: 100%; 
+  -webkit-background-size: cover; 
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover;
+  background-size:100% auto;
 }
 
 
@@ -298,7 +296,7 @@ hr {
 .register-label { width:160px; }
 .register-input input { width:290px; }
 
-.newest { width:1275px; margin:0px auto; }
+.newest { width:1100px; margin:0px auto; }
 .newest-products { width:100%; margin-top:15px; }
 .newest-title {  }
 
