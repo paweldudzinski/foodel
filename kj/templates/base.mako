@@ -24,7 +24,7 @@
     <body>
         ${shared.outdated()}        
         
-        <section class="main-content-100 wide">
+        <section class="wide">
             <header class="links-and-search-area">
                 <section class="main-content">
                     <div class="logo-and-links">
