@@ -70,8 +70,6 @@ class Product(Base, KJBase):
 
     us_id = Column(Integer, ForeignKey('users.id'), index=True)
     cat_id = Column(Integer, ForeignKey('categories.id'), index=True)
-    subcat_id = Column(Integer, ForeignKey('categories.id'), index=True)
-    subcat2_id = Column(Integer, ForeignKey('categories.id'), index=True)
     loc_id = Column(Integer, ForeignKey('locations.id'), index=True)
     specifics = Column(PGArray(Integer))
     exchange_offers = Column(PGArray(Integer))
@@ -115,7 +113,7 @@ class Product(Base, KJBase):
         AVAILABILITY_UP_TO_MONTH : u'Do miesiąca',
         AVAILABILITY_MORE_THAN_MONTH : u'Powyżej miesiąca'
     }
-    
+
     AVAILABILITIES_ORDER = [
                 AVAILABILITY_TO_SET,
                 AVAILABILITY_NOW,
@@ -125,7 +123,7 @@ class Product(Base, KJBase):
                 AVAILABILITY_UP_TO_MONTH,
                 AVAILABILITY_MORE_THAN_MONTH
     ]
-    
+
     SHIPPING_METHOD_TO_SET = 'U'
     SHIPPING_METHOD_PERSONAL = 'P'
     SHIPPING_METHOD_ONSITE = 'S'
@@ -191,48 +189,36 @@ class Product(Base, KJBase):
         MONTH,
         INFINITY
     ]
-    
+
     INFINITY_AS_DATE = datetime.datetime.strptime('1-1-4000','%d-%m-%Y')
-    
+
     user = relationship('User', backref=backref('products', order_by="Product.name.desc()"))
     location = relationship('Location', backref=backref('products', order_by="Location.name.desc()"))
     category = relationship('Category', primaryjoin="Category.id==Product.cat_id", backref=backref('products', order_by="Product.name.desc()"))
-    subcategory = relationship('Category', primaryjoin="Category.id==Product.subcat_id", backref=backref('products2', order_by="Product.name.desc()"))
-    subcategory2 = relationship('Category', primaryjoin="Category.id==Product.subcat2_id", backref=backref('products3', order_by="Product.name.desc()"))
-    
+
     @classmethod
     def get(cls, pid):
         return DBSession.query(cls).filter(cls.id == pid).first()
-    
+
     @classmethod
-    def get_by_subcategory(cls, subcat_id, kind=None):
+    def get_by_category(cls, cat_id, kind=None):
+        filters = [
+            cls.cat_id == cat_id,
+            cls.quantity > 0,
+            cls.end_date >= datetime.datetime.now()
+        ]
         if kind:
-            return DBSession.query(cls).filter(and_(
-                            or_(cls.subcat_id == subcat_id, cls.subcat2_id == subcat_id),
-                            cls.kind == kind,
-                            cls.quantity > 0,
-                            cls.end_date >= datetime.datetime.now()
-                        )).all()
-        else:
-            return DBSession.query(cls).filter(and_(
-                        or_(cls.subcat_id == subcat_id, cls.subcat2_id == subcat_id),
-                        cls.quantity > 0,
-                        cls.end_date >= datetime.datetime.now()
-                    )).all()
-        
+            filters.extend([cls.kind == kind])
+
+        return DBSession.query(cls).filter(and_(*filters)).all()
+
     @classmethod
     def get_newest(cls, limit=10):
         return DBSession.query(cls).join(Photo).filter(and_(
                         cls.quantity > 0,
                         cls.end_date >= datetime.datetime.now()
                 )).order_by(cls.id.desc()).limit(limit).all()
-        
-    """
-    @classmethod
-    def get_all_for_sale(cls, limit=50):
-        return DBSession.query(cls).join(Photo).filter(and_(cls.kind==cls.KIND_SELL, cls.quantity > 0)).order_by(cls.id.desc()).limit(limit).all()
-    """
-    
+
     @classmethod
     def get_all_categories_for_products(cls):
         return Category.get_main()
@@ -446,61 +432,45 @@ class Product(Base, KJBase):
     @classmethod
     def get_products_eligible_for_map(cls):
         return DBSession.query(Product).join(Photo).filter(Product.mlang != None).all()
-        
+
     def decrease_quantity(self, quantity):
         self.quantity -= int(quantity)
         if self.quantity < 0:
             self.quantity = 0
         DBSession.flush()
-        
+
     def increase_quantity(self, quantity):
         self.quantity += int(quantity)
         if self.quantity < 0:
             self.quantity = 0
         DBSession.flush()
-        
+
     def html_breadcrumb(self, request):
-        category_link = request.route_path('home_show_subcategories', id=self.category.id, sef=make_sef_url(self.category.name))
-        category_href = '<a class="top-shelf" href="%s">%s</a>' % (category_link, self.category.name)
-        
-        subcategory_link = request.route_path('home_show_products', id=self.subcategory.id, sef=make_sef_url(self.subcategory.name))
-        subcategory_href = '<a class="top-shelf" href="%s">%s</a>' % (subcategory_link, self.subcategory.name)
-        
-        return '%s &raquo %s' % (category_href, subcategory_href)
-    
+        category_link = request.route_path(
+            'home_show_products',
+            id=self.category.id,
+            sef=make_sef_url(self.category.name))
+        category_href = '<a class="top-shelf" href="%s">%s</a>' % (
+            category_link,
+            self.category.name)
+        return category_href
+
     def get_specifics(self):
-        return DBSession.query(Specifics).filter(Specifics.id.in_(self.specifics)).all()
-        
+        return DBSession.query(Specifics).filter(
+            Specifics.id.in_(self.specifics)).all()
+
     def get_measure(self):
         measure = self.quantity_measure or self.QUANTITY_MEASURE_PIECE
         return self.QUANTITY_MEASURES[measure]
-    
+
     def is_mine(self, logged):
         if not logged:
             return
         return logged.id == self.user.id
-    
+
     @classmethod
     def get_all_by_keyword(cls, keyword):
         return DBSession.query(cls).filter(or_(
-                        cls.name.ilike('%%%s%%'%(keyword)),
-                        cls.description.ilike('%%%s%%'%(keyword))
+                        cls.name.ilike('%%%s%%' % (keyword)),
+                        cls.description.ilike('%%%s%%' % (keyword))
                     )).all()
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        

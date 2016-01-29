@@ -31,8 +31,11 @@
                         ${shared.logo()}
                         ${shared.header_links(req.user)}
                         <div style="clear:both;"></div>
-                        <hr />
                     </div>
+                </section>
+           <hr />
+           <header class="links-and-search-area">
+                <section class="main-content"> 
                     <div class="captions">
                     	<h1>LOKALNE JEDZENIE DLA CIEBIE</h1>
                     	<h2>Wymieniaj i kupuj domowe jedzenie od sąsiada.</h2>
@@ -40,9 +43,10 @@
                     ${shared.search()}
                 </section>
             </header>
+         </section>
             ${shared.title_shelf(title=title or u'Uzupełnij')}
             ${next.body()}
-        </section>
+       
         ${shared.js_files()}
         ${self.jquery_additional()}
     <div id="fb-root"></div>

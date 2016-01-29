@@ -1,425 +1,715 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: locations; Type: TABLE DATA; Schema: public; Owner: p13730_foodel
+--
+
+COPY locations (id, name, woj_id, lg_id) FROM stdin;
+32	Zachodniopomorskie	\N	pl
+2	Dolnośląskie	\N	pl
+4	Kujawsko-pomorskie	\N	pl
+6	Lubelskie	\N	pl
+8	Lubuskie	\N	pl
+10	Łódzkie	\N	pl
+12	Małopolskie	\N	pl
+14	Mazowieckie	\N	pl
+16	Opolskie	\N	pl
+18	Podkarpackie	\N	pl
+20	Podlaskie	\N	pl
+22	Pomorskie	\N	pl
+24	Śląskie	\N	pl
+26	Świętokrzyskie	\N	pl
+28	Warmińsko-mazurskie	\N	pl
+30	Wielkopolskie	\N	pl
+32100	Karlino	32	pl
+32101	Tychowo	32	pl
+32102	Choszczno	32	pl
+32103	Drawno	32	pl
+32104	Pełczyce	32	pl
+32105	Recz	32	pl
+32106	Czaplinek	32	pl
+32107	Drawsko Pomorskie	32	pl
+32108	Kalisz Pomorski	32	pl
+32109	Złocieniec	32	pl
+32110	Goleniów	32	pl
+32111	Maszewo	32	pl
+32112	Nowogard	32	pl
+32113	Gryfice	32	pl
+32114	Płoty	32	pl
+32115	Trzebiatów	32	pl
+32116	Cedynia	32	pl
+32117	Chojna	32	pl
+32118	Gryfino	32	pl
+32119	Mieszkowice	32	pl
+32120	Moryń	32	pl
+32121	Trzcińsko-Zdrój	32	pl
+32122	Dziwnów	32	pl
+32123	Golczewo	32	pl
+32124	Kamień Pomorski	32	pl
+32125	Międzyzdroje	32	pl
+32126	Wolin	32	pl
+32127	Gościno	32	pl
+32128	Bobolice	32	pl
+32129	Polanów	32	pl
+32130	Sianów	32	pl
+32131	Barlinek	32	pl
+32132	Dębno	32	pl
+32133	Myślibórz	32	pl
+32134	Nowe Warpno	32	pl
+32135	Police	32	pl
+32136	Lipiany	32	pl
+32137	Pyrzyce	32	pl
+32138	Chociwel	32	pl
+32139	Dobrzany	32	pl
+32140	Ińsko	32	pl
+32141	Suchań	32	pl
+32142	Barwice	32	pl
+32143	Biały Bór	32	pl
+32144	Borne Sulinowo	32	pl
+32145	Połczyn-Zdrój	32	pl
+32146	Człopa	32	pl
+32147	Mirosławiec	32	pl
+32148	Tuczno	32	pl
+32149	Dobra	32	pl
+32150	Łobez	32	pl
+32151	Resko	32	pl
+32152	Węgorzyno	32	pl
+32153	Koszalin	32	pl
+32154	Szczecin	32	pl
+32155	Świnoujście	32	pl
+2100	Nowogrodziec	2	pl
+2101	Niemcza	2	pl
+2102	Góra	2	pl
+2103	Wąsosz	2	pl
+2104	Bolków	2	pl
+2105	Lubawka	2	pl
+2106	Bystrzyca Kłodzka	2	pl
+2107	Lądek-Zdrój	2	pl
+2108	Międzylesie	2	pl
+2109	Radków	2	pl
+2110	Stronie Śląskie	2	pl
+2111	Szczytna	2	pl
+2112	Prochowice	2	pl
+2113	Leśna	2	pl
+2114	Olszyna	2	pl
+2115	Ścinawa	2	pl
+2116	Gryfów Śląski	2	pl
+2117	Lubomierz	2	pl
+2118	Lwówek Śląski	2	pl
+2119	Mirsk	2	pl
+2120	Wleń	2	pl
+2121	Milicz	2	pl
+2122	Bierutów	2	pl
+2123	Międzybórz	2	pl
+2124	Syców	2	pl
+2125	Twardogóra	2	pl
+2126	Jelcz-Laskowice	2	pl
+2127	Chocianów	2	pl
+2128	Polkowice	2	pl
+2129	Przemków	2	pl
+2130	Strzelin	2	pl
+2131	Wiązów	2	pl
+2132	Środa Śląska	2	pl
+2133	Jaworzyna Śląska	2	pl
+2134	Strzegom	2	pl
+2135	Żarów	2	pl
+2136	Oborniki Śląskie	2	pl
+2137	Prusice	2	pl
+2138	Trzebnica	2	pl
+2139	Żmigród	2	pl
+2140	Głuszyca	2	pl
+2141	Mieroszów	2	pl
+2142	Brzeg Dolny	2	pl
+2143	Wołów	2	pl
+2144	Kąty Wrocławskie	2	pl
+2145	Sobótka	2	pl
+2146	Siechnice	2	pl
+2147	Bardo	2	pl
+2148	Ząbkowice Śląskie	2	pl
+2149	Ziębice	2	pl
+2150	Złoty Stok	2	pl
+2151	Bogatynia	2	pl
+2152	Pieńsk	2	pl
+2153	Węgliniec	2	pl
+2154	Świerzawa	2	pl
+2155	Jelenia Góra	2	pl
+2156	Legnica	2	pl
+2157	Wrocław	2	pl
+2158	Wałbrzych	2	pl
+4100	Górzno	4	pl
+4101	Jabłonowo Pomorskie	4	pl
+4102	Koronowo	4	pl
+4103	Solec Kujawski	4	pl
+4104	Kowalewo Pomorskie	4	pl
+4105	Łasin	4	pl
+4106	Radzyń Chełmiński	4	pl
+4107	Gniewkowo	4	pl
+4108	Janikowo	4	pl
+4109	Kruszwica	4	pl
+4110	Pakość	4	pl
+4111	Dobrzyń nad Wisłą	4	pl
+4112	Skępe	4	pl
+4113	Mogilno	4	pl
+4114	Strzelno	4	pl
+4115	Kcynia	4	pl
+4116	Mrocza	4	pl
+4117	Nakło nad Notecią	4	pl
+4118	Szubin	4	pl
+4119	Piotrków Kujawski	4	pl
+4120	Kamień Krajeński	4	pl
+4121	Sępólno Krajeńskie	4	pl
+4122	Więcbork	4	pl
+4123	Nowe	4	pl
+4124	Świecie	4	pl
+4125	Tuchola	4	pl
+4126	Brześć Kujawski	4	pl
+4127	Chodecz	4	pl
+4128	Izbica Kujawska	4	pl
+4129	Lubień Kujawski	4	pl
+4130	Lubraniec	4	pl
+4131	Barcin	4	pl
+4132	Janowiec Wielkopolski	4	pl
+4133	Łabiszyn	4	pl
+4134	Żnin	4	pl
+4135	Bydgoszcz	4	pl
+4136	Grudziądz	4	pl
+4137	Toruń	4	pl
+4138	Włocławek	4	pl
+6100	Frampol	6	pl
+6101	Józefów	6	pl
+6102	Tarnogród	6	pl
+6103	Janów Lubelski	6	pl
+6104	Annopol	6	pl
+6105	Kock	6	pl
+6106	Ostrów Lubelski	6	pl
+6107	Bełżyce	6	pl
+6108	Bychawa	6	pl
+6109	Łęczna	6	pl
+6110	Opole Lubelskie	6	pl
+6111	Poniatowa	6	pl
+6112	Parczew	6	pl
+6113	Kazimierz Dolny	6	pl
+6114	Nałęczów	6	pl
+6115	Ryki	6	pl
+6116	Piaski	6	pl
+6117	Łaszczów	6	pl
+6118	Tyszowce	6	pl
+6119	Krasnobród	6	pl
+6120	Szczebrzeszyn	6	pl
+6121	Zwierzyniec	6	pl
+6122	Biała Podlaska	6	pl
+6123	Chełm	6	pl
+6124	Lublin	6	pl
+6125	Zamość	6	pl
+8100	Witnica	8	pl
+8101	Krosno Odrzańskie	8	pl
+8102	Międzyrzecz	8	pl
+8103	Skwierzyna	8	pl
+8104	Trzciel	8	pl
+8105	Bytom Odrzański	8	pl
+8106	Kożuchów	8	pl
+8107	Nowe Miasteczko	8	pl
+8108	Cybinka	8	pl
+8109	Ośno Lubuskie	8	pl
+8110	Rzepin	8	pl
+8111	Słubice	8	pl
+8112	Dobiegniew	8	pl
+8113	Drezdenko	8	pl
+8114	Strzelce Krajeńskie	8	pl
+8115	Lubniewice	8	pl
+8116	Sulęcin	8	pl
+8117	Torzym	8	pl
+8118	Świebodzin	8	pl
+8119	Zbąszynek	8	pl
+8120	Babimost	8	pl
+8121	Czerwieńsk	8	pl
+8122	Kargowa	8	pl
+8123	Nowogród Bobrzański	8	pl
+8124	Sulechów	8	pl
+8125	Iłowa	8	pl
+8126	Małomice	8	pl
+8127	Szprotawa	8	pl
+8128	Jasień	8	pl
+8129	Lubsko	8	pl
+8130	Sława	8	pl
+8131	Szlichtyngowa	8	pl
+8132	Wschowa	8	pl
+8133	Gorzów Wielkopolski	8	pl
+8134	Zielona Góra	8	pl
+10100	Zelów	10	pl
+10101	Krośniewice	10	pl
+10102	Żychlin	10	pl
+10103	Łask	10	pl
+10104	Koluszki	10	pl
+10105	Rzgów	10	pl
+10106	Tuszyn	10	pl
+10107	Drzewica	10	pl
+10108	Opoczno	10	pl
+10109	Działoszyn	10	pl
+10110	Pajęczno	10	pl
+10111	Sulejów	10	pl
+10112	Wolbórz	10	pl
+10113	Poddębice	10	pl
+10114	Uniejów	10	pl
+10115	Kamieńsk	10	pl
+10116	Przedbórz	10	pl
+10117	Biała Rawska	10	pl
+10118	Błaszki	10	pl
+10119	Warta	10	pl
+10120	Złoczew	10	pl
+10121	Wieluń	10	pl
+10122	Wieruszów	10	pl
+10123	Szadek	10	pl
+10124	Aleksandrów Łódzki	10	pl
+10125	Stryków	10	pl
+10126	Łódź	10	pl
+10127	Piotrków Trybunalski	10	pl
+10128	Skierniewice	10	pl
+12100	Nowy Wiśnicz	12	pl
+12101	Brzesko	12	pl
+12102	Czchów	12	pl
+12103	Alwernia	12	pl
+12104	Chrzanów	12	pl
+12105	Libiąż	12	pl
+12106	Trzebinia	12	pl
+12107	Dąbrowa Tarnowska	12	pl
+12108	Szczucin	12	pl
+12109	Biecz	12	pl
+12110	Bobowa	12	pl
+12111	Krzeszowice	12	pl
+12112	Skała	12	pl
+12113	Skawina	12	pl
+12114	Słomniki	12	pl
+12115	Świątniki Górne	12	pl
+12116	Miechów	12	pl
+12117	Dobczyce	12	pl
+12118	Myślenice	12	pl
+12119	Sułkowice	12	pl
+12120	Krynica-Zdrój	12	pl
+12121	Muszyna	12	pl
+12122	Piwniczna-Zdrój	12	pl
+12123	Stary Sącz	12	pl
+12124	Szczawnica	12	pl
+12125	Rabka-Zdrój	12	pl
+12126	Olkusz	12	pl
+12127	Wolbrom	12	pl
+12128	Brzeszcze	12	pl
+12129	Chełmek	12	pl
+12130	Kęty	12	pl
+12131	Zator	12	pl
+12132	Nowe Brzesko	12	pl
+12133	Proszowice	12	pl
+12134	Maków Podhalański	12	pl
+12135	Ciężkowice	12	pl
+12136	Radłów	12	pl
+12137	Ryglice	12	pl
+12138	Tuchów	12	pl
+12139	Wojnicz	12	pl
+12140	Zakliczyn	12	pl
+12141	Żabno	12	pl
+12142	Andrychów	12	pl
+12143	Kalwaria Zebrzydowska	12	pl
+12144	Wadowice	12	pl
+12145	Niepołomice	12	pl
+12146	Wieliczka	12	pl
+12147	Kraków	12	pl
+12148	Nowy Sącz	12	pl
+12149	Tarnów	12	pl
+14100	Białobrzegi	14	pl
+14101	Wyśmierzyce	14	pl
+14102	Glinojeck	14	pl
+14103	Pilawa	14	pl
+14104	Żelechów	14	pl
+14105	Grodzisk Mazowiecki	14	pl
+14106	Grójec	14	pl
+14107	Mogielnica	14	pl
+14108	Nowe Miasto nad Pilicą	14	pl
+14109	Warka	14	pl
+14110	Kozienice	14	pl
+14111	Serock	14	pl
+14112	Lipsko	14	pl
+14113	Łosice	14	pl
+14114	Różan	14	pl
+14115	Halinów	14	pl
+14116	Kałuszyn	14	pl
+14117	Nasielsk	14	pl
+14118	Zakroczym	14	pl
+14119	Myszyniec	14	pl
+14120	Brok	14	pl
+14121	Karczew	14	pl
+14122	Góra Kalwaria	14	pl
+14123	Konstancin-Jeziorna	14	pl
+14124	Piaseczno	14	pl
+14125	Tarczyn	14	pl
+14126	Drobin	14	pl
+14127	Gąbin	14	pl
+14128	Wyszogród	14	pl
+14129	Brwinów	14	pl
+14130	Chorzele	14	pl
+14131	Przysucha	14	pl
+14132	Pułtusk	14	pl
+14133	Iłża	14	pl
+14134	Skaryszew	14	pl
+14135	Mordy	14	pl
+14136	Kosów Lacki	14	pl
+14137	Szydłowiec	14	pl
+14138	Błonie	14	pl
+14139	Łomianki	14	pl
+14140	Ożarów Mazowiecki	14	pl
+14141	Łochów	14	pl
+14142	Radzymin	14	pl
+14143	Tłuszcz	14	pl
+14144	Wołomin	14	pl
+14145	Wyszków	14	pl
+14146	Zwoleń	14	pl
+14147	Bieżuń	14	pl
+14148	Żuromin	14	pl
+14149	Mszczonów	14	pl
+14150	Ostrołęka	14	pl
+14151	Płock	14	pl
+14152	Radom	14	pl
+14153	Siedlce	14	pl
+14154	Warszawa	14	pl
+16100	Grodków	16	pl
+16101	Lewin Brzeski	16	pl
+16102	Baborów	16	pl
+16103	Głubczyce	16	pl
+16104	Kietrz	16	pl
+16105	Byczyna	16	pl
+16106	Kluczbork	16	pl
+16107	Wołczyn	16	pl
+16108	Gogolin	16	pl
+16109	Krapkowice	16	pl
+16110	Zdzieszowice	16	pl
+16111	Namysłów	16	pl
+16112	Głuchołazy	16	pl
+16113	Korfantów	16	pl
+16114	Nysa	16	pl
+16115	Otmuchów	16	pl
+16116	Paczków	16	pl
+16117	Dobrodzień	16	pl
+16118	Gorzów Śląski	16	pl
+16119	Olesno	16	pl
+16120	Praszka	16	pl
+16121	Niemodlin	16	pl
+16122	Ozimek	16	pl
+16123	Prószków	16	pl
+16124	Biała	16	pl
+16125	Głogówek	16	pl
+16126	Prudnik	16	pl
+16127	Kolonowskie	16	pl
+16128	Leśnica	16	pl
+16129	Strzelce Opolskie	16	pl
+16130	Ujazd	16	pl
+16131	Zawadzkie	16	pl
+16132	Opole	16	pl
+18100	Ustrzyki Dolne	18	pl
+18101	Brzozów	18	pl
+18102	Brzostek	18	pl
+18103	Pilzno	18	pl
+18104	Pruchnik	18	pl
+18105	Kołaczyce	18	pl
+18106	Kolbuszowa	18	pl
+18107	Dukla	18	pl
+18108	Iwonicz-Zdrój	18	pl
+18109	Jedlicze	18	pl
+18110	Rymanów	18	pl
+18111	Nowa Sarzyna	18	pl
+18112	Cieszanów	18	pl
+18113	Narol	18	pl
+18114	Oleszyce	18	pl
+18115	Przecław	18	pl
+18116	Radomyśl Wielki	18	pl
+18117	Nisko	18	pl
+18118	Rudnik nad Sanem	18	pl
+18119	Ulanów	18	pl
+18120	Kańczuga	18	pl
+18121	Sieniawa	18	pl
+18122	Ropczyce	18	pl
+18123	Sędziszów Małopolski	18	pl
+18124	Błażowa	18	pl
+18125	Boguchwała	18	pl
+18126	Głogów Małopolski	18	pl
+18127	Sokołów Małopolski	18	pl
+18128	Tyczyn	18	pl
+18129	Zagórz	18	pl
+18130	Strzyżów	18	pl
+18131	Baranów Sandomierski	18	pl
+18132	Nowa Dęba	18	pl
+18133	Lesko	18	pl
+18134	Krosno	18	pl
+18135	Przemyśl	18	pl
+18136	Rzeszów	18	pl
+18137	Tarnobrzeg	18	pl
+20100	Lipsk	20	pl
+20101	Choroszcz	20	pl
+20102	Czarna Białostocka	20	pl
+20103	Łapy	20	pl
+20104	Michałowo	20	pl
+20105	Supraśl	20	pl
+20106	Suraż	20	pl
+20107	Tykocin	20	pl
+20108	Wasilków	20	pl
+20109	Zabłudów	20	pl
+20110	Rajgród	20	pl
+20111	Szczuczyn	20	pl
+20112	Kleszczele	20	pl
+20113	Stawiski	20	pl
+20114	Jedwabne	20	pl
+20115	Nowogród	20	pl
+20116	Goniądz	20	pl
+20117	Knyszyn	20	pl
+20118	Mońki	20	pl
+20119	Drohiczyn	20	pl
+20120	Dąbrowa Białostocka	20	pl
+20121	Krynki	20	pl
+20122	Sokółka	20	pl
+20123	Suchowola	20	pl
+20124	Ciechanowiec	20	pl
+20125	Czyżew	20	pl
+20126	Szepietowo	20	pl
+20127	Białystok	20	pl
+20128	Łomża	20	pl
+20129	Suwałki	20	pl
+22100	Bytów	22	pl
+22101	Miastko	22	pl
+22102	Brusy	22	pl
+22103	Czersk	22	pl
+22104	Czarne	22	pl
+22105	Debrzno	22	pl
+22106	Kartuzy	22	pl
+22107	Żukowo	22	pl
+22108	Prabuty	22	pl
+22109	Nowy Staw	22	pl
+22110	Nowy Dwór Gdański	22	pl
+22111	Kępice	22	pl
+22112	Skarszewy	22	pl
+22113	Gniew	22	pl
+22114	Pelplin	22	pl
+22115	Dzierzgoń	22	pl
+22116	Sztum	22	pl
+22117	Gdańsk	22	pl
+22118	Gdynia	22	pl
+22119	Słupsk	22	pl
+22120	Sopot	22	pl
+24100	Siewierz	24	pl
+24101	Czechowice-Dziedzice	24	pl
+24102	Wilamowice	24	pl
+24103	Skoczów	24	pl
+24104	Strumień	24	pl
+24105	Blachownia	24	pl
+24106	Koniecpol	24	pl
+24107	Sośnicowice	24	pl
+24108	Toszek	24	pl
+24109	Kłobuck	24	pl
+24110	Krzepice	24	pl
+24111	Woźniki	24	pl
+24112	Koziegłowy	24	pl
+24113	Żarki	24	pl
+24114	Pszczyna	24	pl
+24115	Krzanowice	24	pl
+24116	Kuźnia Raciborska	24	pl
+24117	Czerwionka-Leszczyny	24	pl
+24118	Łazy	24	pl
+24119	Ogrodzieniec	24	pl
+24120	Pilica	24	pl
+24121	Szczekociny	24	pl
+24122	Bielsko-Biała	24	pl
+24123	Bytom	24	pl
+24124	Chorzów	24	pl
+24125	Częstochowa	24	pl
+24126	Dąbrowa Górnicza	24	pl
+24127	Gliwice	24	pl
+24128	Jastrzębie-Zdrój	24	pl
+24129	Jaworzno	24	pl
+24130	Katowice	24	pl
+24131	Mysłowice	24	pl
+24132	Piekary Śląskie	24	pl
+24133	Ruda Śląska	24	pl
+24134	Rybnik	24	pl
+24135	Siemianowice Śląskie	24	pl
+24136	Sosnowiec	24	pl
+24137	Świętochłowice	24	pl
+24138	Tychy	24	pl
+24139	Zabrze	24	pl
+24140	Żory	24	pl
+26100	Busko-Zdrój	26	pl
+26101	Jędrzejów	26	pl
+26102	Małogoszcz	26	pl
+26103	Sędziszów	26	pl
+26104	Kazimierza Wielka	26	pl
+26105	Skalbmierz	26	pl
+26106	Bodzentyn	26	pl
+26107	Chęciny	26	pl
+26108	Chmielnik	26	pl
+26109	Daleszyce	26	pl
+26110	Końskie	26	pl
+26111	Stąporków	26	pl
+26112	Opatów	26	pl
+26113	Ożarów	26	pl
+26114	Ćmielów	26	pl
+26115	Kunów	26	pl
+26116	Działoszyce	26	pl
+26117	Pińczów	26	pl
+26118	Koprzywnica	26	pl
+26119	Zawichost	26	pl
+26120	Suchedniów	26	pl
+26121	Wąchock	26	pl
+26122	Osiek	26	pl
+26123	Połaniec	26	pl
+26124	Staszów	26	pl
+26125	Włoszczowa	26	pl
+26126	Kielce	26	pl
+28100	Bisztynek	28	pl
+28101	Sępopol	28	pl
+28102	Frombork	28	pl
+28103	Pieniężno	28	pl
+28104	Lidzbark	28	pl
+28105	Młynary	28	pl
+28106	Pasłęk	28	pl
+28107	Tolkmicko	28	pl
+28108	Ryn	28	pl
+28109	Kisielice	28	pl
+28110	Susz	28	pl
+28111	Zalewo	28	pl
+28112	Korsze	28	pl
+28113	Reszel	28	pl
+28114	Orneta	28	pl
+28115	Mikołajki	28	pl
+28116	Nidzica	28	pl
+28117	Olecko	28	pl
+28118	Barczewo	28	pl
+28119	Biskupiec	28	pl
+28120	Dobre Miasto	28	pl
+28121	Jeziorany	28	pl
+28122	Olsztynek	28	pl
+28123	Miłakowo	28	pl
+28124	Miłomłyn	28	pl
+28125	Morąg	28	pl
+28126	Biała Piska	28	pl
+28127	Orzysz	28	pl
+28128	Pisz	28	pl
+28129	Ruciane-Nida	28	pl
+28130	Pasym	28	pl
+28131	Gołdap	28	pl
+28132	Węgorzewo	28	pl
+28133	Elbląg	28	pl
+28134	Olsztyn	28	pl
+30100	Margonin	30	pl
+30101	Szamocin	30	pl
+30102	Krzyż Wielkopolski	30	pl
+30103	Trzcianka	30	pl
+30104	Wieleń	30	pl
+30105	Czerniejewo	30	pl
+30106	Kłecko	30	pl
+30107	Trzemeszno	30	pl
+30108	Witkowo	30	pl
+30109	Borek Wielkopolski	30	pl
+30110	Gostyń	30	pl
+30111	Krobia	30	pl
+30112	Pogorzela	30	pl
+30113	Poniec	30	pl
+30114	Grodzisk Wielkopolski	30	pl
+30115	Rakoniewice	30	pl
+30116	Wielichowo	30	pl
+30117	Jarocin	30	pl
+30118	Żerków	30	pl
+30119	Stawiszyn	30	pl
+30120	Kępno	30	pl
+30121	Dąbie	30	pl
+30122	Kłodawa	30	pl
+30123	Przedecz	30	pl
+30124	Golina	30	pl
+30125	Kleczew	30	pl
+30126	Rychwał	30	pl
+30127	Sompolno	30	pl
+30128	Ślesin	30	pl
+30129	Czempiń	30	pl
+30130	Krzywiń	30	pl
+30131	Śmigiel	30	pl
+30132	Kobylin	30	pl
+30133	Koźmin Wielkopolski	30	pl
+30134	Krotoszyn	30	pl
+30135	Zduny	30	pl
+30136	Osieczna	30	pl
+30137	Rydzyna	30	pl
+30138	Międzychód	30	pl
+30139	Sieraków	30	pl
+30140	Lwówek	30	pl
+30141	Nowy Tomyśl	30	pl
+30142	Opalenica	30	pl
+30143	Zbąszyń	30	pl
+30144	Oborniki	30	pl
+30145	Rogoźno	30	pl
+30146	Nowe Skalmierzyce	30	pl
+30147	Odolanów	30	pl
+30148	Raszków	30	pl
+30149	Grabów nad Prosną	30	pl
+30150	Mikstat	30	pl
+30151	Ostrzeszów	30	pl
+30152	Łobżenica	30	pl
+30153	Ujście	30	pl
+30154	Wyrzysk	30	pl
+30155	Wysoka	30	pl
+30156	Pleszew	30	pl
+30157	Buk	30	pl
+30158	Kostrzyn	30	pl
+30159	Kórnik	30	pl
+30160	Mosina	30	pl
+30161	Murowana Goślina	30	pl
+30162	Pobiedziska	30	pl
+30163	Stęszew	30	pl
+30164	Swarzędz	30	pl
+30165	Bojanowo	30	pl
+30166	Jutrosin	30	pl
+30167	Miejska Górka	30	pl
+30168	Rawicz	30	pl
+30169	Zagórów	30	pl
+30170	Ostroróg	30	pl
+30171	Pniewy	30	pl
+30172	Szamotuły	30	pl
+30173	Wronki	30	pl
+30174	Środa Wielkopolska	30	pl
+30175	Dolsk	30	pl
+30176	Książ Wielkopolski	30	pl
+30177	Śrem	30	pl
+30178	Dobra	30	pl
+30179	Tuliszków	30	pl
+30180	Gołańcz	30	pl
+30181	Skoki	30	pl
+30182	Wolsztyn	30	pl
+30183	Miłosław	30	pl
+30184	Nekla	30	pl
+30185	Pyzdry	30	pl
+30186	Września	30	pl
+30187	Jastrowie	30	pl
+30188	Krajenka	30	pl
+30189	Okonek	30	pl
+30190	Kalisz	30	pl
+30191	Konin	30	pl
+30192	Leszno	30	pl
+30193	Poznań	30	pl
+\.
 
 
-INSERT INTO locations (id, woj_id, name) VALUES (12101, 12, 'Brzesko');
-INSERT INTO locations (id, woj_id, name) VALUES (12102, 12, 'Czchów');
-INSERT INTO locations (id, woj_id, name) VALUES (12103, 12, 'Alwernia');
-INSERT INTO locations (id, woj_id, name) VALUES (12104, 12, 'Chrzanów');
-INSERT INTO locations (id, woj_id, name) VALUES (12105, 12, 'Libiąż');
-INSERT INTO locations (id, woj_id, name) VALUES (12106, 12, 'Trzebinia');
-INSERT INTO locations (id, woj_id, name) VALUES (12107, 12, 'Dąbrowa Tarnowska');
-INSERT INTO locations (id, woj_id, name) VALUES (12108, 12, 'Szczucin');
-INSERT INTO locations (id, woj_id, name) VALUES (12109, 12, 'Biecz');
-INSERT INTO locations (id, woj_id, name) VALUES (12110, 12, 'Bobowa');
-INSERT INTO locations (id, woj_id, name) VALUES (12111, 12, 'Krzeszowice');
-INSERT INTO locations (id, woj_id, name) VALUES (12112, 12, 'Skała');
-INSERT INTO locations (id, woj_id, name) VALUES (12113, 12, 'Skawina');
-INSERT INTO locations (id, woj_id, name) VALUES (12114, 12, 'Słomniki');
-INSERT INTO locations (id, woj_id, name) VALUES (12115, 12, 'Świątniki Górne');
-INSERT INTO locations (id, woj_id, name) VALUES (12116, 12, 'Miechów');
-INSERT INTO locations (id, woj_id, name) VALUES (12117, 12, 'Dobczyce');
-INSERT INTO locations (id, woj_id, name) VALUES (12118, 12, 'Myślenice');
-INSERT INTO locations (id, woj_id, name) VALUES (12119, 12, 'Sułkowice');
-INSERT INTO locations (id, woj_id, name) VALUES (12120, 12, 'Krynica-Zdrój');
-INSERT INTO locations (id, woj_id, name) VALUES (12121, 12, 'Muszyna');
-INSERT INTO locations (id, woj_id, name) VALUES (12122, 12, 'Piwniczna-Zdrój');
-INSERT INTO locations (id, woj_id, name) VALUES (12123, 12, 'Stary Sącz');
-INSERT INTO locations (id, woj_id, name) VALUES (12124, 12, 'Szczawnica');
-INSERT INTO locations (id, woj_id, name) VALUES (12125, 12, 'Rabka-Zdrój');
-INSERT INTO locations (id, woj_id, name) VALUES (12126, 12, 'Olkusz');
-INSERT INTO locations (id, woj_id, name) VALUES (12127, 12, 'Wolbrom');
-INSERT INTO locations (id, woj_id, name) VALUES (12128, 12, 'Brzeszcze');
-INSERT INTO locations (id, woj_id, name) VALUES (12129, 12, 'Chełmek');
-INSERT INTO locations (id, woj_id, name) VALUES (12130, 12, 'Kęty');
-INSERT INTO locations (id, woj_id, name) VALUES (12131, 12, 'Zator');
-INSERT INTO locations (id, woj_id, name) VALUES (12132, 12, 'Nowe Brzesko');
-INSERT INTO locations (id, woj_id, name) VALUES (12133, 12, 'Proszowice');
-INSERT INTO locations (id, woj_id, name) VALUES (12134, 12, 'Maków Podhalański');
-INSERT INTO locations (id, woj_id, name) VALUES (12135, 12, 'Ciężkowice');
-INSERT INTO locations (id, woj_id, name) VALUES (12136, 12, 'Radłów');
-INSERT INTO locations (id, woj_id, name) VALUES (12137, 12, 'Ryglice');
-INSERT INTO locations (id, woj_id, name) VALUES (12138, 12, 'Tuchów');
-INSERT INTO locations (id, woj_id, name) VALUES (12139, 12, 'Wojnicz');
-INSERT INTO locations (id, woj_id, name) VALUES (12140, 12, 'Zakliczyn');
-INSERT INTO locations (id, woj_id, name) VALUES (12141, 12, 'Żabno');
-INSERT INTO locations (id, woj_id, name) VALUES (12142, 12, 'Andrychów');
-INSERT INTO locations (id, woj_id, name) VALUES (12143, 12, 'Kalwaria Zebrzydowska');
-INSERT INTO locations (id, woj_id, name) VALUES (12144, 12, 'Wadowice');
-INSERT INTO locations (id, woj_id, name) VALUES (12145, 12, 'Niepołomice');
-INSERT INTO locations (id, woj_id, name) VALUES (12146, 12, 'Wieliczka');
-INSERT INTO locations (id, woj_id, name) VALUES (12147, 12, 'Kraków');
-INSERT INTO locations (id, woj_id, name) VALUES (12148, 12, 'Nowy Sącz');
-INSERT INTO locations (id, woj_id, name) VALUES (12149, 12, 'Tarnów');
-INSERT INTO locations (id, woj_id, name) VALUES (14100, 14, 'Białobrzegi');
-INSERT INTO locations (id, woj_id, name) VALUES (14101, 14, 'Wyśmierzyce');
-INSERT INTO locations (id, woj_id, name) VALUES (14102, 14, 'Glinojeck');
-INSERT INTO locations (id, woj_id, name) VALUES (14103, 14, 'Pilawa');
-INSERT INTO locations (id, woj_id, name) VALUES (14104, 14, 'Żelechów');
-INSERT INTO locations (id, woj_id, name) VALUES (14105, 14, 'Grodzisk Mazowiecki');
-INSERT INTO locations (id, woj_id, name) VALUES (14106, 14, 'Grójec');
-INSERT INTO locations (id, woj_id, name) VALUES (14107, 14, 'Mogielnica');
-INSERT INTO locations (id, woj_id, name) VALUES (14108, 14, 'Nowe Miasto nad Pilicą');
-INSERT INTO locations (id, woj_id, name) VALUES (14109, 14, 'Warka');
-INSERT INTO locations (id, woj_id, name) VALUES (14110, 14, 'Kozienice');
-INSERT INTO locations (id, woj_id, name) VALUES (14111, 14, 'Serock');
-INSERT INTO locations (id, woj_id, name) VALUES (14112, 14, 'Lipsko');
-INSERT INTO locations (id, woj_id, name) VALUES (14113, 14, 'Łosice');
-INSERT INTO locations (id, woj_id, name) VALUES (14114, 14, 'Różan');
-INSERT INTO locations (id, woj_id, name) VALUES (14115, 14, 'Halinów');
-INSERT INTO locations (id, woj_id, name) VALUES (14116, 14, 'Kałuszyn');
-INSERT INTO locations (id, woj_id, name) VALUES (14117, 14, 'Nasielsk');
-INSERT INTO locations (id, woj_id, name) VALUES (14118, 14, 'Zakroczym');
-INSERT INTO locations (id, woj_id, name) VALUES (14119, 14, 'Myszyniec');
-INSERT INTO locations (id, woj_id, name) VALUES (14120, 14, 'Brok');
-INSERT INTO locations (id, woj_id, name) VALUES (14121, 14, 'Karczew');
-INSERT INTO locations (id, woj_id, name) VALUES (14122, 14, 'Góra Kalwaria');
-INSERT INTO locations (id, woj_id, name) VALUES (14123, 14, 'Konstancin-Jeziorna');
-INSERT INTO locations (id, woj_id, name) VALUES (14124, 14, 'Piaseczno');
-INSERT INTO locations (id, woj_id, name) VALUES (14125, 14, 'Tarczyn');
-INSERT INTO locations (id, woj_id, name) VALUES (14126, 14, 'Drobin');
-INSERT INTO locations (id, woj_id, name) VALUES (14127, 14, 'Gąbin');
-INSERT INTO locations (id, woj_id, name) VALUES (14128, 14, 'Wyszogród');
-INSERT INTO locations (id, woj_id, name) VALUES (14129, 14, 'Brwinów');
-INSERT INTO locations (id, woj_id, name) VALUES (14130, 14, 'Chorzele');
-INSERT INTO locations (id, woj_id, name) VALUES (14131, 14, 'Przysucha');
-INSERT INTO locations (id, woj_id, name) VALUES (14132, 14, 'Pułtusk');
-INSERT INTO locations (id, woj_id, name) VALUES (14133, 14, 'Iłża');
-INSERT INTO locations (id, woj_id, name) VALUES (14134, 14, 'Skaryszew');
-INSERT INTO locations (id, woj_id, name) VALUES (14135, 14, 'Mordy');
-INSERT INTO locations (id, woj_id, name) VALUES (14136, 14, 'Kosów Lacki');
-INSERT INTO locations (id, woj_id, name) VALUES (14137, 14, 'Szydłowiec');
-INSERT INTO locations (id, woj_id, name) VALUES (14138, 14, 'Błonie');
-INSERT INTO locations (id, woj_id, name) VALUES (14139, 14, 'Łomianki');
-INSERT INTO locations (id, woj_id, name) VALUES (14140, 14, 'Ożarów Mazowiecki');
-INSERT INTO locations (id, woj_id, name) VALUES (14141, 14, 'Łochów');
-INSERT INTO locations (id, woj_id, name) VALUES (14142, 14, 'Radzymin');
-INSERT INTO locations (id, woj_id, name) VALUES (14143, 14, 'Tłuszcz');
-INSERT INTO locations (id, woj_id, name) VALUES (14144, 14, 'Wołomin');
-INSERT INTO locations (id, woj_id, name) VALUES (14145, 14, 'Wyszków');
-INSERT INTO locations (id, woj_id, name) VALUES (14146, 14, 'Zwoleń');
-INSERT INTO locations (id, woj_id, name) VALUES (14147, 14, 'Bieżuń');
-INSERT INTO locations (id, woj_id, name) VALUES (14148, 14, 'Żuromin');
-INSERT INTO locations (id, woj_id, name) VALUES (14149, 14, 'Mszczonów');
-INSERT INTO locations (id, woj_id, name) VALUES (14150, 14, 'Ostrołęka');
-INSERT INTO locations (id, woj_id, name) VALUES (14151, 14, 'Płock');
-INSERT INTO locations (id, woj_id, name) VALUES (14152, 14, 'Radom');
-INSERT INTO locations (id, woj_id, name) VALUES (14153, 14, 'Siedlce');
-INSERT INTO locations (id, woj_id, name) VALUES (14154, 14, 'Warszawa');
-INSERT INTO locations (id, woj_id, name) VALUES (16100, 16, 'Grodków');
-INSERT INTO locations (id, woj_id, name) VALUES (16101, 16, 'Lewin Brzeski');
-INSERT INTO locations (id, woj_id, name) VALUES (16102, 16, 'Baborów');
-INSERT INTO locations (id, woj_id, name) VALUES (16103, 16, 'Głubczyce');
-INSERT INTO locations (id, woj_id, name) VALUES (16104, 16, 'Kietrz');
-INSERT INTO locations (id, woj_id, name) VALUES (16105, 16, 'Byczyna');
-INSERT INTO locations (id, woj_id, name) VALUES (16106, 16, 'Kluczbork');
-INSERT INTO locations (id, woj_id, name) VALUES (16107, 16, 'Wołczyn');
-INSERT INTO locations (id, woj_id, name) VALUES (16108, 16, 'Gogolin');
-INSERT INTO locations (id, woj_id, name) VALUES (16109, 16, 'Krapkowice');
-INSERT INTO locations (id, woj_id, name) VALUES (16110, 16, 'Zdzieszowice');
-INSERT INTO locations (id, woj_id, name) VALUES (16111, 16, 'Namysłów');
-INSERT INTO locations (id, woj_id, name) VALUES (16112, 16, 'Głuchołazy');
-INSERT INTO locations (id, woj_id, name) VALUES (16113, 16, 'Korfantów');
-INSERT INTO locations (id, woj_id, name) VALUES (16114, 16, 'Nysa');
-INSERT INTO locations (id, woj_id, name) VALUES (16115, 16, 'Otmuchów');
-INSERT INTO locations (id, woj_id, name) VALUES (16116, 16, 'Paczków');
-INSERT INTO locations (id, woj_id, name) VALUES (16117, 16, 'Dobrodzień');
-INSERT INTO locations (id, woj_id, name) VALUES (16118, 16, 'Gorzów Śląski');
-INSERT INTO locations (id, woj_id, name) VALUES (16119, 16, 'Olesno');
-INSERT INTO locations (id, woj_id, name) VALUES (16120, 16, 'Praszka');
-INSERT INTO locations (id, woj_id, name) VALUES (16121, 16, 'Niemodlin');
-INSERT INTO locations (id, woj_id, name) VALUES (16122, 16, 'Ozimek');
-INSERT INTO locations (id, woj_id, name) VALUES (16123, 16, 'Prószków');
-INSERT INTO locations (id, woj_id, name) VALUES (16124, 16, 'Biała');
-INSERT INTO locations (id, woj_id, name) VALUES (16125, 16, 'Głogówek');
-INSERT INTO locations (id, woj_id, name) VALUES (16126, 16, 'Prudnik');
-INSERT INTO locations (id, woj_id, name) VALUES (16127, 16, 'Kolonowskie');
-INSERT INTO locations (id, woj_id, name) VALUES (16128, 16, 'Leśnica');
-INSERT INTO locations (id, woj_id, name) VALUES (16129, 16, 'Strzelce Opolskie');
-INSERT INTO locations (id, woj_id, name) VALUES (16130, 16, 'Ujazd');
-INSERT INTO locations (id, woj_id, name) VALUES (16131, 16, 'Zawadzkie');
-INSERT INTO locations (id, woj_id, name) VALUES (16132, 16, 'Opole');
-INSERT INTO locations (id, woj_id, name) VALUES (18100, 18, 'Ustrzyki Dolne');
-INSERT INTO locations (id, woj_id, name) VALUES (18101, 18, 'Brzozów');
-INSERT INTO locations (id, woj_id, name) VALUES (18102, 18, 'Brzostek');
-INSERT INTO locations (id, woj_id, name) VALUES (18103, 18, 'Pilzno');
-INSERT INTO locations (id, woj_id, name) VALUES (18104, 18, 'Pruchnik');
-INSERT INTO locations (id, woj_id, name) VALUES (18105, 18, 'Kołaczyce');
-INSERT INTO locations (id, woj_id, name) VALUES (18106, 18, 'Kolbuszowa');
-INSERT INTO locations (id, woj_id, name) VALUES (18107, 18, 'Dukla');
-INSERT INTO locations (id, woj_id, name) VALUES (18108, 18, 'Iwonicz-Zdrój');
-INSERT INTO locations (id, woj_id, name) VALUES (18109, 18, 'Jedlicze');
-INSERT INTO locations (id, woj_id, name) VALUES (18110, 18, 'Rymanów');
-INSERT INTO locations (id, woj_id, name) VALUES (18111, 18, 'Nowa Sarzyna');
-INSERT INTO locations (id, woj_id, name) VALUES (18112, 18, 'Cieszanów');
-INSERT INTO locations (id, woj_id, name) VALUES (18113, 18, 'Narol');
-INSERT INTO locations (id, woj_id, name) VALUES (18114, 18, 'Oleszyce');
-INSERT INTO locations (id, woj_id, name) VALUES (18115, 18, 'Przecław');
-INSERT INTO locations (id, woj_id, name) VALUES (18116, 18, 'Radomyśl Wielki');
-INSERT INTO locations (id, woj_id, name) VALUES (18117, 18, 'Nisko');
-INSERT INTO locations (id, woj_id, name) VALUES (18118, 18, 'Rudnik nad Sanem');
-INSERT INTO locations (id, woj_id, name) VALUES (18119, 18, 'Ulanów');
-INSERT INTO locations (id, woj_id, name) VALUES (18120, 18, 'Kańczuga');
-INSERT INTO locations (id, woj_id, name) VALUES (18121, 18, 'Sieniawa');
-INSERT INTO locations (id, woj_id, name) VALUES (18122, 18, 'Ropczyce');
-INSERT INTO locations (id, woj_id, name) VALUES (18123, 18, 'Sędziszów Małopolski');
-INSERT INTO locations (id, woj_id, name) VALUES (18124, 18, 'Błażowa');
-INSERT INTO locations (id, woj_id, name) VALUES (18125, 18, 'Boguchwała');
-INSERT INTO locations (id, woj_id, name) VALUES (18126, 18, 'Głogów Małopolski');
-INSERT INTO locations (id, woj_id, name) VALUES (18127, 18, 'Sokołów Małopolski');
-INSERT INTO locations (id, woj_id, name) VALUES (18128, 18, 'Tyczyn');
-INSERT INTO locations (id, woj_id, name) VALUES (18129, 18, 'Zagórz');
-INSERT INTO locations (id, woj_id, name) VALUES (18130, 18, 'Strzyżów');
-INSERT INTO locations (id, woj_id, name) VALUES (18131, 18, 'Baranów Sandomierski');
-INSERT INTO locations (id, woj_id, name) VALUES (18132, 18, 'Nowa Dęba');
-INSERT INTO locations (id, woj_id, name) VALUES (18133, 18, 'Lesko');
-INSERT INTO locations (id, woj_id, name) VALUES (18134, 18, 'Krosno');
-INSERT INTO locations (id, woj_id, name) VALUES (18135, 18, 'Przemyśl');
-INSERT INTO locations (id, woj_id, name) VALUES (18136, 18, 'Rzeszów');
-INSERT INTO locations (id, woj_id, name) VALUES (18137, 18, 'Tarnobrzeg');
-INSERT INTO locations (id, woj_id, name) VALUES (20100, 20, 'Lipsk');
-INSERT INTO locations (id, woj_id, name) VALUES (20101, 20, 'Choroszcz');
-INSERT INTO locations (id, woj_id, name) VALUES (20102, 20, 'Czarna Białostocka');
-INSERT INTO locations (id, woj_id, name) VALUES (20103, 20, 'Łapy');
-INSERT INTO locations (id, woj_id, name) VALUES (20104, 20, 'Michałowo');
-INSERT INTO locations (id, woj_id, name) VALUES (20105, 20, 'Supraśl');
-INSERT INTO locations (id, woj_id, name) VALUES (20106, 20, 'Suraż');
-INSERT INTO locations (id, woj_id, name) VALUES (20107, 20, 'Tykocin');
-INSERT INTO locations (id, woj_id, name) VALUES (20108, 20, 'Wasilków');
-INSERT INTO locations (id, woj_id, name) VALUES (20109, 20, 'Zabłudów');
-INSERT INTO locations (id, woj_id, name) VALUES (20110, 20, 'Rajgród');
-INSERT INTO locations (id, woj_id, name) VALUES (20111, 20, 'Szczuczyn');
-INSERT INTO locations (id, woj_id, name) VALUES (20112, 20, 'Kleszczele');
-INSERT INTO locations (id, woj_id, name) VALUES (20113, 20, 'Stawiski');
-INSERT INTO locations (id, woj_id, name) VALUES (20114, 20, 'Jedwabne');
-INSERT INTO locations (id, woj_id, name) VALUES (20115, 20, 'Nowogród');
-INSERT INTO locations (id, woj_id, name) VALUES (20116, 20, 'Goniądz');
-INSERT INTO locations (id, woj_id, name) VALUES (20117, 20, 'Knyszyn');
-INSERT INTO locations (id, woj_id, name) VALUES (20118, 20, 'Mońki');
-INSERT INTO locations (id, woj_id, name) VALUES (20119, 20, 'Drohiczyn');
-INSERT INTO locations (id, woj_id, name) VALUES (20120, 20, 'Dąbrowa Białostocka');
-INSERT INTO locations (id, woj_id, name) VALUES (20121, 20, 'Krynki');
-INSERT INTO locations (id, woj_id, name) VALUES (20122, 20, 'Sokółka');
-INSERT INTO locations (id, woj_id, name) VALUES (20123, 20, 'Suchowola');
-INSERT INTO locations (id, woj_id, name) VALUES (20124, 20, 'Ciechanowiec');
-INSERT INTO locations (id, woj_id, name) VALUES (20125, 20, 'Czyżew');
-INSERT INTO locations (id, woj_id, name) VALUES (20126, 20, 'Szepietowo');
-INSERT INTO locations (id, woj_id, name) VALUES (20127, 20, 'Białystok');
-INSERT INTO locations (id, woj_id, name) VALUES (20128, 20, 'Łomża');
-INSERT INTO locations (id, woj_id, name) VALUES (20129, 20, 'Suwałki');
-INSERT INTO locations (id, woj_id, name) VALUES (22100, 22, 'Bytów');
-INSERT INTO locations (id, woj_id, name) VALUES (22101, 22, 'Miastko');
-INSERT INTO locations (id, woj_id, name) VALUES (22102, 22, 'Brusy');
-INSERT INTO locations (id, woj_id, name) VALUES (22103, 22, 'Czersk');
-INSERT INTO locations (id, woj_id, name) VALUES (22104, 22, 'Czarne');
-INSERT INTO locations (id, woj_id, name) VALUES (22105, 22, 'Debrzno');
-INSERT INTO locations (id, woj_id, name) VALUES (22106, 22, 'Kartuzy');
-INSERT INTO locations (id, woj_id, name) VALUES (22107, 22, 'Żukowo');
-INSERT INTO locations (id, woj_id, name) VALUES (22108, 22, 'Prabuty');
-INSERT INTO locations (id, woj_id, name) VALUES (22109, 22, 'Nowy Staw');
-INSERT INTO locations (id, woj_id, name) VALUES (22110, 22, 'Nowy Dwór Gdański');
-INSERT INTO locations (id, woj_id, name) VALUES (22111, 22, 'Kępice');
-INSERT INTO locations (id, woj_id, name) VALUES (22112, 22, 'Skarszewy');
-INSERT INTO locations (id, woj_id, name) VALUES (22113, 22, 'Gniew');
-INSERT INTO locations (id, woj_id, name) VALUES (22114, 22, 'Pelplin');
-INSERT INTO locations (id, woj_id, name) VALUES (22115, 22, 'Dzierzgoń');
-INSERT INTO locations (id, woj_id, name) VALUES (22116, 22, 'Sztum');
-INSERT INTO locations (id, woj_id, name) VALUES (22117, 22, 'Gdańsk');
-INSERT INTO locations (id, woj_id, name) VALUES (22118, 22, 'Gdynia');
-INSERT INTO locations (id, woj_id, name) VALUES (22119, 22, 'Słupsk');
-INSERT INTO locations (id, woj_id, name) VALUES (22120, 22, 'Sopot');
-INSERT INTO locations (id, woj_id, name) VALUES (24100, 24, 'Siewierz');
-INSERT INTO locations (id, woj_id, name) VALUES (24101, 24, 'Czechowice-Dziedzice');
-INSERT INTO locations (id, woj_id, name) VALUES (24102, 24, 'Wilamowice');
-INSERT INTO locations (id, woj_id, name) VALUES (24103, 24, 'Skoczów');
-INSERT INTO locations (id, woj_id, name) VALUES (24104, 24, 'Strumień');
-INSERT INTO locations (id, woj_id, name) VALUES (24105, 24, 'Blachownia');
-INSERT INTO locations (id, woj_id, name) VALUES (24106, 24, 'Koniecpol');
-INSERT INTO locations (id, woj_id, name) VALUES (24107, 24, 'Sośnicowice');
-INSERT INTO locations (id, woj_id, name) VALUES (24108, 24, 'Toszek');
-INSERT INTO locations (id, woj_id, name) VALUES (24109, 24, 'Kłobuck');
-INSERT INTO locations (id, woj_id, name) VALUES (24110, 24, 'Krzepice');
-INSERT INTO locations (id, woj_id, name) VALUES (24111, 24, 'Woźniki');
-INSERT INTO locations (id, woj_id, name) VALUES (24112, 24, 'Koziegłowy');
-INSERT INTO locations (id, woj_id, name) VALUES (24113, 24, 'Żarki');
-INSERT INTO locations (id, woj_id, name) VALUES (24114, 24, 'Pszczyna');
-INSERT INTO locations (id, woj_id, name) VALUES (24115, 24, 'Krzanowice');
-INSERT INTO locations (id, woj_id, name) VALUES (24116, 24, 'Kuźnia Raciborska');
-INSERT INTO locations (id, woj_id, name) VALUES (24117, 24, 'Czerwionka-Leszczyny');
-INSERT INTO locations (id, woj_id, name) VALUES (24118, 24, 'Łazy');
-INSERT INTO locations (id, woj_id, name) VALUES (24119, 24, 'Ogrodzieniec');
-INSERT INTO locations (id, woj_id, name) VALUES (24120, 24, 'Pilica');
-INSERT INTO locations (id, woj_id, name) VALUES (24121, 24, 'Szczekociny');
-INSERT INTO locations (id, woj_id, name) VALUES (24122, 24, 'Bielsko-Biała');
-INSERT INTO locations (id, woj_id, name) VALUES (24123, 24, 'Bytom');
-INSERT INTO locations (id, woj_id, name) VALUES (24124, 24, 'Chorzów');
-INSERT INTO locations (id, woj_id, name) VALUES (24125, 24, 'Częstochowa');
-INSERT INTO locations (id, woj_id, name) VALUES (24126, 24, 'Dąbrowa Górnicza');
-INSERT INTO locations (id, woj_id, name) VALUES (24127, 24, 'Gliwice');
-INSERT INTO locations (id, woj_id, name) VALUES (24128, 24, 'Jastrzębie-Zdrój');
-INSERT INTO locations (id, woj_id, name) VALUES (24129, 24, 'Jaworzno');
-INSERT INTO locations (id, woj_id, name) VALUES (24130, 24, 'Katowice');
-INSERT INTO locations (id, woj_id, name) VALUES (24131, 24, 'Mysłowice');
-INSERT INTO locations (id, woj_id, name) VALUES (24132, 24, 'Piekary Śląskie');
-INSERT INTO locations (id, woj_id, name) VALUES (24133, 24, 'Ruda Śląska');
-INSERT INTO locations (id, woj_id, name) VALUES (24134, 24, 'Rybnik');
-INSERT INTO locations (id, woj_id, name) VALUES (24135, 24, 'Siemianowice Śląskie');
-INSERT INTO locations (id, woj_id, name) VALUES (24136, 24, 'Sosnowiec');
-INSERT INTO locations (id, woj_id, name) VALUES (24137, 24, 'Świętochłowice');
-INSERT INTO locations (id, woj_id, name) VALUES (24138, 24, 'Tychy');
-INSERT INTO locations (id, woj_id, name) VALUES (24139, 24, 'Zabrze');
-INSERT INTO locations (id, woj_id, name) VALUES (24140, 24, 'Żory');
-INSERT INTO locations (id, woj_id, name) VALUES (26100, 26, 'Busko-Zdrój');
-INSERT INTO locations (id, woj_id, name) VALUES (26101, 26, 'Jędrzejów');
-INSERT INTO locations (id, woj_id, name) VALUES (26102, 26, 'Małogoszcz');
-INSERT INTO locations (id, woj_id, name) VALUES (26103, 26, 'Sędziszów');
-INSERT INTO locations (id, woj_id, name) VALUES (26104, 26, 'Kazimierza Wielka');
-INSERT INTO locations (id, woj_id, name) VALUES (26105, 26, 'Skalbmierz');
-INSERT INTO locations (id, woj_id, name) VALUES (26106, 26, 'Bodzentyn');
-INSERT INTO locations (id, woj_id, name) VALUES (26107, 26, 'Chęciny');
-INSERT INTO locations (id, woj_id, name) VALUES (26108, 26, 'Chmielnik');
-INSERT INTO locations (id, woj_id, name) VALUES (26109, 26, 'Daleszyce');
-INSERT INTO locations (id, woj_id, name) VALUES (26110, 26, 'Końskie');
-INSERT INTO locations (id, woj_id, name) VALUES (26111, 26, 'Stąporków');
-INSERT INTO locations (id, woj_id, name) VALUES (26112, 26, 'Opatów');
-INSERT INTO locations (id, woj_id, name) VALUES (26113, 26, 'Ożarów');
-INSERT INTO locations (id, woj_id, name) VALUES (26114, 26, 'Ćmielów');
-INSERT INTO locations (id, woj_id, name) VALUES (26115, 26, 'Kunów');
-INSERT INTO locations (id, woj_id, name) VALUES (26116, 26, 'Działoszyce');
-INSERT INTO locations (id, woj_id, name) VALUES (26117, 26, 'Pińczów');
-INSERT INTO locations (id, woj_id, name) VALUES (26118, 26, 'Koprzywnica');
-INSERT INTO locations (id, woj_id, name) VALUES (26119, 26, 'Zawichost');
-INSERT INTO locations (id, woj_id, name) VALUES (26120, 26, 'Suchedniów');
-INSERT INTO locations (id, woj_id, name) VALUES (26121, 26, 'Wąchock');
-INSERT INTO locations (id, woj_id, name) VALUES (26122, 26, 'Osiek');
-INSERT INTO locations (id, woj_id, name) VALUES (26123, 26, 'Połaniec');
-INSERT INTO locations (id, woj_id, name) VALUES (26124, 26, 'Staszów');
-INSERT INTO locations (id, woj_id, name) VALUES (26125, 26, 'Włoszczowa');
-INSERT INTO locations (id, woj_id, name) VALUES (26126, 26, 'Kielce');
-INSERT INTO locations (id, woj_id, name) VALUES (28100, 28, 'Bisztynek');
-INSERT INTO locations (id, woj_id, name) VALUES (28101, 28, 'Sępopol');
-INSERT INTO locations (id, woj_id, name) VALUES (28102, 28, 'Frombork');
-INSERT INTO locations (id, woj_id, name) VALUES (28103, 28, 'Pieniężno');
-INSERT INTO locations (id, woj_id, name) VALUES (28104, 28, 'Lidzbark');
-INSERT INTO locations (id, woj_id, name) VALUES (28105, 28, 'Młynary');
-INSERT INTO locations (id, woj_id, name) VALUES (28106, 28, 'Pasłęk');
-INSERT INTO locations (id, woj_id, name) VALUES (28107, 28, 'Tolkmicko');
-INSERT INTO locations (id, woj_id, name) VALUES (28108, 28, 'Ryn');
-INSERT INTO locations (id, woj_id, name) VALUES (28109, 28, 'Kisielice');
-INSERT INTO locations (id, woj_id, name) VALUES (28110, 28, 'Susz');
-INSERT INTO locations (id, woj_id, name) VALUES (28111, 28, 'Zalewo');
-INSERT INTO locations (id, woj_id, name) VALUES (28112, 28, 'Korsze');
-INSERT INTO locations (id, woj_id, name) VALUES (28113, 28, 'Reszel');
-INSERT INTO locations (id, woj_id, name) VALUES (28114, 28, 'Orneta');
-INSERT INTO locations (id, woj_id, name) VALUES (28115, 28, 'Mikołajki');
-INSERT INTO locations (id, woj_id, name) VALUES (28116, 28, 'Nidzica');
-INSERT INTO locations (id, woj_id, name) VALUES (28117, 28, 'Olecko');
-INSERT INTO locations (id, woj_id, name) VALUES (28118, 28, 'Barczewo');
-INSERT INTO locations (id, woj_id, name) VALUES (28119, 28, 'Biskupiec');
-INSERT INTO locations (id, woj_id, name) VALUES (28120, 28, 'Dobre Miasto');
-INSERT INTO locations (id, woj_id, name) VALUES (28121, 28, 'Jeziorany');
-INSERT INTO locations (id, woj_id, name) VALUES (28122, 28, 'Olsztynek');
-INSERT INTO locations (id, woj_id, name) VALUES (28123, 28, 'Miłakowo');
-INSERT INTO locations (id, woj_id, name) VALUES (28124, 28, 'Miłomłyn');
-INSERT INTO locations (id, woj_id, name) VALUES (28125, 28, 'Morąg');
-INSERT INTO locations (id, woj_id, name) VALUES (28126, 28, 'Biała Piska');
-INSERT INTO locations (id, woj_id, name) VALUES (28127, 28, 'Orzysz');
-INSERT INTO locations (id, woj_id, name) VALUES (28128, 28, 'Pisz');
-INSERT INTO locations (id, woj_id, name) VALUES (28129, 28, 'Ruciane-Nida');
-INSERT INTO locations (id, woj_id, name) VALUES (28130, 28, 'Pasym');
-INSERT INTO locations (id, woj_id, name) VALUES (28131, 28, 'Gołdap');
-INSERT INTO locations (id, woj_id, name) VALUES (28132, 28, 'Węgorzewo');
-INSERT INTO locations (id, woj_id, name) VALUES (28133, 28, 'Elbląg');
-INSERT INTO locations (id, woj_id, name) VALUES (28134, 28, 'Olsztyn');
-INSERT INTO locations (id, woj_id, name) VALUES (30100, 30, 'Margonin');
-INSERT INTO locations (id, woj_id, name) VALUES (30101, 30, 'Szamocin');
-INSERT INTO locations (id, woj_id, name) VALUES (30102, 30, 'Krzyż Wielkopolski');
-INSERT INTO locations (id, woj_id, name) VALUES (30103, 30, 'Trzcianka');
-INSERT INTO locations (id, woj_id, name) VALUES (30104, 30, 'Wieleń');
-INSERT INTO locations (id, woj_id, name) VALUES (30105, 30, 'Czerniejewo');
-INSERT INTO locations (id, woj_id, name) VALUES (30106, 30, 'Kłecko');
-INSERT INTO locations (id, woj_id, name) VALUES (30107, 30, 'Trzemeszno');
-INSERT INTO locations (id, woj_id, name) VALUES (30108, 30, 'Witkowo');
-INSERT INTO locations (id, woj_id, name) VALUES (30109, 30, 'Borek Wielkopolski');
-INSERT INTO locations (id, woj_id, name) VALUES (30110, 30, 'Gostyń');
-INSERT INTO locations (id, woj_id, name) VALUES (30111, 30, 'Krobia');
-INSERT INTO locations (id, woj_id, name) VALUES (30112, 30, 'Pogorzela');
-INSERT INTO locations (id, woj_id, name) VALUES (30113, 30, 'Poniec');
-INSERT INTO locations (id, woj_id, name) VALUES (30114, 30, 'Grodzisk Wielkopolski');
-INSERT INTO locations (id, woj_id, name) VALUES (30115, 30, 'Rakoniewice');
-INSERT INTO locations (id, woj_id, name) VALUES (30116, 30, 'Wielichowo');
-INSERT INTO locations (id, woj_id, name) VALUES (30117, 30, 'Jarocin');
-INSERT INTO locations (id, woj_id, name) VALUES (30118, 30, 'Żerków');
-INSERT INTO locations (id, woj_id, name) VALUES (30119, 30, 'Stawiszyn');
-INSERT INTO locations (id, woj_id, name) VALUES (30120, 30, 'Kępno');
-INSERT INTO locations (id, woj_id, name) VALUES (30121, 30, 'Dąbie');
-INSERT INTO locations (id, woj_id, name) VALUES (30122, 30, 'Kłodawa');
-INSERT INTO locations (id, woj_id, name) VALUES (30123, 30, 'Przedecz');
-INSERT INTO locations (id, woj_id, name) VALUES (30124, 30, 'Golina');
-INSERT INTO locations (id, woj_id, name) VALUES (30125, 30, 'Kleczew');
-INSERT INTO locations (id, woj_id, name) VALUES (30126, 30, 'Rychwał');
-INSERT INTO locations (id, woj_id, name) VALUES (30127, 30, 'Sompolno');
-INSERT INTO locations (id, woj_id, name) VALUES (30128, 30, 'Ślesin');
-INSERT INTO locations (id, woj_id, name) VALUES (30129, 30, 'Czempiń');
-INSERT INTO locations (id, woj_id, name) VALUES (30130, 30, 'Krzywiń');
-INSERT INTO locations (id, woj_id, name) VALUES (30131, 30, 'Śmigiel');
-INSERT INTO locations (id, woj_id, name) VALUES (30132, 30, 'Kobylin');
-INSERT INTO locations (id, woj_id, name) VALUES (30133, 30, 'Koźmin Wielkopolski');
-INSERT INTO locations (id, woj_id, name) VALUES (30134, 30, 'Krotoszyn');
-INSERT INTO locations (id, woj_id, name) VALUES (30135, 30, 'Zduny');
-INSERT INTO locations (id, woj_id, name) VALUES (30136, 30, 'Osieczna');
-INSERT INTO locations (id, woj_id, name) VALUES (30137, 30, 'Rydzyna');
-INSERT INTO locations (id, woj_id, name) VALUES (30138, 30, 'Międzychód');
-INSERT INTO locations (id, woj_id, name) VALUES (30139, 30, 'Sieraków');
-INSERT INTO locations (id, woj_id, name) VALUES (30140, 30, 'Lwówek');
-INSERT INTO locations (id, woj_id, name) VALUES (30141, 30, 'Nowy Tomyśl');
-INSERT INTO locations (id, woj_id, name) VALUES (30142, 30, 'Opalenica');
-INSERT INTO locations (id, woj_id, name) VALUES (30143, 30, 'Zbąszyń');
-INSERT INTO locations (id, woj_id, name) VALUES (30144, 30, 'Oborniki');
-INSERT INTO locations (id, woj_id, name) VALUES (30145, 30, 'Rogoźno');
-INSERT INTO locations (id, woj_id, name) VALUES (30146, 30, 'Nowe Skalmierzyce');
-INSERT INTO locations (id, woj_id, name) VALUES (30147, 30, 'Odolanów');
-INSERT INTO locations (id, woj_id, name) VALUES (30148, 30, 'Raszków');
-INSERT INTO locations (id, woj_id, name) VALUES (30149, 30, 'Grabów nad Prosną');
-INSERT INTO locations (id, woj_id, name) VALUES (30150, 30, 'Mikstat');
-INSERT INTO locations (id, woj_id, name) VALUES (30151, 30, 'Ostrzeszów');
-INSERT INTO locations (id, woj_id, name) VALUES (30152, 30, 'Łobżenica');
-INSERT INTO locations (id, woj_id, name) VALUES (30153, 30, 'Ujście');
-INSERT INTO locations (id, woj_id, name) VALUES (30154, 30, 'Wyrzysk');
-INSERT INTO locations (id, woj_id, name) VALUES (30155, 30, 'Wysoka');
-INSERT INTO locations (id, woj_id, name) VALUES (30156, 30, 'Pleszew');
-INSERT INTO locations (id, woj_id, name) VALUES (30157, 30, 'Buk');
-INSERT INTO locations (id, woj_id, name) VALUES (30158, 30, 'Kostrzyn');
-INSERT INTO locations (id, woj_id, name) VALUES (30159, 30, 'Kórnik');
-INSERT INTO locations (id, woj_id, name) VALUES (30160, 30, 'Mosina');
-INSERT INTO locations (id, woj_id, name) VALUES (30161, 30, 'Murowana Goślina');
-INSERT INTO locations (id, woj_id, name) VALUES (30162, 30, 'Pobiedziska');
-INSERT INTO locations (id, woj_id, name) VALUES (30163, 30, 'Stęszew');
-INSERT INTO locations (id, woj_id, name) VALUES (30164, 30, 'Swarzędz');
-INSERT INTO locations (id, woj_id, name) VALUES (30165, 30, 'Bojanowo');
-INSERT INTO locations (id, woj_id, name) VALUES (30166, 30, 'Jutrosin');
-INSERT INTO locations (id, woj_id, name) VALUES (30167, 30, 'Miejska Górka');
-INSERT INTO locations (id, woj_id, name) VALUES (30168, 30, 'Rawicz');
-INSERT INTO locations (id, woj_id, name) VALUES (30169, 30, 'Zagórów');
-INSERT INTO locations (id, woj_id, name) VALUES (30170, 30, 'Ostroróg');
-INSERT INTO locations (id, woj_id, name) VALUES (30171, 30, 'Pniewy');
-INSERT INTO locations (id, woj_id, name) VALUES (30172, 30, 'Szamotuły');
-INSERT INTO locations (id, woj_id, name) VALUES (30173, 30, 'Wronki');
-INSERT INTO locations (id, woj_id, name) VALUES (30174, 30, 'Środa Wielkopolska');
-INSERT INTO locations (id, woj_id, name) VALUES (30175, 30, 'Dolsk');
-INSERT INTO locations (id, woj_id, name) VALUES (30176, 30, 'Książ Wielkopolski');
-INSERT INTO locations (id, woj_id, name) VALUES (30177, 30, 'Śrem');
-INSERT INTO locations (id, woj_id, name) VALUES (30178, 30, 'Dobra');
-INSERT INTO locations (id, woj_id, name) VALUES (30179, 30, 'Tuliszków');
-INSERT INTO locations (id, woj_id, name) VALUES (30180, 30, 'Gołańcz');
-INSERT INTO locations (id, woj_id, name) VALUES (30181, 30, 'Skoki');
-INSERT INTO locations (id, woj_id, name) VALUES (30182, 30, 'Wolsztyn');
-INSERT INTO locations (id, woj_id, name) VALUES (30183, 30, 'Miłosław');
-INSERT INTO locations (id, woj_id, name) VALUES (30184, 30, 'Nekla');
-INSERT INTO locations (id, woj_id, name) VALUES (30185, 30, 'Pyzdry');
-INSERT INTO locations (id, woj_id, name) VALUES (30186, 30, 'Września');
-INSERT INTO locations (id, woj_id, name) VALUES (30187, 30, 'Jastrowie');
-INSERT INTO locations (id, woj_id, name) VALUES (30188, 30, 'Krajenka');
-INSERT INTO locations (id, woj_id, name) VALUES (30189, 30, 'Okonek');
-INSERT INTO locations (id, woj_id, name) VALUES (30190, 30, 'Kalisz');
-INSERT INTO locations (id, woj_id, name) VALUES (30191, 30, 'Konin');
-INSERT INTO locations (id, woj_id, name) VALUES (30192, 30, 'Leszno');
-INSERT INTO locations (id, woj_id, name) VALUES (30193, 30, 'Poznań');
+--
+-- Name: locations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: p13730_foodel
+--
+
+SELECT pg_catalog.setval('locations_id_seq', 4, true);
+
+
+--
+-- PostgreSQL database dump complete
+--

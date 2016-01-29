@@ -3,12 +3,10 @@ from sqlalchemy import (
     Column,
     Integer,
     String,
-    Numeric,
     ForeignKey,
     Boolean,
-    and_,
     )
-    
+
 from sqlalchemy.orm import (
     relationship,
     backref,
@@ -19,9 +17,9 @@ from ..db import (
     DBSession,
     )
 
-import os
 import copy
 from PIL import Image
+
 
 class Photo(Base):
     __tablename__ = 'photos'
@@ -31,11 +29,10 @@ class Photo(Base):
     product_id = Column(Integer, ForeignKey('products.id'), index=True)
     us_id = Column(Integer, ForeignKey('users.id'), index=True)
     event_id = Column(Integer, ForeignKey('events.id'), index=True)
-    
+
     product = relationship('Product', backref=backref('photos'))
     user = relationship('User', backref=backref('avatars'))
-    event = relationship('Event', backref=backref('event_photos'))
-    
+
     BASE_STORAGE_PATH = 'kj/static/storage/'
     AVATAR_THUMBNAIL = 50
     MAPS_THUMBNAIL = 50
@@ -43,7 +40,7 @@ class Photo(Base):
     SMALL_THUMBNAIL = 240
     BIG_THUMBNAIL = 500
     MAXI_THUMBNAIL = 800
-    
+
     PREFIXES = [None, 'avatar_','tiny_','small_','big_','maxi_', 'maps_']
 
     @classmethod

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 
+from random import randint
 from sqlalchemy import (
     Column,
     Integer,
@@ -19,8 +20,9 @@ from ..db import (
     KJBase,
     DBSession,
     )
-    
+
 from sqlalchemy.dialects.postgresql import ARRAY as PGArray
+
 
 class Category(Base, KJBase):
     __tablename__ = 'categories'
@@ -29,35 +31,41 @@ class Category(Base, KJBase):
     name = Column(String(2000))
     parent_id = Column(Integer, ForeignKey('categories.id'), index=True)
     coupled = Column(PGArray(Integer))
-    
+
     @classmethod
-    def get_main(cls, lg_id = 'pl'):
-        return DBSession.query(cls).filter(and_(cls.lg_id == lg_id,
-                                            cls.parent_id == None)).order_by(cls.name).all()
-                                            
+    def get_main(cls, lg_id='pl'):
+        return DBSession.query(cls).filter(
+            and_(
+                 cls.lg_id == lg_id, cls.parent_id == None  # noqa
+                 )
+            ).order_by(cls.name).all()
+
     @classmethod
     def get_main_with_product_ids(cls, lg_id='pl', where_statement=''):
         from ..models.product import Product
         sql = """
             SELECT cat.id as id, cat.name as name, array_agg(prod.id) as prods
             FROM categories cat JOIN products prod ON cat.id = prod.cat_id
-            WHERE 
+            WHERE
                 cat.parent_id is null %s
                 AND prod.quantity > 0
                 AND prod.end_date >= '%s'
-            GROUP BY cat.id 
+            GROUP BY cat.id
         """ % (where_statement, datetime.datetime.now())
         output = {}
         result = DBSession.execute(sql).fetchall()
         for r in result:
-            products = DBSession.query(Product).filter(Product.id.in_(r.prods)).order_by(Product.id.desc()).all()
+            products = DBSession.query(Product).filter(
+                Product.id.in_(r.prods)).order_by(Product.id.desc()).limit(4).all()
+            display_product_idx = randint(0, len(products)-1)
             output[r.id] = {
                 'name': r.name,
-                'products': products[:4],
-                'counter': len(products)
+                'product': products[display_product_idx],
+                'counter': len(products),
+                'category': Category.get(r.id)
             }
         return output
-        
+
     def get_subs_product_ids(self, lg_id='pl', where_statement=''):
         from ..models.product import Product
         sql = """
@@ -87,7 +95,7 @@ class Category(Base, KJBase):
                 'counter': DBSession.execute(count_sql).scalar()
             }
         return output
-        
+
     def get_current_with_product_ids(self, lg_id='pl', where_statement=''):
         from ..models.product import Product
         sql = """

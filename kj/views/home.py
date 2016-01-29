@@ -54,15 +54,11 @@ def home_responsive(request):
 
 @view_config(route_name='home', renderer='kj:templates/index.html')
 def home(request):
-    mosaic = Category.get_main_with_product_ids(
-        where_statement='AND cat.id != 16')
-    mains = Category.get_main_with_product_ids(
-        where_statement='AND cat.id = 16')
+    mosaic = Category.get_main_with_product_ids()
+    print mosaic
     return {
         'mosaic': mosaic,
-        'mains': mains,
         'title': u'Najnowsze, najświeższe, najfajniejsze',
-        'main': True
     }
 
 
@@ -91,70 +87,37 @@ def home_change(request):
 
 
 @view_config(
-    route_name='home_show_subcategories',
-    renderer='kj:templates/index.html')
-def home_show_subcategories(request):
-    category = Category.get(request.matchdict.get('id'))
-    mosaic = category.get_subs_product_ids()
-    coupled = __get_coupled_categories_for_mosaic(category, mosaic_keys = mosaic.keys())
-    return {
-        'mosaic' : mosaic,
-        'coupled' : coupled,
-        'title': category.name,
-        'main': False
-    }
-    
-@view_config(route_name='home_buy_show_subcategories', renderer='kj:templates/index.html')    
-def home_buy_show_subcategories(request):
-    category = Category.get(request.matchdict.get('id'))
-    mosaic = category.get_subs_product_ids(where_statement="AND prod.kind='S'")
-    coupled = __get_coupled_categories_for_mosaic(category, where_statement="AND prod.kind='S'", mosaic_keys = mosaic.keys())
-
-    return {
-        'mosaic' : mosaic,
-        'coupled' : coupled,
-        'title': category.name,
-        'main': False,
-        'routing': 'home_show_buy_products'
-    }
-
-@view_config(route_name='home_exchange_show_subcategories', renderer='kj:templates/index.html')    
-def home_exchange_show_subcategories(request):
-    category = Category.get(request.matchdict.get('id'))
-    mosaic = category.get_subs_product_ids(where_statement="AND prod.kind='X'")
-    coupled = __get_coupled_categories_for_mosaic(category, where_statement="AND prod.kind='X'", mosaic_keys = mosaic.keys())
-    return {
-        'mosaic' : mosaic,
-        'coupled' : coupled,
-        'title': category.name,
-        'main': False,
-        'routing': 'home_show_exchange_products'
-    }
-    
-@view_config(route_name='home_show_products', renderer='kj:templates/products.html')    
+    route_name='home_show_products',
+    renderer='kj:templates/products.html')
 def home_show_products(request):
     category = Category.get(request.matchdict.get('id'))
-    q = Product.get_by_subcategory(category.id)
+    q = Product.get_by_category(category.id)
     products = chunk(q, request)
     return {
         'products': products,
-        'title': u'<a class="top-shelf" href="%s">%s</a> &raquo; %s' % (request.route_path('home_show_subcategories', id=category.parent.id, sef=make_sef_url(category.parent.name)), category.parent.name, category.name)
+        'title': category.name.capitalize()
     }
 
-@view_config(route_name='home_show_buy_products', renderer='kj:templates/products.html')  
+
+@view_config(
+    route_name='home_show_buy_products',
+    renderer='kj:templates/products.html')
 def home_show_buy_products(request):
     category = Category.get(request.matchdict.get('id'))
-    q = Product.get_by_subcategory(category.id, kind='S')
+    q = Product.get_by_category(category.id, kind='S')
     products = chunk(q, request)
     return {
         'products': products,
-        'title': u'<a class="top-shelf" href="%s">%s</a> &raquo; %s' % (request.route_path('home_buy_show_subcategories', id=category.parent.id, sef=make_sef_url(category.parent.name)), category.parent.name, category.name)
+        'title': category.name.capitalize()
     }
 
-@view_config(route_name='home_show_exchange_products', renderer='kj:templates/products.html')  
+
+@view_config(
+    route_name='home_show_exchange_products',
+    renderer='kj:templates/products.html')
 def home_show_exchange_products(request):
     category = Category.get(request.matchdict.get('id'))
-    q = Product.get_by_subcategory(category.id, kind='X')
+    q = Product.get_by_category(category.id, kind='X')
     products = chunk(q, request)
     return {
         'products': products,

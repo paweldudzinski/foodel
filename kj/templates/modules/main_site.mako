@@ -79,6 +79,47 @@
     </div>
 </%def>
 
+<%def name="chunk_of_categories(mosaic)" filter="trim">
+	%if not mosaic:
+		<i>Nic nie znaleziono :(</i>
+	%endif
+	
+	%for i, m in mosaic.iteritems():
+		<%
+			category = m['category']
+			product = m['product']
+			href = request.route_path('home_show_products', id=category.id, sef=h.make_sef_url(category.name))
+		%>
+		<div class="tile">
+			<div class="pale-box" style="width:240px; margin:0px auto;">
+				<div class="in-tile">
+					<div style="width:100%; text-align:left;">
+						<div style="padding:9px;">
+							<a title="Pokaż co tam jest" href=${href}>
+								<span class="lobster" style="font-size:18px;">
+									${h.smart_truncate(category.name, 40)}
+								</span>
+							</a>
+						</div>
+					<a class="product-photo" title="${product.name}" href=${href} style="position:relative; display:block;">
+
+						<div class="mosaic-arrow arrow arrow-down"></div>
+						<img src="${product.get_main_photo_url('big_')}" 
+							 title="${product.name}" 
+							 alt="${product.name}"
+							 style="max-width:240px; margin:0px auto; margin-bottom:10px;">
+					</a>
+					</div>
+				</div>
+				<div class="in-tile-desc">
+					${h.smart_truncate(product.description, 200)}
+				</div>
+			</div>
+		</div>
+	
+	%endfor
+</%def>
+
 <%def name="chunk_of_products(products, title='', exchange_offers=False, force_width=None)" filter="trim">
     <section class="newest">
         <div class="newest-products" style="${'width:%s%%'%(force_width) if force_width else ''}">
@@ -149,9 +190,6 @@
 <%def name="caphel(main, container, mains_as_title=False)" filter="trim">
     %for id, data in container.iteritems():
         <%
-            if main:
-                href = request.route_path(routing or 'home_show_subcategories', id=id, sef=h.make_sef_url(data['name']))
-            else:
                 href = request.route_path(routing or 'home_show_products', id=id, sef=h.make_sef_url(data['name']))
         %>
         <a href="${href}" class="mosaic">

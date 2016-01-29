@@ -1,25 +1,13 @@
 # -*- coding: utf-8 -*-
 import os
-from PIL import Image
 import unicodedata
 import datetime
 
-from pyramid.response import Response
+from PIL import Image
 from pyramid.renderers import render
-
-from pyramid.view import (
-    view_config,
-    forbidden_view_config
-    )
-
-from pyramid.security import (
-    remember,
-    forget,
-    )
-
-from hashlib import md5
-
+from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
+from hashlib import md5
 
 from ..db import DBSession
 from ..models.user import User
@@ -31,6 +19,7 @@ from ..models.location import Location
 from ..models.lead import Lead
 from ..models.event import Event
 from ..lib.validators import NewUserValidator
+from ..lib.product_creator import product_creator
 
 
 @view_config(route_name='pa_home', permission='user')
@@ -151,44 +140,15 @@ def add_exchange(request):
         'type' : 'EXCHANGE'
     }
 
-@view_config(route_name='add_sale', renderer='kj:templates/panel/add_sale.html', permission='user')
+
+@view_config(
+    route_name='add_sale',
+    renderer='kj:templates/panel/add_sale.html',
+    permission='user')
 def add_sale(request):
-    av = []
-    for a in Product.AVAILABILITIES_ORDER:
-        av.append((a, Product.AVAILABILITIES[a]))
-        
-    so = []
-    for a in Product.SHIPPINGS_ORDER:
-        so.append((a, Product.SHIPPINGS[a]))
-        
-    ev = []
-    for a in Product.END_DATES_ORDER:
-        ev.append((a, Product.END_DATES[a]))
-        
-    qm = []
-    for a in Product.QUANTITY_MEASURES:
-        qm.append((a, Product.QUANTITY_MEASURES[a]))
-        
-    woj_loc = []
-    for a in Location.get_main():
-        woj_loc.append((a.id, a.name))
-        
-    categories = []
-    for c in Product.get_all_categories_for_products():
-        categories.append((c.id, c.name))
-        
-    specifics = Specifics.all()
-        
     return {
-        'bargain_values' : tuple(Product.BARGAINS.iteritems()),
-        'availabilility_values' : av,
-        'shipping_values' : so,
-        'end_date_values' : ev,
-        'categories' : categories,
-        'quantity_measures' : qm,
-        'specifics' : specifics,
-        'wojewodztwa' : woj_loc,
-        'type' : 'SALE'
+        'product_creator': product_creator,
+        'type': 'SALE'
     }
 
 @view_config(route_name='save_product_for_sale', permission='user')
