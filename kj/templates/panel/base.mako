@@ -15,21 +15,19 @@
         <meta name="viewport" content="width=device-width">
         ${shared.css_and_modernizr_files()}
     </head>
-    <body>
+    <body class="admin-body">
         ${shared.outdated()}
-        <section class="main-content-100">
-            ${shared.top_shelf(req.user)}
+        <section class="wide-short">
             <header class="links-and-search-area">
                 <section class="main-content">
                     <div class="logo-and-links">
                         ${shared.logo()}
                         ${shared.header_links(req.user)}
-                        ${shared.search()}
                         <div style="clear:both;"></div>
                     </div>
                 </section>
             </header>
-            <div class="line"></div>
+            <div class="line" style="margin-top:10px;"></div>
             <section class="content main-content">
                 ${ms.login_box(details=True)}
                 <div class="right-side-content">

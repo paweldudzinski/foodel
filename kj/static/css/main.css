@@ -38,6 +38,21 @@ body { background-image:url("../images/bg.png"); }
   background-size:100% auto;
 }
 
+.wide-short {
+  width:100%;
+  height:85px;
+  background-image:url('../images/top_bg1.jpg');
+  -webkit-background-size: 100%; 
+  -moz-background-size: 100%; 
+  -o-background-size: 100%; 
+  background-size: 100%; 
+  -webkit-background-size: cover; 
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover;
+  background-size:100% auto;
+}
+
 .whitelink {
 	width:41px;
     height:41px;
@@ -79,7 +94,7 @@ body { background-image:url("../images/bg.png"); }
 .s05-bullet{ background-position: 0 -605px; width: 9px; height: 9px; opacity: 0.4; filter: alpha(opacity=40); } 
 .s06-tick-off{ background-position: 0 -624px; width: 15px; height: 16px; } 
 .s06-tick-on{ background-position: 0 -650px; width: 15px; height: 16px; } 
-.s07-no-avatar{ background-position: 0 -676px; width: 50px; height: 50px; } 
+.s07-no-avatar{ background-position: -5px -680px; width: 50px; height: 50px; } 
 .s08-pa-delete{ background-position: 0 -736px; width: 24px; height: 23px; } 
 .s08-pa-edit{ background-position: 0 -769px; width: 23px; height: 23px; } 
 .s09-mail{ background-position: 0 -802px; width: 15px; height: 10px; } 
@@ -154,6 +169,11 @@ hr {
 .links-and-search-area {
     width:100%;
     padding-top:10px;
+}
+
+.links-and-search-area-admin {
+    width:100%;
+    padding-top:35px;
 }
 
 .login-info-bar {
@@ -363,7 +383,7 @@ a.btn-large { font-size:17px; }
 
 .login-box { width:290px; float:left; }
 
-.right-side-content { float:left; width:975px; }
+.right-side-content { float:left; width:810px; }
 
 .grade-row { padding:10px 5px; border-bottom:1px dotted #7d919a;}  
 .grade-row:hover { background: #7d919a; cursor:pointer; cursor:hand; }
