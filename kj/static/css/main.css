@@ -40,7 +40,7 @@ body { background-image:url("../images/bg.png"); }
 
 .wide-short {
   width:100%;
-  height:85px;
+  height:83px;
   background-image:url('../images/top_bg1.jpg');
   -webkit-background-size: 100%; 
   -moz-background-size: 100%; 
@@ -94,7 +94,7 @@ body { background-image:url("../images/bg.png"); }
 .s05-bullet{ background-position: 0 -605px; width: 9px; height: 9px; opacity: 0.4; filter: alpha(opacity=40); } 
 .s06-tick-off{ background-position: 0 -624px; width: 15px; height: 16px; } 
 .s06-tick-on{ background-position: 0 -650px; width: 15px; height: 16px; } 
-.s07-no-avatar{ background-position: -5px -680px; width: 50px; height: 50px; } 
+.s07-no-avatar{ background-position: -7px -680px; width: 50px; height: 50px; } 
 .s08-pa-delete{ background-position: 0 -736px; width: 24px; height: 23px; } 
 .s08-pa-edit{ background-position: 0 -769px; width: 23px; height: 23px; } 
 .s09-mail{ background-position: 0 -802px; width: 15px; height: 10px; } 
@@ -239,7 +239,7 @@ hr {
 }
 
 .avatar {
-    width:41px; height:41px;
+    width:37px; height:37px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
