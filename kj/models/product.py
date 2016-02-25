@@ -81,21 +81,21 @@ class Product(Base, KJBase):
     KIND_EXCHANGE = 'X'
     KIND_COOK = 'G'
     KIND_TEACH = 'T'
-    
+
     KINDS = {
-        KIND_SELL : u'Kupię, sprzedam, oddam, zamienię',
-        KIND_COOK : u'Chcę jeść',
-        KIND_TEACH : u'Uczę się'
+        KIND_SELL: u'Kupię, sprzedam, oddam, zamienię',
+        KIND_COOK: u'Chcę jeść',
+        KIND_TEACH: u'Uczę się'
     }
-    
+
     BARGAIN_SELL = 'S'
     BARGAIN_EXCHANGE = 'X'
-    
+
     BARGAINS = {
-        BARGAIN_SELL : u'Sprzedam',
-        BARGAIN_EXCHANGE : u'Wymienię'
+        BARGAIN_SELL: u'Sprzedam',
+        BARGAIN_EXCHANGE: u'Wymienię'
     }
-    
+
     AVAILABILITY_TO_SET = 'U'
     AVAILABILITY_NOW = 'N'
     AVAILABILITY_3DAYS = 'D'
@@ -103,25 +103,25 @@ class Product(Base, KJBase):
     AVAILABILITY_TWO_WEEKS = 'T'
     AVAILABILITY_UP_TO_MONTH = 'M'
     AVAILABILITY_MORE_THAN_MONTH = 'Y'
-    
+
     AVAILABILITIES = {
-        AVAILABILITY_TO_SET : u'Do uzgodnienia',
-        AVAILABILITY_NOW : u'Od ręki',
-        AVAILABILITY_3DAYS : u'Do 3 dni roboczych',
-        AVAILABILITY_ONE_WEEK : u'W przeciągu tygodnia',
-        AVAILABILITY_TWO_WEEKS : u'W przeciągu 2 tygodni',
-        AVAILABILITY_UP_TO_MONTH : u'Do miesiąca',
-        AVAILABILITY_MORE_THAN_MONTH : u'Powyżej miesiąca'
+        AVAILABILITY_TO_SET: u'Do uzgodnienia',
+        AVAILABILITY_NOW: u'Od ręki',
+        AVAILABILITY_3DAYS: u'Do 3 dni roboczych',
+        AVAILABILITY_ONE_WEEK: u'W przeciągu tygodnia',
+        AVAILABILITY_TWO_WEEKS: u'W przeciągu 2 tygodni',
+        AVAILABILITY_UP_TO_MONTH: u'Do miesiąca',
+        AVAILABILITY_MORE_THAN_MONTH: u'Powyżej miesiąca'
     }
 
     AVAILABILITIES_ORDER = [
-                AVAILABILITY_TO_SET,
-                AVAILABILITY_NOW,
-                AVAILABILITY_3DAYS,
-                AVAILABILITY_ONE_WEEK,
-                AVAILABILITY_TWO_WEEKS,
-                AVAILABILITY_UP_TO_MONTH,
-                AVAILABILITY_MORE_THAN_MONTH
+        AVAILABILITY_TO_SET,
+        AVAILABILITY_NOW,
+        AVAILABILITY_3DAYS,
+        AVAILABILITY_ONE_WEEK,
+        AVAILABILITY_TWO_WEEKS,
+        AVAILABILITY_UP_TO_MONTH,
+        AVAILABILITY_MORE_THAN_MONTH
     ]
 
     SHIPPING_METHOD_TO_SET = 'U'
@@ -130,16 +130,16 @@ class Product(Base, KJBase):
     SHIPPING_METHOD_POST = 'T'
     SHIPPING_METHOD_COURIER = 'C'
     SHIPPING_METHOD_OTHER = 'O'
-    
+
     SHIPPINGS = {
-        SHIPPING_METHOD_TO_SET : u'Do uzgodnienia',
-        SHIPPING_METHOD_PERSONAL : u'Odbiór osobisty',
-        SHIPPING_METHOD_ONSITE : u'Odbiór na miejscu',
-        SHIPPING_METHOD_POST : u'Wysyłka pocztą',
-        SHIPPING_METHOD_COURIER : u'Wysyłka kurierem',
-        SHIPPING_METHOD_OTHER : u'Inne'
+        SHIPPING_METHOD_TO_SET: u'Do uzgodnienia',
+        SHIPPING_METHOD_PERSONAL: u'Odbiór osobisty',
+        SHIPPING_METHOD_ONSITE: u'Odbiór na miejscu',
+        SHIPPING_METHOD_POST: u'Wysyłka pocztą',
+        SHIPPING_METHOD_COURIER: u'Wysyłka kurierem',
+        SHIPPING_METHOD_OTHER: u'Inne'
     }
-    
+
     SHIPPINGS_ORDER = [
             SHIPPING_METHOD_TO_SET,
             SHIPPING_METHOD_PERSONAL,
@@ -148,39 +148,39 @@ class Product(Base, KJBase):
             SHIPPING_METHOD_COURIER,
             SHIPPING_METHOD_OTHER
     ]
-    
+
     QUANTITY_MEASURE_PIECE = 'P'
     QUANTITY_MEASURE_KG = 'K'
     QUANTITY_MEASURE_LITER = 'L'
     QUANTITY_MEASURE_METER = 'M'
     QUANTITY_MEASURE_SACK = 'S'
     QUANTITY_MEASURE_BOX = 'B'
-    
+
     QUANTITY_MEASURES = {
-        QUANTITY_MEASURE_PIECE : 'sztuka',
-        QUANTITY_MEASURE_KG : 'kg',
-        QUANTITY_MEASURE_LITER : 'litr',
-        QUANTITY_MEASURE_METER : 'metr',
-        QUANTITY_MEASURE_SACK : 'worek',
-        QUANTITY_MEASURE_BOX : 'opakowanie'
+        QUANTITY_MEASURE_PIECE: 'sztuka',
+        QUANTITY_MEASURE_KG: 'kg',
+        QUANTITY_MEASURE_LITER: 'litr',
+        QUANTITY_MEASURE_METER: 'metr',
+        QUANTITY_MEASURE_SACK: 'worek',
+        QUANTITY_MEASURE_BOX: 'opakowanie'
     }
-    
+
     ONE_DAY = 'D'
     THREE_DAYS = 'T'
     WEEK = 'W'
     TWO_WEEKS = 'S'
     MONTH = 'M'
     INFINITY = 'I'
-    
+
     END_DATES = {
-        ONE_DAY : u'jeden dzień (24h)',
-        THREE_DAYS : u'trzy dni',
-        WEEK : u'tydzień',
+        ONE_DAY: u'jeden dzień (24h)',
+        THREE_DAYS: u'trzy dni',
+        WEEK: u'tydzień',
         TWO_WEEKS: u'dwa tygodnie',
-        MONTH : u'miesiąc',
-        INFINITY : u'nieskończoność',
+        MONTH: u'miesiąc',
+        INFINITY: u'nieskończoność',
     }
-    
+
     END_DATES_ORDER = [
         ONE_DAY,
         THREE_DAYS,
@@ -190,15 +190,26 @@ class Product(Base, KJBase):
         INFINITY
     ]
 
-    INFINITY_AS_DATE = datetime.datetime.strptime('1-1-4000','%d-%m-%Y')
+    INFINITY_AS_DATE = datetime.datetime.strptime('1-1-4000', '%d-%m-%Y')
 
-    user = relationship('User', backref=backref('products', order_by="Product.name.desc()"))
-    location = relationship('Location', backref=backref('products', order_by="Location.name.desc()"))
-    category = relationship('Category', primaryjoin="Category.id==Product.cat_id", backref=backref('products', order_by="Product.name.desc()"))
+    user = relationship(
+        'User',
+        backref=backref('products', order_by="Product.name.desc()"))
+    location = relationship(
+        'Location',
+        backref=backref('products', order_by="Location.name.desc()"))
+    category = relationship(
+        'Category',
+        primaryjoin="Category.id==Product.cat_id",
+        backref=backref('products', order_by="Product.name.desc()"))
 
     @classmethod
     def get(cls, pid):
         return DBSession.query(cls).filter(cls.id == pid).first()
+
+    @classmethod
+    def get_all(cls):
+        return DBSession.query(cls).all()
 
     @classmethod
     def get_by_category(cls, cat_id, kind=None):
@@ -222,10 +233,13 @@ class Product(Base, KJBase):
     @classmethod
     def get_all_categories_for_products(cls):
         return Category.get_main()
-        
+
     def owner_name(self):
         return self.user.user_name()
-        
+
+    def get_coordinated(self):
+        return (self.mlang, self.mlong)
+
     def set_end_date(self, date_state):
         if date_state == self.ONE_DAY:
             self.end_date = datetime.datetime.now() + datetime.timedelta(hours=24)
@@ -236,27 +250,27 @@ class Product(Base, KJBase):
         elif date_state == self.TWO_WEEKS:
             self.end_date = datetime.datetime.now() + datetime.timedelta(days=14)
         elif date_state == self.MONTH:
-            self.end_date = datetime.datetime.now() + datetime.timedelta(days=30)            
+            self.end_date = datetime.datetime.now() + datetime.timedelta(days=30)
         elif date_state == self.INFINITY:
             self.end_date = self.INFINITY_AS_DATE
         else:
             self.end_date = datetime.datetime.now() + datetime.timedelta(hours=24)
-            
+
     def until_when_available(self):
         now = datetime.datetime.now()
         if not self.end_date:
             return u'niedostępny'
-    
+
         diff = self.end_date - now
-        
+
         if diff.days > 10000:
             return u'bez ograniczeń'
-                
+
         if diff.days == 1:
             return u'1 dzień'
         elif diff.days > 1:
             return u'%s dni' % (diff.days)
-        
+
         minutes = int(diff.seconds/60)
         if minutes < 60:
             return u'%s min' % (minutes)
@@ -264,12 +278,12 @@ class Product(Base, KJBase):
             return u'%s godz' % (int(minutes/60))
 
         return now - self.end_date
-            
+
     @classmethod
     def save_product_for_sale(cls, data, user_id):
         p = Product()
         p.us_id = user_id
-        p.name = data.get('title','-')
+        p.name = data.get('title', '-')
         p.cat_id = data.get('category')
         p.subcat_id = data.get('subcategory')
         p.subcat2_id = data.get('subcategory2') or None
@@ -283,19 +297,20 @@ class Product(Base, KJBase):
         p.quantity = int(data.get('quantity'))
         p.set_end_date(data.get('end_date'))
         p.specifics = [int(x) for x in data.get('specifics', [])]
-        p.quantity_measure = data.get('quantity_measure','P')
-        
+        p.quantity_measure = data.get('quantity_measure', 'P')
+
         if p.loc_id:
             city = Location.get(p.loc_id)
             if city:
-                p.localisation = "%s, %s, Polska" % (city.name, city.wojewodztwo.name.lower())
+                p.localisation = "%s, %s, Polska" % (
+                    city.name, city.wojewodztwo.name.lower())
 
         DBSession.add(p)
         DBSession.flush()
         return p
-    
+
     def save_edited_product_for_sale(self, data):
-        self.name = data.get('title','-')
+        self.name = data.get('title', '-')
         if self.is_product():
             self.cat_id = data.get('category')
             self.subcat_id = data.get('subcategory')
@@ -311,18 +326,19 @@ class Product(Base, KJBase):
             if self.loc_id:
                 city = Location.get(self.loc_id)
                 if city:
-                    self.localisation = "%s, %s, Polska" % (city.name, city.wojewodztwo.name.lower())
+                    self.localisation = "%s, %s, Polska" % (
+                        city.name, city.wojewodztwo.name.lower())
         self.description = data.get('description')
         DBSession.flush()
-    
+
     def save_product_photo(self, photo, main=False):
         if type(photo) is type(''): 
             return False
-            
+
         file_content = photo.file.read()
-        if len(file_content) == 0: 
+        if len(file_content) == 0:
             return False
-            
+
         filename, ext = os.path.splitext(photo.filename)
         filename = unicodedata.normalize('NFD', filename).encode('ascii', 'ignore')
         md5_ = md5(str(file_content)).hexdigest()

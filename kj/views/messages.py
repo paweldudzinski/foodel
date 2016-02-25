@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from pyramid.response import Response
 from pyramid.view import view_config
 
 from pyramid.httpexceptions import HTTPFound
@@ -7,7 +6,6 @@ from pyramid.httpexceptions import HTTPFound
 from ..lib.helpers import smart_truncate
 
 from ..db import DBSession
-from ..models.user import User
 from ..models.product import Product
 from ..models.thread import Thread
 

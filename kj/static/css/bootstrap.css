@@ -3364,17 +3364,17 @@ input[type="button"].btn-block {
 .btn-primary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #6E8953;
-  *background-color: #6E8953;
-  background-image: -moz-linear-gradient(top, #6E8953, #6E8953);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6E8953), to(#6E8953));
-  background-image: -webkit-linear-gradient(top, #6E8953, #6E8953);
-  background-image: -o-linear-gradient(top, #6E8953, #6E8953);
-  background-image: linear-gradient(to bottom, #6E8953, #6E8953);
+  background-color: #33212d;
+  *background-color: #33212d;
+  background-image: -moz-linear-gradient(top, #33212d, #33212d);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#33212d), to(#33212d));
+  background-image: -webkit-linear-gradient(top, #33212d, #33212d);
+  background-image: -o-linear-gradient(top, #33212d, #33212d);
+  background-image: linear-gradient(to bottom, #33212d, #33212d);
   background-repeat: repeat-x;
   border-color: #0044cc #0044cc #002a80;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6E8953', endColorstr='#ff6E8953', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff33212d', endColorstr='#ff33212d', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
@@ -3385,13 +3385,13 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #687c85;
-  *background-color: #687c85;
+  background-color: #611C4A;
+  *background-color: #611C4A;
 }
 
 .btn-primary:active,
 .btn-primary.active {
-  background-color: #687c85 \9;
+  background-color: #611C4A \9;
 }
 
 .btn-warning {
@@ -6366,7 +6366,7 @@ div.thread {
 }
 
 div.thread-last {
-    border-bottom:1px solid #6E8953 !important;
+    border-bottom:1px solid #33212d !important;
 }
 
 div.thread .date {
@@ -6392,12 +6392,12 @@ div.thread.received .name a {
 
 div.thread.sent {
     background-color: #e5e9ec;
-    border:1px solid #6E8953;
+    border:1px solid #33212d;
 }
 
 div.thread.received {
     background-color: #e7e4e1;
-    border:1px solid #6E8953;
+    border:1px solid #33212d;
 }
 
 div.message {

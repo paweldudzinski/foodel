@@ -47,11 +47,6 @@
                         
                         <div class="line" style="margin:6px 0px;"></div>
                         
-                        <a href="${request.route_path('my_events')}">Moje wydarzenia:</a>
-                        <strong>${req.user.get_number_of_ongoing_events()}</strong>
-                        
-                        <div class="line" style="margin:6px 0px;"></div>
-                        
                         <a href="${req.user.profile_link(req)}">Pokaż mój profil</a>
                     </div>
                 %else:
@@ -120,7 +115,7 @@
 	%endfor
 </%def>
 
-<%def name="chunk_of_products(products, title='', exchange_offers=False, force_width=None)" filter="trim">
+<%def name="chunk_of_products(products, title='', exchange_offers=False, force_width=None, distances=False)" filter="trim">
     <section class="newest">
         <div class="newest-products" style="${'width:%s%%'%(force_width) if force_width else ''}">
             %if not products:

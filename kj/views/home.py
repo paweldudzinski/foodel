@@ -62,7 +62,7 @@ def home(request):
     }
 
 
-@view_config(route_name='home_buy', renderer='kj:templates/index.html')
+@view_config(route_name='home_buy', renderer='kj:templates/index_short.html')
 def home_buy(request):
     mosaic = Category.get_main_with_product_ids(
         where_statement="AND prod.kind='S'")
@@ -74,7 +74,7 @@ def home_buy(request):
     }
 
 
-@view_config(route_name='home_change', renderer='kj:templates/index.html')
+@view_config(route_name='home_change', renderer='kj:templates/index_short.html')
 def home_change(request):
     mosaic = Category.get_main_with_product_ids(
         where_statement="AND prod.kind='X'")

@@ -2,6 +2,8 @@
 from pyramid.view import view_config
 
 from ..lib.helpers import chunk
+from ..lib.geo import geo
+
 from ..models.product import Product
 
 
@@ -20,20 +22,14 @@ def show_product(request):
     }
 
 
-@view_config(route_name='show_sale', renderer='kj:templates/front/show_sale.html')
-def show_sale(request):
-    products = Product.get_all_for_sale()
-    return {
-        'products' : []
-    }
-
 @view_config(route_name='search', renderer='kj:templates/front/show_sale.html')
 def search(request):
     keyword = request.params.get('keyword');
     keyword = keyword.strip()
-    products = Product.get_all_by_keyword(keyword)
+    products = Product.get_all()
+    products = geo.filter_products(products, keyword)
     return {
         'products': chunk(products, request),
-        'title': u'Poszukiwania dla słowa: %s' % (keyword),
+        'title': u'Najbliżej Ciebie',
         'keyword': keyword
     }
