@@ -16,14 +16,7 @@
     %if product.is_product():
         ${shared.register_simple_input('category', 'select', u'Kategoria gówna', select_values=categories, 
                                     selected_value=product.category and product.category.id)}
-        <div id="subcategory-container">
-        ${shared.register_simple_input('subcategory', 'select', u'Podategoria', select_values=subcategories, 
-                                    selected_value=product.subcat_id)}
-        </div>
-        <div id="subcategory2-container">
-        ${shared.register_simple_input('subcategory2', 'select', u'Podkategoria #2', select_values=subcategories2,
-                                        selected_value=product.subcat2_id)}
-        </div>
+        
     %endif
                                     
     %if product.get_main_photo_object():

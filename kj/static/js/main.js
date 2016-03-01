@@ -18,7 +18,7 @@ $(document).ready(function() {
       $container.masonry({
 			itemSelector: '.tile', 
 			columnWidth: function(containerWidth) { 
-				return 255;
+				return 220;
 			},
             'gutter': 10,
 		});

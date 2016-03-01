@@ -6310,7 +6310,7 @@ a.badge:focus {
 }
 
 .tile {
-    width:240px;
+    width:215px;
     margin-bottom:10px;
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, 0.2);

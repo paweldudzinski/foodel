@@ -86,7 +86,7 @@
 			href = request.route_path('home_show_products', id=category.id, sef=h.make_sef_url(category.name))
 		%>
 		<div class="tile">
-			<div class="pale-box" style="width:240px; margin:0px auto;">
+			<div class="pale-box" style="width:215px; margin:0px auto;">
 				<div class="in-tile">
 					<div style="width:100%; text-align:left;">
 						<div style="padding:9px;">
@@ -102,7 +102,7 @@
 						<img src="${product.get_main_photo_url('big_')}" 
 							 title="${product.name}" 
 							 alt="${product.name}"
-							 style="max-width:240px; margin:0px auto; margin-bottom:10px;">
+							 style="max-width:215px; margin:0px auto; margin-bottom:10px;">
 					</a>
 					</div>
 				</div>
