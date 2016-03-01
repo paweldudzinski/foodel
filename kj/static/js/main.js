@@ -20,7 +20,7 @@ $(document).ready(function() {
 			columnWidth: function(containerWidth) { 
 				return 220;
 			},
-            'gutter': 10,
+            'gutter': 5,
 		});
       var np_div_height = $('.newest-products').height();
       $('.filters section').height(np_div_height);   
