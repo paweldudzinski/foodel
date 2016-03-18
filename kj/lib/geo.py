@@ -21,6 +21,8 @@ class Geo(object):
         return distance and distance.km
 
     def filter_products(self, products, zip_code):
+        if not zip_code:
+            return products
         zip_code_coordinates = self.zip_code_to_lang_lat(zip_code)
         distances = []
         for product in products:
@@ -32,7 +34,7 @@ class Geo(object):
         distances = sorted(distances, key=lambda tup: tup[1])
         result = []
         for distance in distances:
-            if distance[1] > 60:
+            if distance[1] > 200:
                 continue
             product = distance[0]
             product.distance = distance[1]

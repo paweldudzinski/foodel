@@ -22,6 +22,7 @@
                 <section class="main-content">
                     <div class="logo-and-links">
                         ${shared.logo()}
+                        ${shared.zip_code(h.provided_zip_code(req))}
                         ${shared.header_links(req.user)}
                         <div style="clear:both;"></div>
                     </div>

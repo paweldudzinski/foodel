@@ -54,11 +54,12 @@ def home_responsive(request):
 
 @view_config(route_name='home', renderer='kj:templates/index.html')
 def home(request):
-    mosaic = Category.get_main_with_product_ids()
-    print mosaic
+    keyword = request.session.get('search', '')
+    mosaic = Category.get_main_with_product_ids(keyword=keyword)
     return {
         'mosaic': mosaic,
         'title': u'Najnowsze, najświeższe, najfajniejsze',
+        'keyword': keyword
     }
 
 

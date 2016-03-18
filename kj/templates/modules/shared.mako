@@ -1,6 +1,22 @@
 # -*- coding: utf-8 -*
 <%namespace name="modals" file="modals.mako" />
 
+<%def name="zip_code(zip_code)" filter="trim">
+	%if zip_code:
+		<div class="zip-code-space">
+			<div style="float:left;">
+				<span class="small-font">Twój kod pocztowy:</span><br />
+				<strong class="big-font">${zip_code}</strong><br />
+				<a class="small-font" href="/">zmień</a>
+			</div>
+			<div style="float:left; margin-left:40px;">
+				${top_search()}
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+	%endif
+</%def>
+
 <%def name="messages()" filter="trim">
     %for msg in req.session.pop_flash():
     <%
@@ -288,9 +304,19 @@
 <%def name="search()" filter="trim">
 <div class="search-input-container">
 	Wpisz swój kod pocztowy:
-    <form id="search-form" action="${request.route_path('search')}">
-    <input type="text" name="keyword" class="lobster search-input" value="${keyword or ''}" />
-    <a class="icon s16-icon-search search-button" href="#"></a>
+    <form id="search-form" action="${request.route_path('search')}" method="POST">
+		<input type="text" name="keyword" class="lobster search-input" value="${keyword or ''}" />
+		<a class="icon s16-icon-search search-button" href="#"></a>
+    </form>
+</div>
+</%def>
+
+<%def name="top_search()" filter="trim">
+<div class="top-search-input-container">
+	<span class="small-font">Szukasz czegoś konkretnego?</span>
+    <form id="search-form" action="${request.route_path('search')}" method="POST">
+		<input type="text" name="specyfic" class="lobster search-input" value="${keyword or ''}" />
+		<input class="btn btn-primary btn-small" type="submit" value="Znajdź" />
     </form>
 </div>
 </%def>

@@ -23,7 +23,6 @@
     </head>
     <body>
         ${shared.outdated()}        
-        
         <section class="wide">
             <header class="links-and-search-area">
                 <section class="main-content">

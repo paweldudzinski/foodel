@@ -24,7 +24,8 @@ def show_product(request):
 
 @view_config(route_name='search', renderer='kj:templates/front/show_sale.html')
 def search(request):
-    keyword = request.params.get('keyword');
+    keyword = request.params.get('keyword')
+    request.session['search'] = keyword
     keyword = keyword.strip()
     products = Product.get_all()
     products = geo.filter_products(products, keyword)

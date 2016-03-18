@@ -269,7 +269,7 @@ hr {
     float:right;
     border-top:0px;
     border-bottom:0px;
-    width:135px;
+    width:100px;
     text-align:center;
 }
 
@@ -280,6 +280,13 @@ hr {
 .right-dotted {
     border-left:0px !important;
 }
+
+.zip-code-space {
+	float:left; text-align:center; color:white; line-height:18px; margin-left:50px;
+}
+
+.zip-code-space .small-font { font-size:11px; }
+.zip-code-space .big-font { font-size:18px; font-weight: bold; }
 
 .search-input-container {
     -webkit-border-radius: 6px;
@@ -649,7 +656,7 @@ table.specifics input {
     background-color:black;
     bottom:10px;
     opacity: 0.6; filter: alpha(opacity=60);
-    width:220px;
+    width:195px;
     height:20px;
     display:none;
 }
