@@ -43,7 +43,11 @@ class Category(Base, KJBase):
 
     @classmethod
     def get_main_with_product_ids(
-            cls, lg_id='pl', where_statement='', keyword=None):
+            cls,
+            lg_id='pl',
+            where_statement='',
+            keyword=None,
+            product_specific=None):
         from ..models.product import Product
         sql = """
             SELECT cat.id as id, cat.name as name, array_agg(prod.id) as prods
@@ -59,7 +63,7 @@ class Category(Base, KJBase):
         for r in result:
             products = DBSession.query(Product).filter(
                 Product.id.in_(r.prods)).order_by(Product.id.desc()).limit(4).all()
-            products = geo.filter_products(products, keyword)
+            products = geo.filter_products(products, keyword, product_specific)
             if not products:
                 continue
             display_product_idx = randint(0, len(products)-1)

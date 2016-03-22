@@ -315,7 +315,7 @@
 <div class="top-search-input-container">
 	<span class="small-font">Szukasz czegoś konkretnego?</span>
     <form id="search-form" action="${request.route_path('search')}" method="POST">
-		<input type="text" name="specyfic" class="lobster search-input" value="${keyword or ''}" />
+		<input type="text" name="specyfic" class="lobster search-input" value="${specyfic or ''}" />
 		<input class="btn btn-primary btn-small" type="submit" value="Znajdź" />
     </form>
 </div>

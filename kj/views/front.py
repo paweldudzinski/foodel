@@ -25,12 +25,21 @@ def show_product(request):
 @view_config(route_name='search', renderer='kj:templates/front/show_sale.html')
 def search(request):
     keyword = request.params.get('keyword')
-    request.session['search'] = keyword
-    keyword = keyword.strip()
-    products = Product.get_all()
-    products = geo.filter_products(products, keyword)
+    specyfic = request.params.get('specyfic')
+    if keyword:
+        request.session['search'] = keyword
+        keyword = keyword.strip()
+    else:
+        keyword = request.session.get('search')
+
+    if specyfic:
+        products = Product.get_all_by_keyword(specyfic)
+    else:
+        products = Product.get_all()
+    products = geo.filter_products(products, keyword, specyfic)
     return {
         'products': chunk(products, request),
         'title': u'Najbliżej Ciebie',
-        'keyword': keyword
+        'keyword': keyword,
+        'specyfic': specyfic
     }

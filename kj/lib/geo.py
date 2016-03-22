@@ -20,7 +20,7 @@ class Geo(object):
         distance = great_circle(origin, destination)
         return distance and distance.km
 
-    def filter_products(self, products, zip_code):
+    def filter_products(self, products, zip_code, product_specific):
         if not zip_code:
             return products
         zip_code_coordinates = self.zip_code_to_lang_lat(zip_code)
