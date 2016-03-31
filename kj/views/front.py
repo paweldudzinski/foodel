@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPFound
 
 from ..lib.helpers import chunk
 from ..lib.geo import geo
+from ..lib.validators import ZipCodeValidator
 
 from ..models.product import Product
 
@@ -26,9 +28,14 @@ def show_product(request):
 def search(request):
     keyword = request.params.get('keyword')
     specyfic = request.params.get('specyfic')
-    if keyword:
+    if keyword and ZipCodeValidator.validate(keyword):
         request.session['search'] = keyword
         keyword = keyword.strip()
+    elif keyword:
+        request.session.flash(u'Tylko prawidłowy kod pocztowy zadziała...')
+        if request.session.get('search'):
+            del request.session['search']
+        return HTTPFound(location = request.referer)
     else:
         keyword = request.session.get('search')
 
