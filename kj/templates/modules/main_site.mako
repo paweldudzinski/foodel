@@ -136,7 +136,7 @@
                                     </a>
                                 </div>
                             <a class="product-photo" title="${p.name}" href="${p.get_sef_url()}" style="position:relative; display:block;">
-                                %if p.specifics:
+                                %if p.specifics or p.distance:
                                     <div class="product-apla-opacity"></div>
                                     <div class="product-apla">
                                         <ul class="vertical-ul">
@@ -144,7 +144,9 @@
                                             <li title="${s.name.capitalize()}" class="icon s14-spec${s.id}"></li>
                                         %endfor
                                         <br />
-                                        <span class="apla-distance">${"%.1f"%(p.distance)} km od Ciebie</span>
+                                        %if hasattr(p, 'distance'):
+											<span class="apla-distance">${"%.1f"%(p.distance)} km od Ciebie</span>
+                                        %endif
                                         </ul>
                                     </div>
                                 %endif
