@@ -123,6 +123,7 @@
             %endif
 
             %for p in products:
+        
                 <div class="tile">
                     <div class="pale-box" style="width:215; margin:0px auto;">
                         <div class="in-tile">
@@ -142,6 +143,8 @@
                                         %for s in p.get_specifics():
                                             <li title="${s.name.capitalize()}" class="icon s14-spec${s.id}"></li>
                                         %endfor
+                                        <br />
+                                        <span class="apla-distance">${"%.1f"%(p.distance)} km od Ciebie</span>
                                         </ul>
                                     </div>
                                 %endif
