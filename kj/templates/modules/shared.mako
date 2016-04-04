@@ -306,7 +306,7 @@
 	Wpisz swój kod pocztowy:
     <form id="search-form" action="${request.route_path('search')}" method="POST">
 		<input type="text" name="keyword" class="lobster search-input" value="${keyword or ''}" />
-		<a class="icon s16-icon-search search-button" href="#"></a>
+		<a id="search-by-zip" class="icon s16-icon-search search-button" href="#"></a>
     </form>
 </div>
 </%def>
@@ -314,7 +314,7 @@
 <%def name="top_search()" filter="trim">
 <div class="top-search-input-container">
 	<span class="small-font">Szukasz czegoś konkretnego?</span>
-    <form id="search-form" action="${request.route_path('search')}" method="POST">
+    <form id="top-search-form" action="${request.route_path('search')}" method="POST">
 		<input type="text" name="specyfic" class="lobster search-input" value="${specyfic or ''}" />
 		<input class="btn btn-primary btn-small" type="submit" value="Znajdź" />
     </form>
