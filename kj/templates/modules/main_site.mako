@@ -136,8 +136,8 @@
                                     </a>
                                 </div>
                             <a class="product-photo" title="${p.name}" href="${p.get_sef_url()}" style="position:relative; display:block;">
-                                %if p.specifics or p.distance:
-                                    <div class="product-apla-opacity"></div>
+                                %if p.specifics or hasattr(p, 'distance'):
+                                    <div class="product-apla-opacity" style="${'height:20px' if not hasattr(p, 'distance') else ''}"></div>
                                     <div class="product-apla">
                                         <ul class="vertical-ul">
                                         %for s in p.get_specifics():

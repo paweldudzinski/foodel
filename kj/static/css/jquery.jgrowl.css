@@ -93,8 +93,9 @@ div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer {
 	font-size: 				1.3em;
 	text-align: 			left;
 	display: 				none;
-
-    border:                6px solid #7d919a;
+	-webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
 }
 
 div.jGrowl div.jGrowl-notification {
