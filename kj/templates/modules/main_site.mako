@@ -123,6 +123,7 @@
             %endif
 
             %for p in products:
+        
                 <div class="tile">
                     <div class="pale-box" style="width:215; margin:0px auto;">
                         <div class="in-tile">
@@ -135,13 +136,17 @@
                                     </a>
                                 </div>
                             <a class="product-photo" title="${p.name}" href="${p.get_sef_url()}" style="position:relative; display:block;">
-                                %if p.specifics:
-                                    <div class="product-apla-opacity"></div>
+                                %if p.specifics or hasattr(p, 'distance'):
+                                    <div class="product-apla-opacity" style="${'height:20px' if not hasattr(p, 'distance') else ''}"></div>
                                     <div class="product-apla">
                                         <ul class="vertical-ul">
                                         %for s in p.get_specifics():
                                             <li title="${s.name.capitalize()}" class="icon s14-spec${s.id}"></li>
                                         %endfor
+                                        <br />
+                                        %if hasattr(p, 'distance'):
+											<span class="apla-distance">${"%.1f"%(p.distance)} km od Ciebie</span>
+                                        %endif
                                         </ul>
                                     </div>
                                 %endif

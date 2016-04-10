@@ -27,6 +27,7 @@ from ..models.photo import Photo
 from ..models.comment import Comment
 from ..models.event import Event
 from ..lib.validators import NewUserValidator
+from ..lib.geo import geo
 
 
 def __get_coupled_categories_for_mosaic(
@@ -40,14 +41,17 @@ def __get_coupled_categories_for_mosaic(
 
     values = []
     for cat in list(set(coupled_c)):
-        data = cat.get_current_with_product_ids(where_statement=where_statement)
+        data = cat.get_current_with_product_ids(
+            where_statement=where_statement)
         if data:
             values.append(data)
 
     return values
 
 
-@view_config(route_name='responsive', renderer='kj:templates/index_responsive.html')
+@view_config(
+    route_name='responsive',
+    renderer='kj:templates/index_responsive.html')
 def home_responsive(request):
     return {}
 
@@ -75,7 +79,9 @@ def home_buy(request):
     }
 
 
-@view_config(route_name='home_change', renderer='kj:templates/index_short.html')
+@view_config(
+    route_name='home_change',
+    renderer='kj:templates/index_short.html')
 def home_change(request):
     mosaic = Category.get_main_with_product_ids(
         where_statement="AND prod.kind='X'")
@@ -91,8 +97,11 @@ def home_change(request):
     route_name='home_show_products',
     renderer='kj:templates/products.html')
 def home_show_products(request):
+    keyword = request.session.get('search')
     category = Category.get(request.matchdict.get('id'))
     q = Product.get_by_category(category.id)
+    if keyword:
+        q = geo.filter_products(q, keyword, None)
     products = chunk(q, request)
     return {
         'products': products,

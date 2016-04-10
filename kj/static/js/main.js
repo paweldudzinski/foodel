@@ -1,7 +1,12 @@
 function validateEmail(email) { 
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
-} 
+}
+
+function validateZipCode(zip) { 
+    var re = /^[0-9]{2}\-[0-9]{3}$/;
+    return re.test(zip);
+}
 
 function isInteger(n) {
     n = parseInt(n);
@@ -28,9 +33,13 @@ $(document).ready(function() {
     
     $('.search-button').click(function() {
         var value = $('.search-input').val();
+        
+		value = validateZipCode(value);
+        
         if (value) {
             $('#search-form').submit();
         }
+        $.jGrowl('To nie jest poprawne...<br />Kod pocztowy wyglada np. tak 10-232 ;)');
         return false;
     });
     
@@ -57,7 +66,7 @@ $(document).ready(function() {
         $('#product_for_exchange').val(ID);
         $('#exchange-form').submit();
     });
-    
+
     $('#save-user').click(function() {
         var name = $('#name').val();
         var email = $('#remail').val();

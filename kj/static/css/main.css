@@ -79,6 +79,11 @@ body { background-image:url("../images/bg.png"); }
     background-image:url("../images/link4.png");
 }
 
+.apla-distance {
+	color:#fff !important;
+	font-size:10px;
+	font-weight:bold;
+}
 
 .s01-bgr{ background-position: 0 0; width: 965px; height: 205px; } 
 .s02-icon-buy{ background-position: 0 -215px; width: 41px; height: 41px; } 
@@ -563,7 +568,9 @@ table.specifics input {
 }
 
 .vertical-ul {
-    margin:0px;
+    margin:0px auto;
+    text-align:center;
+    width:192px;
 }
 
 .vertical-ul li {
@@ -657,7 +664,7 @@ table.specifics input {
     bottom:10px;
     opacity: 0.6; filter: alpha(opacity=60);
     width:195px;
-    height:20px;
+    height:45px;
     display:none;
 }
 
