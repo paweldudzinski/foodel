@@ -3224,7 +3224,6 @@ button.close {
   *border: 0;
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  border-bottom-color: #b3b3b3;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
@@ -3363,7 +3362,21 @@ input[type="button"].btn-block {
 
 .btn-primary {
   color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 1.25);
+  background-color: #000;
+  *background-color: #000;
+  background-image: -moz-linear-gradient(top, #000, #000);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(#000));
+  background-image: -webkit-linear-gradient(top, #000, #000);
+  background-image: -o-linear-gradient(top, #000, #000);
+  background-image: linear-gradient(to bottom, #000, #000);
+  background-repeat: repeat-x;
+  
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff33212d', endColorstr='#ff33212d', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-violet {
   background-color: #33212d;
   *background-color: #33212d;
   background-image: -moz-linear-gradient(top, #33212d, #33212d);
@@ -3371,11 +3384,6 @@ input[type="button"].btn-block {
   background-image: -webkit-linear-gradient(top, #33212d, #33212d);
   background-image: -o-linear-gradient(top, #33212d, #33212d);
   background-image: linear-gradient(to bottom, #33212d, #33212d);
-  background-repeat: repeat-x;
-  border-color: #0044cc #0044cc #002a80;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff33212d', endColorstr='#ff33212d', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
 .btn-primary:hover,
@@ -3385,8 +3393,19 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #611C4A;
-  *background-color: #611C4A;
+  background-color: #111;
+  *background-color: #111;
+}
+
+.btn-violet:hover,
+.btn-violet:focus,
+.btn-violet:active,
+.btn-violet.active,
+.btn-violet.disabled,
+.btn-violet[disabled] {
+  color: #fff;
+  background-color: #461C38;
+  *background-color: #461C38;
 }
 
 .btn-primary:active,
@@ -6312,7 +6331,7 @@ a.badge:focus {
 .tile {
     width:215px;
     margin-bottom:3px;
-    border: 1px solid #ccc;
+    border: 1px solid #eee;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
