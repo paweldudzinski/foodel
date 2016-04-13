@@ -84,12 +84,12 @@
 <%def name="procuct_descripton_display(p, exchange_offers=[])" filter="trim">
     <div class="newest">
     <div class="product-description-details">
-        <h2 style="margin-top:0px; margin-bottom:2px; line-height:30px;">
+        <h2 style="margin-top:0px; margin-bottom:5px; line-height:30px;">
             ${p.name}
         </h2>
         
         %if p.specifics:
-            <ul class="vertical-ul" style="margin:0px; text-align:left;">
+            <ul class="vertical-ul" style="margin:0px; text-align:left; background-color:black; padding:3px 5px; width:100%;">
             %for s in p.get_specifics():
                 <li title="${s.name.capitalize()}" class="icon s14-spec${s.id}"></li>
             %endfor
