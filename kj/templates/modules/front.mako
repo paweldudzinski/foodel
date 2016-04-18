@@ -89,7 +89,7 @@
         </h2>
         
         %if p.specifics:
-            <ul class="vertical-ul" style="margin:0px; text-align:left; background-color:black; padding:3px 5px; width:100%;">
+            <ul class="vertical-ul" style="margin:0px; text-align:left; padding:3px 5px;">
             %for s in p.get_specifics():
                 <li title="${s.name.capitalize()}" class="icon s14-spec${s.id}"></li>
             %endfor
