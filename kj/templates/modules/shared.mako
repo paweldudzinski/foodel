@@ -212,6 +212,7 @@
     <script src="${req.static_url('kj:static/js/vendor/jquery.masonry.min.js')}"></script>
     <script src="${req.static_url('kj:static/js/vendor/jquery.reveal.js')}"></script>
     <script src="${req.static_url('kj:static/js/vendor/datepicker.js')}"></script>
+    <script src="${req.static_url('kj:static/js/vendor/jquery.cookie.js')}"></script>
     <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
     <script src="${req.static_url('kj:static/js/main.js')}"></script>
 </%def>

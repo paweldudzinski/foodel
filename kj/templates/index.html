@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 <%namespace name="ms" file="modules/main_site.mako" />
+<%namespace name="modals" file="modules/modals.mako" />
+
 <%inherit file="base.mako" />
 <section class="newest">
 	<div class="newest-products">
 		${ms.chunk_of_categories(mosaic)}
 	</div>
+${modals.cookies()}
 </section>
