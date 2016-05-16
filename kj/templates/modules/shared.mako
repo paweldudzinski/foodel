@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*
 <%namespace name="modals" file="modals.mako" />
 
+<%def name="footer()" filter="trim">
+<section class="footer">
+	<a href="${request.route_path('terms_and_conditions')}">regulamin serwisu foodel.pl</a> 
+</section>
+</%def>
+
 <%def name="zip_code(zip_code)" filter="trim">
 	%if zip_code:
 		<div class="zip-code-space">

@@ -45,7 +45,7 @@
          </section>
             ${shared.title_shelf(title=title or u'Uzupełnij')}
             ${next.body()}
-       
+       		${shared.footer()}
         ${shared.js_files()}
         ${self.jquery_additional()}
     <div id="fb-root"></div>

@@ -35,6 +35,7 @@
                 <div style="clear:both;"></div>
                 <br /><br />
             </section>
+            ${shared.footer()}
         </section>
 
         ${shared.js_files()}
