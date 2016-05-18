@@ -3,7 +3,9 @@
 
 <%def name="footer()" filter="trim">
 <section class="footer">
-	<a href="${request.route_path('terms_and_conditions')}">regulamin serwisu foodel.pl</a> 
+	<a href="${request.route_path('terms_and_conditions')}">regulamin serwisu</a> 
+	::
+	<a href="${request.route_path('privacy_policy')}">polityka prywatności</a>
 </section>
 </%def>
 
