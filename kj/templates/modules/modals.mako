@@ -70,6 +70,21 @@
     </div>
 </%def>
 
+<%def name="cookies()" filter="trim">
+	<div id="cookies-modal" class="reveal-modal" style="width:580px; margin-left:-325px; font-size:0.8em;">
+		Drogi Użytkowniku, w ramach naszej strony stosujemy pliki cookies.
+		Ich celem jest świadczenie usług na najwyższym poziomie,
+		w tym również dostosowanych do Twoich indywidualnych potrzeb.
+		Korzystanie z witryny bez zmiany ustawień przeglądarki dotyczących cookies oznacza,
+		że będą one umieszczane w Twoim urządzeniu. W każdej chwili możesz dokonać zmiany ustawień przeglądarki
+		dotyczących cookies - więcej informacji na ten temat znajdziesz w polityce prywatności.<br />
+		<div style="width:100%; text-align:center; margin:0px auto; margin-top:10px; margin-bottom:20px;">
+		<a href="#" id="cookies-accept" class="close-modal btn btn-small btn-primary">Rozumiem i akceptuję</a>
+		</div>
+	</div>
+</%def>
+
+
 <%def name="modal_login()" filter="trim">
     <div id="login-modal" class="reveal-modal" style="width:580px; margin-left:-325px;">
         <div class="login-box" style="border:none !important;">

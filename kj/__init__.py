@@ -57,6 +57,9 @@ def main(global_config, **settings):
     config.add_route('home_show_buy_products', '/kupie-produkty/{id}/{sef}')
     config.add_route('home_show_exchange_products', '/zamienie-produkty/{id}/{sef}')
 
+    config.add_route('terms_and_conditions', '/regulamin')
+    config.add_route('privacy_policy', '/polityka-prywatnosci')
+
     config.add_route('login', '/zaloguj')
     config.add_route('logout', '/wyloguj')
     config.add_route('fb_login', '/zaloguj-fb')

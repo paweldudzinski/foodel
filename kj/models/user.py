@@ -17,23 +17,23 @@ from ..db import (
     DBSession,
     )
 
-from ..lib.helpers import make_sef_url    
+from ..lib.helpers import make_sef_url
 from ..lib.email_sender import EmailSender
 
 from photo import Photo
 from product import Product
-from message import Message
 from thread import Thread
 from order import Order
+
 
 class User(Base, KJBase):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
-    
+
     email = Column(String(258), unique=True)
     password = Column(String(32))
     md5 = Column(String(100))
-    
+
     name = Column(String(1000))
     company = Column(String(1000))
     street = Column(String(1000))
@@ -41,45 +41,46 @@ class User(Base, KJBase):
     city = Column(String(1000))
     country = Column(String(1000))
     vat_id = Column(String(1000))
-    
+
     lg_id = Column(String(2), default='pl')
     is_admin = Column(Boolean, default=False)
-    
+
     confirmed = Column(Boolean, default=False)
-    
+
     @classmethod
     def get_by_id(cls, userid):
         return DBSession.query(cls).filter(cls.id == userid).first()
-        
+
     @classmethod
     def get_by_email(cls, email):
         return DBSession.query(cls).filter(cls.email == email).first()
-        
+
     @classmethod
     def get_by_id_and_md5(cls, userid, md5):
-        return DBSession.query(cls).filter(and_(cls.id == userid,
-                                            cls.md5 == md5)).first()
+        return DBSession.query(cls).filter(and_(
+            cls.id == userid,
+            cls.md5 == md5)).first()
 
     @classmethod
     def login(cls, login, password):
-        return DBSession.query(cls).filter(and_(cls.email == login,
-                                           cls.password == password,
-                                           cls.confirmed == True)).first()
-                                           
+        return DBSession.query(cls).filter(and_(
+            cls.email == login,
+            cls.password == password,
+            cls.confirmed == True)).first()     # noqa
+
     def user_name(self):
         name = self.name or self.company or self.email
         splitted = name.split(' ')
         if len(splitted) > 0:
             return "%s %s." % (splitted[0], splitted[1][0])
         return name
-        
+
     @classmethod
     def save_new(cls, data, generate_password=False):
         name = data.get('name')
         email = data.get('email')
         password = data.get('password')
-        terms_and_conditions = data.get('terms_and_conditions')
-        
+
         user = User()
         user.name = name
         user.email = email
@@ -91,12 +92,12 @@ class User(Base, KJBase):
         user.md5 = hashlib.md5(email).hexdigest()
         DBSession.add(user)
         DBSession.flush()
-        
+
         if not generate_password:
             EmailSender.send_new_user_email(user)
         return user
 
-    def save_edited(self, data):       
+    def save_edited(self, data):
         self.name = data.get('name')
         self.password = data.get('password')
         self.company = data.get('company')
@@ -104,13 +105,12 @@ class User(Base, KJBase):
         self.street = data.get('street')
         self.zip = data.get('zip')
         self.city = data.get('city')
-        
         DBSession.flush()
-        
+
     def confirm(self):
         self.confirmed = True
         DBSession.flush()
-        
+
     def save_avatar(self, filepath):
         photo = Photo()
         photo.filepath = filepath
@@ -118,14 +118,14 @@ class User(Base, KJBase):
         DBSession.add(photo)
         DBSession.flush()
         return photo
-        
+
     def get_all_products(self):
         return DBSession.query(Product).filter(and_(
-                        Product.us_id == self.id,
-                        Product.quantity > 0,
-                        Product.end_date >= datetime.now()
-                )).all()
-                
+            Product.us_id == self.id,
+            Product.quantity > 0,
+            Product.end_date >= datetime.now()
+        )).all()
+
     def get_products_for_message(self):
         return DBSession.query(Product).filter(and_(
                         Product.us_id == self.id,

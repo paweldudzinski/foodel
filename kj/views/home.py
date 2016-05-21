@@ -231,36 +231,42 @@ def register_confirm(request):
     else:
         return HTTPFound(location = request.route_url('register_email_failed'))
 
+
 @view_config(route_name='login')
 def login(request):
     login_url = request.route_url('login')
     referrer = request.referer
     if referrer == login_url:
-        referrer = '/' 
+        referrer = '/'
     came_from = request.params.get('came_from', referrer)
-    
+
     if 'form.submitted' in request.params:
         login = request.params.get('email')
         password = request.params.get('password')
-    
+
         user = User.login(login, password)
         if user:
             headers = remember(request, user.id)
-            return HTTPFound(location = came_from,
-                             headers = headers)
-    
+            return HTTPFound(
+                location=came_from,
+                headers=headers)
+
     request.session.flash(u'Błąd logowaaaniaaaa!')
     headers = forget(request)
-    return HTTPFound(location = request.route_url('home'),
-                     headers = headers)
+    return HTTPFound(
+        location=request.route_url('home'),
+        headers=headers)
+
 
 @view_config(route_name='logout')
 def logout(request):
     headers = forget(request)
-    return HTTPFound(location=request.route_url('home'),
-                      headers=headers)
+    return HTTPFound(
+        location=request.route_url('home'),
+        headers=headers)
 
-@view_config(renderer='json', route_name='fb_login') 
+
+@view_config(renderer='json', route_name='fb_login')
 def fb_login(request):
     user = User.get_by_email(request.params.get('response[email]'))
     if not user:
@@ -268,7 +274,7 @@ def fb_login(request):
         name = data['name'] = request.params.get('response[name]', 'Nieznane z Facebooka')
         email = data['email'] = request.params.get('response[email]', 'unknown@facebook.com')
         user = User.save_new(data, generate_password=True)
-        
+
         URL = 'http://graph.facebook.com/%s/picture?type=large' % (request.params.get('response[id]'))
         file_content = urllib.urlopen(URL).read()
         if file_content and user:
@@ -278,29 +284,24 @@ def fb_login(request):
             new_filename = md5_ + '_' + filename.lower() + ext.lower()
             if not os.path.exists(Photo.BASE_STORAGE_PATH + new_filename[0]):
                     os.makedirs(Photo.BASE_STORAGE_PATH + new_filename[0])
-                    
+
             new_filename_with_path = Photo.BASE_STORAGE_PATH + new_filename[0] + '/' + new_filename
-            
+
             Photo.save_original(new_filename_with_path, file_content)
-            
+
             img = Image.open(new_filename_with_path)
-            if img.mode != "RBG":
-                img = img.convert("RGB")
-            avatar_image = Photo.resize(img, Photo.AVATAR_THUMBNAIL, new_filename, 'avatar_')
-            tiny_image = Photo.resize(img, Photo.TINY_THUMBNAIL, new_filename, 'tiny_')
-            small_image = Photo.resize(img, Photo.SMALL_THUMBNAIL, new_filename, 'small_')
-            big_image = Photo.resize(img, Photo.BIG_THUMBNAIL, new_filename, 'big_')
-            maxi_image = Photo.resize(img, Photo.MAXI_THUMBNAIL, new_filename, 'maxi_')
+            Photo.resize(img, Photo.AVATAR_THUMBNAIL, new_filename, 'avatar_')
+            Photo.resize(img, Photo.TINY_THUMBNAIL, new_filename, 'tiny_')
+            Photo.resize(img, Photo.SMALL_THUMBNAIL, new_filename, 'small_')
+            Photo.resize(img, Photo.BIG_THUMBNAIL, new_filename, 'big_')
+            Photo.resize(img, Photo.MAXI_THUMBNAIL, new_filename, 'maxi_')
 
             user.save_avatar(new_filename_with_path)
-            
-    request_url = request.route_url('login', _query={'form.submitted':'1', 'email':user.email, 'password':user.password})   
-    return json.dumps({"request_url" : "%s"%(request_url)})
 
-
-
-
-
-
-
-
+    request_url = request.route_url(
+        'login',
+        _query={
+            'form.submitted': '1',
+            'email': user.email,
+            'password': user.password})
+    return json.dumps({"request_url": "%s" % (request_url)})

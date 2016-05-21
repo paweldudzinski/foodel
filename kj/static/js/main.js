@@ -14,6 +14,16 @@ function isInteger(n) {
 }
 
 $(document).ready(function() {
+	
+	var cookies_policy_accepted = $.cookie('cpolicy');    
+    if (cookies_policy_accepted!='OK') {
+		$('#cookies-modal').reveal();
+	}
+    
+    $('#cookies-accept').click(function() {
+		$.cookie('cpolicy', 'OK');
+		return false;
+	});
     
     $('.cbox').colorbox({rel:'cbox'});
     

@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*
 <%namespace name="modals" file="modals.mako" />
 
+<%def name="footer()" filter="trim">
+<section class="footer">
+	<a href="${request.route_path('terms_and_conditions')}">regulamin serwisu</a> 
+	::
+	<a href="${request.route_path('privacy_policy')}">polityka prywatności</a>
+</section>
+</%def>
+
 <%def name="zip_code(zip_code)" filter="trim">
 	%if zip_code:
 		<div class="zip-code-space">
@@ -206,6 +214,7 @@
     <script src="${req.static_url('kj:static/js/vendor/jquery.masonry.min.js')}"></script>
     <script src="${req.static_url('kj:static/js/vendor/jquery.reveal.js')}"></script>
     <script src="${req.static_url('kj:static/js/vendor/datepicker.js')}"></script>
+    <script src="${req.static_url('kj:static/js/vendor/jquery.cookie.js')}"></script>
     <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
     <script src="${req.static_url('kj:static/js/main.js')}"></script>
 </%def>

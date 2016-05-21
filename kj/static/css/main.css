@@ -8,6 +8,16 @@ a:hover { text-decoration:none; }
 
 body { background-image:url("../images/bg.png"); }
 
+.footer {
+	width:100%;
+	height:50px;
+	background-color: #ddd;
+	margin-top:80px;
+	padding-top:10px;
+	text-align:center;
+	border-top:1px dotted #aaa;
+}
+
 .icon { 
     background-image:url("../images/sprite_seledine.png");
     display:inline-block;
@@ -193,7 +203,6 @@ hr {
     padding:6px 0px;
     font-size:20px;
     font-family:'Advent Pro';
-    color:#797979;
     font-weight:bold;
 }
 
