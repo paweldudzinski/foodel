@@ -100,44 +100,15 @@ def my_product_for_exchange(request):
         'type' : Product.KIND_EXCHANGE
     }
 
-@view_config(route_name='add_exchange', renderer='kj:templates/panel/add_sale.html', permission='user')
+
+@view_config(
+    route_name='add_exchange',
+    renderer='kj:templates/panel/add_sale.html',
+    permission='user')
 def add_exchange(request):
-    av = []
-    for a in Product.AVAILABILITIES_ORDER:
-        av.append((a, Product.AVAILABILITIES[a]))
-        
-    so = []
-    for a in Product.SHIPPINGS_ORDER:
-        so.append((a, Product.SHIPPINGS[a]))
-        
-    ev = []
-    for a in Product.END_DATES_ORDER:
-        ev.append((a, Product.END_DATES[a]))
-        
-    qm = []
-    for a in Product.QUANTITY_MEASURES:
-        qm.append((a, Product.QUANTITY_MEASURES[a]))
-        
-    woj_loc = []
-    for a in Location.get_main():
-        woj_loc.append((a.id, a.name))
-        
-    categories = []
-    for c in Product.get_all_categories_for_products():
-        categories.append((c.id, c.name))
-        
-    specifics = Specifics.all()
-        
     return {
-        'bargain_values' : tuple(Product.BARGAINS.iteritems()),
-        'availabilility_values' : av,
-        'shipping_values' : so,
-        'end_date_values' : ev,
-        'quantity_measures' : qm,
-        'categories' : categories,
-        'specifics' : specifics,
-        'wojewodztwa' : woj_loc,
-        'type' : 'EXCHANGE'
+        'product_creator': product_creator,
+        'type': 'EXCHANGE'
     }
 
 
@@ -151,31 +122,34 @@ def add_sale(request):
         'type': 'SALE'
     }
 
+
 @view_config(route_name='save_product_for_sale', permission='user')
 def save_product_for_sale(request):
-    product = Product.save_product_for_sale(request.params.mixed(), request.user.id)
-    main_photo = request.params.get('foto_main','')
-    foto_1 = request.params.get('foto_1','')
-    foto_2 = request.params.get('foto_2','')
-    
+    product = Product.save_product_for_sale(
+        request.params.mixed(), request.user.id)
+    main_photo = request.params.get('foto_main', '')
+    foto_1 = request.params.get('foto_1', '')
+    foto_2 = request.params.get('foto_2', '')
+
     if len(str(main_photo)):
         photo = product.save_product_photo(main_photo, main=True)
         if not photo:
             raise Exception("Not Implemented")
-            
+
     if len(str(foto_1)):
         photo = product.save_product_photo(foto_1, main=False)
         if not photo:
             raise Exception("Not Implemented")
-    
+
     if len(str(foto_2)):
         photo = product.save_product_photo(foto_2, main=False)
         if not photo:
             raise Exception("Not Implemented")
-    
+
     product.save_geolocalisation()
     request.session.flash(u'Zapisałem!')
-    return HTTPFound(location = request.route_url('add_sale'))
+    return HTTPFound(location=request.referer)
+
 
 @view_config(route_name='save_edited_product_for_sale', permission='user')
 def save_edited_product_for_sale(request):

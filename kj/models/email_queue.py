@@ -21,10 +21,11 @@ from ..db import (
     )
 
 from ..lib.mailer import Mailer
-    
+
+
 class EmailQueue(Base, KJBase):
     __tablename__ = 'email_queue'
-    
+
     id = Column(Integer, primary_key=True)
     when_sent = Column(DateTime)
     type = Column(String(2))
@@ -56,7 +57,7 @@ class EmailQueue(Base, KJBase):
         from ..lib.email_sender import EmailSender
         mailer = Mailer()
         mailer.login()
-        mailer.send(EmailSender.FROM, self.user.email, self.subject, self.body)
+        res = mailer.send(EmailSender.FROM, self.user.email, self.subject, self.body)
         self.mark_sent()
         
     def mark_sent(self):

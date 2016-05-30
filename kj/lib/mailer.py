@@ -10,7 +10,7 @@ class Mailer():
     #SMTP_PASSWORD = "ImanZoel666"
     #FROM_ADDRESS = "paweldudzinski@gmail.com"
     
-    SMTP_HOST = "smtp.mydevil.net"
+    SMTP_HOST = "mail1.mydevil.net"
     SMTP_LOGIN = "kontakt@foodel.pl"
     SMTP_PASSWORD = "xWmnCtoV"
     FROM_ADDRESS = "info@foodel.pl"

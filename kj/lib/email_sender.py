@@ -18,7 +18,7 @@ class EmailSender(object):
             ---<br />
             Foodel.pl
         """ % (user.id, user.md5)
-        
+
         EmailQueue.push(cls.TYPE_REGISTER_EMAIL, user, subject, msg.strip())
 
     @classmethod

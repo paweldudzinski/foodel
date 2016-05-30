@@ -203,10 +203,12 @@ def register_thanks(request):
     return {
         'title' : u'Rejestracja'
     }
-    
+
 @view_config(route_name='register_email_thanks', renderer='kj:templates/register_email_confirm.html')
 def register_email_thanks(request):
-    return {}
+    return {
+        'title' : u'Rejestracja'
+    }
 
 @view_config(route_name='register_email_failed', renderer='kj:templates/register_email_confirm_failed.html')
 def register_email_failed(request):

@@ -5,11 +5,11 @@
 
 <form id="edit-user-form" action="${request.route_path('save_edited_user', id=req.user.id)}" method="POST" enctype='multipart/form-data'>
     <h2>Edytuj swoje dane</h2>
-    ${shared.register_simple_input('name', 'text', u'Imię i nazwisko lub nick', value=req.user.name)}
+    ${shared.register_simple_input('name', 'text', u'Imię i nazwisko', value=req.user.name)}
     ${shared.register_simple_input('email', 'email', u'Adres e-mail', value=req.user.email, readonly=True, special_id='remail')}
     ${shared.register_simple_input('password', 'password', u'Hasło', value=req.user.password, special_id='rpassword')}
     ${shared.register_simple_input('rpassword', 'password', u'Powtórz hasło', value=req.user.password, special_id='rrpassword')}
-    ${shared.register_simple_input('avatar', 'file', u'Zmień avatar')}
+    ${shared.register_simple_input('avatar', 'file', u'Zmień zdjęcie')}
     <div style="margin:10px 0px 10px 0px; font-size:0.8em;">
         <i>Dodatkowe dane (firma i NIP do faktury, adres do wysyłek itp.)</i>
     </div>
