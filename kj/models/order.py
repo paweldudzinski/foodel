@@ -6,12 +6,11 @@ from sqlalchemy import (
     Column,
     Integer,
     String,
-    Numeric,
     ForeignKey,
     DateTime,
     and_,
     )
-    
+
 from sqlalchemy.orm import (
     relationship,
     backref,
@@ -22,39 +21,42 @@ from ..db import (
     KJBase,
     DBSession,
     )
-    
+
 from ..models.thread import Thread
 from ..models.vote import Vote
 
+
 class Order(Base, KJBase):
     __tablename__ = 'orders'
-    
+
     OS_NEW = 'N'
     OS_CANCELLED = 'C'
     OS_FINISHED = 'F'
-    
+
     ORDER_TO_URL = {
         'nowe': OS_NEW,
         'zakonczone': OS_FINISHED,
         'anulowane': OS_CANCELLED
     }
-    
+
     ORDER_TO_NAME = {
         OS_NEW: 'nowe',
         OS_FINISHED: u'zakończone',
         OS_CANCELLED: 'anulowane'
     }
-    
+
     ALLOWED_TYPES = ['nowe', 'zakonczone', 'anulowane']
-    ORDER_BOUGHT_SELECT = [(OS_NEW, u'Nie dogadaliśmy się, przywróć'),
-                           (OS_FINISHED, u'Dogadaliśmy się, zakończ'),
-                           (OS_CANCELLED, u'Anuluj')]
-    ORDER_SOLD_SELECT   = [(OS_NEW, u'Nie dogadaliśmy się, przywróć'),
-                           (OS_FINISHED, u'Dogadaliśmy się, zakończ'),
-                           (OS_CANCELLED, u'Anuluj')]
+    ORDER_BOUGHT_SELECT = [
+        (OS_NEW, u'Nie dogadaliśmy się, przywróć'),
+        (OS_FINISHED, u'Dogadaliśmy się, zakończ'),
+        (OS_CANCELLED, u'Anuluj')]
+    ORDER_SOLD_SELECT = [
+        (OS_NEW, u'Nie dogadaliśmy się, przywróć'),
+        (OS_FINISHED, u'Dogadaliśmy się, zakończ'),
+        (OS_CANCELLED, u'Anuluj')]
 
     # ORDER FILTERS
-    
+
     TIME_WEEK = 'W'
     TIME_MONTH = 'M'
     TIME_THREE_MONTHS = 'T'
@@ -62,16 +64,16 @@ class Order(Base, KJBase):
     TIME_INFINITY = 'I'
 
     TIMES = {
-        TIME_WEEK : u'ostatni tydzień',
-        TIME_MONTH : u'ostatni miesiąc',
-        TIME_THREE_MONTHS : u'trzy miesiące',
-        TIME_YEAR : u'rok',
-        TIME_INFINITY : u'pokaż wszystkie'
+        TIME_WEEK: u'ostatni tydzień',
+        TIME_MONTH: u'ostatni miesiąc',
+        TIME_THREE_MONTHS: u'trzy miesiące',
+        TIME_YEAR: u'rok',
+        TIME_INFINITY: u'pokaż wszystkie'
     }
 
     TIMES_SORTED = [TIME_WEEK, TIME_MONTH, TIME_THREE_MONTHS,
                     TIME_YEAR, TIME_INFINITY]
-                    
+
     TIME_QUERY_PART = {
         TIME_WEEK : {
             'sql' : "when_created > now() - INTERVAL '1 WEEKS'",
@@ -123,7 +125,7 @@ class Order(Base, KJBase):
         if message:
             msg = '\n%s' % (message)
         else:
-            msg = u'Kupiłem od Ciebie %s! ' % (product.name)
+            msg = u'%s! Mam to!' % (product.name)
             
         thread = Thread.find_by_sender_and_recipient_and_product(buyer.id, seller.id, product.id)
         if not thread:

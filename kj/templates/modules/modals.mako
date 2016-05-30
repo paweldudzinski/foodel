@@ -63,7 +63,7 @@
             %if product.kind == product.BARGAIN_EXCHANGE:
                 <input type="submit" value="Wymień się!" class="btn lobster btn-medium btn-primary regular-font" />
             %else:
-                <input type="submit" value="Kup!" class="btn lobster btn-medium btn-primary regular-font" />
+                <input type="submit" value="Chcę to!" class="btn lobster btn-medium btn-primary regular-font" />
             %endif
         </div>
         </form>
